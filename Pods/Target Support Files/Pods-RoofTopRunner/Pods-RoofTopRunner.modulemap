@@ -1,0 +1,6 @@
+framework module Pods_RoofTopRunner {
+  umbrella header "Pods-RoofTopRunner-umbrella.h"
+
+  export *
+  module * { export * }
+}
