@@ -41,6 +41,11 @@ class GameScene: SKScene {
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
         }
+        
+        let obst = ObstacleNode(withHeight: 4, textureName: "redbox")
+        self.anchorPoint = .normalizedLowerLeft
+        
+        self.addChild(obst)
     }
     
     
