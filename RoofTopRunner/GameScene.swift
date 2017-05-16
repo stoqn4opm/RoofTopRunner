@@ -43,9 +43,12 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
+        self.anchorPoint = .normalizedLowerLeft
         guard let model = loadLevelInfo() else { return }
         let obstaclePage = ObstaclePageNode(obstacleModel: model)
         self.addChild(obstaclePage)
+        
+        obstaclePage.run(SKAction.moveBy(x: -obstaclePage.length, y: 0, duration: 5))
         
     }
     

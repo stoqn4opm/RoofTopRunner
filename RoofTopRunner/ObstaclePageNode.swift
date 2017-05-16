@@ -17,6 +17,11 @@ class ObstaclePageNode: SKNode {
         return obstacleModel["difficulty"].int ?? Int.max
     }
     
+    var length : CGFloat {
+        guard let count = obstacleModel["obstacles"].array?.count else { return 0 }
+        return CGFloat(count * ObstacleNode.width)
+    }
+    
     init(obstacleModel: JSON) {
         self.obstacleModel = obstacleModel
         super.init()
