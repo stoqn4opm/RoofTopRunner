@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import SwiftyJSON
 
 class GameScene: SKScene {
     
@@ -42,11 +43,31 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
-        let obst = ObstacleNode(withHeight: .four, textureName: "redbox")
         self.anchorPoint = .normalizedLowerLeft
-        self.addChild(obst)
+        guard let model = loadLevelInfo() else { return }
+        let obstaclePage = ObstaclePageNode(obstacleModel: model)
+        self.addChild(obstaclePage)
+        
+        obstaclePage.run(SKAction.moveBy(x: -obstaclePage.length, y: 0, duration: 5))
+        
     }
     
+    
+    func loadLevelInfo() -> JSON? {
+        guard let filePath = Bundle.main.path(forResource: "page_model", ofType: "json") else {
+            print("page_model.json not found")
+            return nil
+        }
+        guard let jsonString = try? String.init(contentsOfFile: filePath, encoding: .utf8) else {
+            print("can not load page_model.json file")
+            return nil
+        }
+        guard let dataFromString = jsonString.data(using: .utf8, allowLossyConversion: false) else {
+            return nil
+        }
+        let json = JSON(data: dataFromString)
+        return json
+    }
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
