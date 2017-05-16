@@ -17,16 +17,18 @@ enum ObstacleHeight: Int {
 }
 
 class ObstacleNode: SKNode {
-    static let ObstacleWidth = 100
+    static let width = 100
 
-    convenience init(withHeight obstacleHeight: ObstacleHeight, textureName: String) {
+    convenience init?(withHeight obstacleHeight: ObstacleHeight, textureName: String?) {
+        guard obstacleHeight != .noObstacle else { return nil }
+        
         self.init()
         
         for i in 0..<obstacleHeight.rawValue {
-            let spriteBlock = SKSpriteNode(imageNamed: textureName)
-            spriteBlock.size = CGSize(width: ObstacleNode.ObstacleWidth, height: ObstacleNode.ObstacleWidth)
+            let spriteBlock = SKSpriteNode(imageNamed: textureName ?? "redbox")
+            spriteBlock.size = CGSize(width: ObstacleNode.width, height: ObstacleNode.width)
             self.addChild(spriteBlock)
-            spriteBlock.position = CGPoint(x: self.position.x, y: self.position.y + CGFloat(i * ObstacleNode.ObstacleWidth))
+            spriteBlock.position = CGPoint(x: self.position.x, y: self.position.y + CGFloat(i * ObstacleNode.width))
             spriteBlock.anchorPoint = .normalizedLowerLeft
         }
     }
