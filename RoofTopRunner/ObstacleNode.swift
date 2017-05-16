@@ -8,13 +8,21 @@
 
 import SpriteKit
 
+enum ObstacleHeight: Int {
+    case noObstacle = 0
+    case one = 1
+    case two = 2
+    case three = 3
+    case four = 4
+}
+
 class ObstacleNode: SKNode {
     static let ObstacleWidth = 100
 
-    convenience init(withHeight obstacleHeight: Int, textureName: String) {
+    convenience init(withHeight obstacleHeight: ObstacleHeight, textureName: String) {
         self.init()
         
-        for i in 0..<obstacleHeight {
+        for i in 0..<obstacleHeight.rawValue {
             let spriteBlock = SKSpriteNode(imageNamed: textureName)
             spriteBlock.size = CGSize(width: ObstacleNode.ObstacleWidth, height: ObstacleNode.ObstacleWidth)
             self.addChild(spriteBlock)

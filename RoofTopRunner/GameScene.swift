@@ -42,9 +42,8 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
-        let obst = ObstacleNode(withHeight: 4, textureName: "redbox")
+        let obst = ObstacleNode(withHeight: .four, textureName: "redbox")
         self.anchorPoint = .normalizedLowerLeft
-        
         self.addChild(obst)
     }
     
