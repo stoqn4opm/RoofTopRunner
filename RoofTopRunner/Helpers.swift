@@ -8,6 +8,8 @@
 
 import UIKit
 
+//MARK: CoreGraphics Helpers
+
 extension CGPoint {
     static var normalizedMiddle: CGPoint {
         return CGPoint(x: 0.5, y: 0.5)
@@ -31,5 +33,13 @@ extension CGPoint {
     
     static var normalizedLowerLeft: CGPoint {
         return CGPoint(x: 0, y: 0)
+    }
+}
+
+extension CGSize {
+    
+    func scaled(at scale: CGFloat = UIScreen.main.scale) -> CGSize {
+        let size = CGSize(width: width * scale, height: height * scale)
+        return size
     }
 }
