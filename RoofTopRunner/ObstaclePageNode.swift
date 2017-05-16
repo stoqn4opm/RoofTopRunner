@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class ObstaclePageNode: SKNode {
     
+    //MARK: - Properties
+    
     var obstacleModel: JSON
     
     var difficulty: Int {
@@ -21,6 +23,8 @@ class ObstaclePageNode: SKNode {
         guard let count = obstacleModel["obstacles"].array?.count else { return 0 }
         return CGFloat(count * ObstacleNode.width)
     }
+    
+    //MARK: - Initializers
     
     init(obstacleModel: JSON) {
         self.obstacleModel = obstacleModel
