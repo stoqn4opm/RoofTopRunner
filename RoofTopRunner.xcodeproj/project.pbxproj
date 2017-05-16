@@ -13,6 +13,7 @@
 		327458E01ECAFE3D00CCA1D0 /* page_model.json in Resources */ = {isa = PBXBuildFile; fileRef = 327458DF1ECAFE3D00CCA1D0 /* page_model.json */; };
 		327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */; };
 		327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327458E71ECB1A0300CCA1D0 /* GameManager.swift */; };
+		327458EC1ECB272900CCA1D0 /* RandomObstaclePageNodePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327458EB1ECB272900CCA1D0 /* RandomObstaclePageNodePicker.swift */; };
 		328747371EC9D49D004D54F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328747361EC9D49D004D54F6 /* AppDelegate.swift */; };
 		3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287473E1EC9D49D004D54F6 /* GameViewController.swift */; };
 		328747421EC9D49D004D54F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747401EC9D49D004D54F6 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 		327458DF1ECAFE3D00CCA1D0 /* page_model.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_model.json; sourceTree = "<group>"; };
 		327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndlessLevelScene.swift; sourceTree = "<group>"; };
 		327458E71ECB1A0300CCA1D0 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		327458EB1ECB272900CCA1D0 /* RandomObstaclePageNodePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomObstaclePageNodePicker.swift; sourceTree = "<group>"; };
 		328747331EC9D49D004D54F6 /* RoofTopRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoofTopRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		328747361EC9D49D004D54F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3287473E1EC9D49D004D54F6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		327458E51ECB186100CCA1D0 /* Game Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				327458EA1ECB269E00CCA1D0 /* Endless Run Scene */,
 			);
 			name = "Game Scenes";
 			sourceTree = "<group>";
@@ -103,6 +105,17 @@
 				328747431EC9D49D004D54F6 /* Assets.xcassets */,
 			);
 			name = Art;
+			sourceTree = "<group>";
+		};
+		327458EA1ECB269E00CCA1D0 /* Endless Run Scene */ = {
+			isa = PBXGroup;
+			children = (
+				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				327458EB1ECB272900CCA1D0 /* RandomObstaclePageNodePicker.swift */,
+				327458E41ECB181100CCA1D0 /* Obstacle Pages */,
+				327458E31ECB17DD00CCA1D0 /* ObstaclePage Models */,
+			);
+			name = "Endless Run Scene";
 			sourceTree = "<group>";
 		};
 		3287472A1EC9D49D004D54F6 = {
@@ -130,8 +143,6 @@
 				327458E71ECB1A0300CCA1D0 /* GameManager.swift */,
 				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
 				327458E51ECB186100CCA1D0 /* Game Scenes */,
-				327458E41ECB181100CCA1D0 /* Obstacle Pages */,
-				327458E31ECB17DD00CCA1D0 /* ObstaclePage Models */,
 				327458E91ECB208700CCA1D0 /* Art */,
 			);
 			path = RoofTopRunner;
@@ -275,6 +286,7 @@
 				327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */,
 				327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */,
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,
+				327458EC1ECB272900CCA1D0 /* RandomObstaclePageNodePicker.swift in Sources */,
 				323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */,
 				328747371EC9D49D004D54F6 /* AppDelegate.swift in Sources */,
 				320EB5731ECA46D7004DE20D /* ObstaclePageNode.swift in Sources */,
