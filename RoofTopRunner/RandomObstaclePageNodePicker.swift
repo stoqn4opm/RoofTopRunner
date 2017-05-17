@@ -40,13 +40,17 @@ extension RandomObstaclePageNodePicker {
     }
     
     func randomObstaclePageModel(forDifficulty difficulty: Int) {
-        guard let resourcePath = Bundle.main.resourcePath else { return }
-        let directoryEnumerator = FileManager.default.enumerator(atPath: resourcePath)
+        let resourcesPath = Bundle.main.paths(forResourcesOfType: "json", inDirectory: "obstacle_models")
         
-        while let element = directoryEnumerator?.nextObject() as? String {
-            if element.hasPrefix("page_model") {
-                
+        for filePath in resourcesPath {
+            guard let jsonString = try? String.init(contentsOfFile: filePath, encoding: .utf8) else {
+                print("can not load \"\(filePath)\" file")
+                return
             }
+            guard let dataFromString = jsonString.data(using: .utf8, allowLossyConversion: false) else {
+                return
+            }
+            let json = JSON(data: dataFromString)
         }
     }
 }
