@@ -1,0 +1,362 @@
+{
+	"difficulty": 6,
+	"requres_app_version" : "1.1",
+	"obstacles": [
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 4,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 3,
+		"texture": "texure1"
+	},
+	{
+		"height": 0,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 1,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	},
+	{
+		"height": 2,
+		"texture": "texure1"
+	}
+	]
+}

@@ -37,4 +37,17 @@ class EndlessLevelScene: SKScene {
         return json
     }
 
+    func generataRandomObstacleModel() {
+        
+        var obstacles = ""
+        
+        for _ in 0..<arc4random_uniform(100) {
+            let height = arc4random_uniform(5)
+            obstacles.append("\n\t{\n\t\t\"height\": \(height),\n\t\t\"texture\": \"texure1\"\n\t},")
+        }
+        obstacles.append("\n\t{\n\t\t\"height\": \(2),\n\t\t\"texture\": \"texure1\"\n\t}")
+        
+        let model = "{\n\t\"difficulty\": \(arc4random_uniform(10) + 1),\n\t\"requres_app_version\" : \"1.1\",\n\t\"obstacles\": [\(obstacles)\n\t]\n}"
+        print(model)
+    }
 }
