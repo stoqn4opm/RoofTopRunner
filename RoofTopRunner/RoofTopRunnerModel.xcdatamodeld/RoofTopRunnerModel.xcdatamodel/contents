@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="Obstacle" representedClassName="Obstacle" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="texture" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromPage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ObstaclePage" inverseName="obstacles" inverseEntity="ObstaclePage" syncable="YES"/>
+    </entity>
+    <entity name="ObstaclePage" representedClassName="ObstaclePage" syncable="YES">
+        <relationship name="obstacles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Obstacle" inverseName="fromPage" inverseEntity="Obstacle" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Obstacle" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="ObstaclePage" positionX="-54" positionY="-9" width="128" height="60"/>
+    </elements>
 </model>

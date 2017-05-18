@@ -10,6 +10,10 @@
 		320EB5731ECA46D7004DE20D /* ObstaclePageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclePageNode.swift */; };
 		323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */; };
 		323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45EB1ECA40FA003E7E71 /* Helpers.swift */; };
+		325573D91ECDB26200183112 /* ObstaclePage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325573D51ECDB26200183112 /* ObstaclePage+CoreDataClass.swift */; };
+		325573DA1ECDB26200183112 /* ObstaclePage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325573D61ECDB26200183112 /* ObstaclePage+CoreDataProperties.swift */; };
+		325573DB1ECDB26200183112 /* Obstacle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325573D71ECDB26200183112 /* Obstacle+CoreDataClass.swift */; };
+		325573DC1ECDB26200183112 /* Obstacle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325573D81ECDB26200183112 /* Obstacle+CoreDataProperties.swift */; };
 		3264806A1ECC5ECB000DD1DF /* obstacle_models in Resources */ = {isa = PBXBuildFile; fileRef = 326480691ECC5ECB000DD1DF /* obstacle_models */; };
 		3264806C1ECC6920000DD1DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3264806B1ECC6920000DD1DF /* CoreDataManager.swift */; };
 		326480711ECC7514000DD1DF /* RoofTopRunnerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3264806E1ECC7493000DD1DF /* RoofTopRunnerModel.xcdatamodeld */; };
@@ -29,6 +33,10 @@
 		320EB5721ECA46D7004DE20D /* ObstaclePageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstaclePageNode.swift; sourceTree = "<group>"; };
 		323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		323C45EB1ECA40FA003E7E71 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		325573D51ECDB26200183112 /* ObstaclePage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObstaclePage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		325573D61ECDB26200183112 /* ObstaclePage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObstaclePage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		325573D71ECDB26200183112 /* Obstacle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Obstacle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		325573D81ECDB26200183112 /* Obstacle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Obstacle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		326480691ECC5ECB000DD1DF /* obstacle_models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = obstacle_models; sourceTree = "<group>"; };
 		3264806B1ECC6920000DD1DF /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3264806F1ECC7493000DD1DF /* RoofTopRunnerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoofTopRunnerModel.xcdatamodel; sourceTree = "<group>"; };
@@ -71,6 +79,10 @@
 		3264806D1ECC6BF8000DD1DF /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				325573D51ECDB26200183112 /* ObstaclePage+CoreDataClass.swift */,
+				325573D61ECDB26200183112 /* ObstaclePage+CoreDataProperties.swift */,
+				325573D71ECDB26200183112 /* Obstacle+CoreDataClass.swift */,
+				325573D81ECDB26200183112 /* Obstacle+CoreDataProperties.swift */,
 				3264806B1ECC6920000DD1DF /* CoreDataManager.swift */,
 				3264806E1ECC7493000DD1DF /* RoofTopRunnerModel.xcdatamodeld */,
 			);
@@ -301,7 +313,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */,
+				325573DA1ECDB26200183112 /* ObstaclePage+CoreDataProperties.swift in Sources */,
+				325573DC1ECDB26200183112 /* Obstacle+CoreDataProperties.swift in Sources */,
 				327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */,
+				325573DB1ECDB26200183112 /* Obstacle+CoreDataClass.swift in Sources */,
+				325573D91ECDB26200183112 /* ObstaclePage+CoreDataClass.swift in Sources */,
 				327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */,
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,
 				327458EC1ECB272900CCA1D0 /* RandomObstaclePageNodePicker.swift in Sources */,

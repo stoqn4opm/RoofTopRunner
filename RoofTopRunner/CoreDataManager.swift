@@ -22,7 +22,7 @@ class CoreDataManager: NSObject {
     
     //MARK: - Singleton Reference
     
-    public static let sharedInstance : CoreDataManager = {
+    public static let shared: CoreDataManager = {
         let instance = CoreDataManager()
         return instance
     }()
@@ -58,7 +58,7 @@ class CoreDataManager: NSObject {
     } ()
 
     fileprivate var model: NSManagedObjectModel? {
-        if let modelURL = Bundle.main.url(forResource: "POPSModel", withExtension: "momd") {
+        if let modelURL = Bundle.main.url(forResource: "RoofTopRunnerModel", withExtension: "momd") {
             let result = NSManagedObjectModel(contentsOf: modelURL);
             return result
         }
@@ -79,7 +79,6 @@ class CoreDataManager: NSObject {
         }
         databaseURL = databaseURL.appendingPathComponent(CoreDataManager.databaseName)
         databaseURL = databaseURL.appendingPathExtension(CoreDataManager.databaseExtension)
-        print(databaseURL)
         return databaseURL
     }()
     
