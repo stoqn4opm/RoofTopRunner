@@ -24,5 +24,18 @@ class EndlessLevelScene: SKScene {
                 obstaclePage.rate = 10
             }
         }
+        
+        self.physicsWorld.contactDelegate = self
+    }
+}
+
+extension EndlessLevelScene : SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstaclesLayerNode.obstacleName {
+           contact.bodyB.node?.removeFromParent()
+        } else if contact.bodyA.node?.name == ObstaclesLayerNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName {
+            contact.bodyA.node?.removeFromParent()
+        }
     }
 }

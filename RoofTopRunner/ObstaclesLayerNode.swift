@@ -10,6 +10,9 @@ import SpriteKit
 
 class ObstaclesLayerNode: SKNode {
     
+    static let removeMarkerName = "RemoveMarker"
+    static let obstacleName = "Obstacle"
+    
     //MARK: - Properties
     
     let size: CGSize
@@ -23,6 +26,7 @@ class ObstaclesLayerNode: SKNode {
         spawnTimer = Timer()
         super.init()
         rate = 1
+        placeObstacleRemoveMarker()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,22 +52,41 @@ extension ObstaclesLayerNode {
     }
 }
 
-//MARK: - Internal Logic
+//MARK: - Obstacles Logic
 
 extension ObstaclesLayerNode {
     
     @objc fileprivate func tick() {
         appendObstacle()
         for obstacles in self.children {
-            obstacles.run(SKAction.moveBy(x: -CGFloat(ObstacleNode.width), y: 0, duration: 1 / rate))
+            if obstacles.name != ObstaclesLayerNode.removeMarkerName {
+                obstacles.run(SKAction.moveBy(x: -CGFloat(ObstacleNode.width), y: 0, duration: 1 / rate))
+            }
         }
     }
     
     fileprivate func appendObstacle() {
-        let height = ObstacleHeight.one
+        let height = ObstacleHeight.two
         if let obstacleNode = ObstacleNode(withHeight: height, textureName: "") {
             self.addChild(obstacleNode)
             obstacleNode.position = CGPoint(x: self.position.x - CGFloat(ObstacleNode.width) + size.width, y: self.position.y)
         }
+    }
+}
+
+//MARK: - Removal Marker Logic
+
+extension ObstaclesLayerNode {
+    
+    func placeObstacleRemoveMarker() {
+        let removeMarker = SKSpriteNode(color: .green, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
+        self.addChild(removeMarker)
+        removeMarker.position = self.position
+        removeMarker.name = ObstaclesLayerNode.removeMarkerName
+        removeMarker.physicsBody = SKPhysicsBody(rectangleOf: removeMarker.size, center: .zero)
+        removeMarker.physicsBody?.affectedByGravity = false
+        removeMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
+        removeMarker.physicsBody?.collisionBitMask = ObstacleNode.removalObjectCollisionBitMask
+        removeMarker.physicsBody?.categoryBitMask = ObstacleNode.removalObjectBitMask
     }
 }

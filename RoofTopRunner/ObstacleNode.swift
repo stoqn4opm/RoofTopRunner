@@ -22,26 +22,61 @@ enum ObstacleHeight: Int { // case's rawValue times the ObstacleNode.width
 //MARK: - ObstacleNode Implementation
 
 class ObstacleNode: SKNode {
+    
+    //MARK: - Static Settings
+    
     static let width = 100
-
+    
+    static var categoryBitMask: UInt32                  = 0b0000001000000
+    static var removalObjectBitMask: UInt32             = 0b0000010000000
+    static var removalObjectCollisionBitMask: UInt32    = 0b0000100000000
+    
+    static fileprivate var collisionBitMaskCategoriesCount: UInt32 = 4
+    static fileprivate var collisionBitMaskHelper: UInt32 = 0
+    
+    
+    //MARK: - Initializers
+    
     convenience init?(withHeight obstacleHeight: ObstacleHeight, textureName: String?) {
         guard obstacleHeight != .noObstacle else { return nil }
         
         self.init()
-        
+        name = ObstaclesLayerNode.obstacleName
+        prepareUI(forHeight: obstacleHeight, texture: textureName)
+        preparePhysics(forHeight: obstacleHeight)
+    }
+}
+
+//MARK: - Internal Preparation
+
+extension ObstacleNode {
+    
+    fileprivate func prepareUI(forHeight obstacleHeight: ObstacleHeight, texture textureName: String?) {
         for i in 0..<obstacleHeight.rawValue {
             let spriteBlock = SKSpriteNode(imageNamed: textureName ?? "redbox")
             spriteBlock.size = CGSize(width: ObstacleNode.width, height: ObstacleNode.width)
             self.addChild(spriteBlock)
             spriteBlock.position = CGPoint(x: self.position.x, y: self.position.y + CGFloat(i * ObstacleNode.width))
             spriteBlock.anchorPoint = .normalizedLowerLeft
-            
-            let physicsRect = spriteBlock.size.scaled(at: 0.9)
-            let delta = physicsRect.deltaInRegardsTo(spriteBlock.size)
-            spriteBlock.physicsBody = SKPhysicsBody(rectangleOf: physicsRect, center:CGPoint(x: (delta.width + physicsRect.width) / 2, y: (delta.height + physicsRect.height) / 2))
-            spriteBlock.physicsBody?.affectedByGravity = false
-            spriteBlock.physicsBody?.contactTestBitMask = 2
-            spriteBlock.physicsBody?.collisionBitMask = UInt32(Double(i).truncatingRemainder(dividingBy: 10))
         }
+    }
+    
+    fileprivate func preparePhysics(forHeight obstacleHeight: ObstacleHeight) {
+        
+        let physicsRect = CGSize(width: ObstacleNode.width, height: obstacleHeight.rawValue * ObstacleNode.width)
+        let physicsRectCenter = CGPoint(x: physicsRect.scaled(at: 0.5).width, y: physicsRect.scaled(at: 0.5).height)
+        
+        self.physicsBody = SKPhysicsBody(rectangleOf: physicsRect, center: physicsRectCenter)
+        self.physicsBody?.affectedByGravity = false
+        
+        self.physicsBody?.categoryBitMask = ObstacleNode.categoryBitMask
+        self.physicsBody?.contactTestBitMask = ObstacleNode.removalObjectBitMask
+        
+        self.physicsBody?.collisionBitMask = ObstacleNode.collisionBitMaskHelper
+        ObstacleNode.collisionBitMaskHelper += 1
+        if ObstacleNode.collisionBitMaskHelper == ObstacleNode.collisionBitMaskCategoriesCount {
+           ObstacleNode.collisionBitMaskHelper = 0
+        }
+        
     }
 }
