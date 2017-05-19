@@ -35,6 +35,13 @@ class ObstacleNode: SKNode {
             self.addChild(spriteBlock)
             spriteBlock.position = CGPoint(x: self.position.x, y: self.position.y + CGFloat(i * ObstacleNode.width))
             spriteBlock.anchorPoint = .normalizedLowerLeft
+            
+            let physicsRect = spriteBlock.size.scaled(at: 0.9)
+            let delta = physicsRect.deltaInRegardsTo(spriteBlock.size)
+            spriteBlock.physicsBody = SKPhysicsBody(rectangleOf: physicsRect, center:CGPoint(x: (delta.width + physicsRect.width) / 2, y: (delta.height + physicsRect.height) / 2))
+            spriteBlock.physicsBody?.affectedByGravity = false
+            spriteBlock.physicsBody?.contactTestBitMask = 2
+            spriteBlock.physicsBody?.collisionBitMask = UInt32(Double(i).truncatingRemainder(dividingBy: 10))
         }
     }
 }

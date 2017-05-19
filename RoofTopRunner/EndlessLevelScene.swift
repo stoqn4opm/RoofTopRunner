@@ -15,6 +15,7 @@ class EndlessLevelScene: SKScene {
         self.backgroundColor = .blue
         self.anchorPoint = .normalizedLowerLeft
         
+        
         let obstaclePage = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstaclePage)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { 
