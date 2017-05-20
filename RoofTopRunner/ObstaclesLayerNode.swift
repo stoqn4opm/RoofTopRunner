@@ -27,10 +27,17 @@ class ObstaclesLayerNode: SKNode {
         super.init()
         rate = 1
         placeObstacleRemoveMarker()
+        NotificationCenter.default.addObserver(self, selector: #selector(performEnterForegroundCleanUp), name: Notification.Name.applicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(prepareForBackground), name: Notification.Name.applicationDidEnterBackground, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationDidEnterBackground, object: nil)
     }
 }
 
@@ -88,5 +95,29 @@ extension ObstaclesLayerNode {
         removeMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
         removeMarker.physicsBody?.collisionBitMask = ObstacleNode.removalObjectCollisionBitMask
         removeMarker.physicsBody?.categoryBitMask = ObstacleNode.removalObjectBitMask
+    }
+}
+
+
+extension ObstaclesLayerNode {
+    
+    func performEnterForegroundCleanUp() {
+        guard let removeMarker = self.childNode(withName: ObstaclesLayerNode.removeMarkerName) as? SKSpriteNode else { return }
+        
+        for obstacle in self.children {
+            if obstacle.name == ObstaclesLayerNode.obstacleName {
+                obstacle.removeAllActions()
+                
+                if removeMarker.position.x + removeMarker.size.width >= obstacle.position.x {
+                    obstacle.removeFromParent()
+                }
+            }
+        }
+        
+        self.rate = self._rate //this will reschedule the timer
+    }
+    
+    func prepareForBackground() {
+        spawnTimer.invalidate()
     }
 }
