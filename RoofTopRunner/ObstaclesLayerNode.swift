@@ -18,6 +18,7 @@ class ObstaclesLayerNode: SKNode {
     let size: CGSize
     fileprivate var spawnTimer: Timer = Timer()
     fileprivate var _rate: TimeInterval = 1
+    fileprivate let obstacleAppender = ObstacleNodeAppender()
     
     //MARK: - Initializers
     
@@ -71,8 +72,8 @@ extension ObstaclesLayerNode {
     }
     
     fileprivate func appendObstacle() {
-        let height = ObstacleHeight.two
-        if let obstacleNode = ObstacleNode(withHeight: height, textureName: "") {
+        
+        if let obstacleNode = obstacleAppender.next {
             self.addChild(obstacleNode)
             obstacleNode.position = CGPoint(x: self.position.x - CGFloat(ObstacleNode.width) + size.width, y: self.position.y)
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */; };
+		32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */; };
 		323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */; };
 		323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45EB1ECA40FA003E7E71 /* Helpers.swift */; };
 		327458E01ECAFE3D00CCA1D0 /* page_model.json in Resources */ = {isa = PBXBuildFile; fileRef = 327458DF1ECAFE3D00CCA1D0 /* page_model.json */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObstaclesLayerNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppender.swift; sourceTree = "<group>"; };
 		323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		323C45EB1ECA40FA003E7E71 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		327458DF1ECAFE3D00CCA1D0 /* page_model.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_model.json; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		327458E41ECB181100CCA1D0 /* Obstacles Layer */ = {
 			isa = PBXGroup;
 			children = (
+				32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */,
 				320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */,
 				323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */,
 			);
@@ -278,6 +281,7 @@
 				323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */,
 				328747371EC9D49D004D54F6 /* AppDelegate.swift in Sources */,
 				320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */,
+				32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
