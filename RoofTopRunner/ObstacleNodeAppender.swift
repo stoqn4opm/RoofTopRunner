@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol ObstacleNodeAppendRule {
-    func shouldAppend(_ obstacle: ObstacleNode?, after:[ObstacleNode?]) -> Bool
-}
-
 class ObstacleNodeAppender {
     
     //MARK: - Global Settings
@@ -20,13 +16,13 @@ class ObstacleNodeAppender {
     
     //MARK: - Properties
     
-    fileprivate var obstaclesHistory: [ObstacleNode?] = []
+    fileprivate var obstaclesHistory: [ObstacleNode] = []
     
     //MARK: Public Interface
     
     var appendRules: [ObstacleNodeAppendRule] = []
     
-    var next: ObstacleNode? {
+    var next: ObstacleNode {
         
         var shouldAppend = true
 
@@ -48,7 +44,7 @@ class ObstacleNodeAppender {
             }
             
         } while shouldAppend == false
-        return nil
+        return ObstacleNode(withHeight: .noObstacle, textureName: nil)
     }
     
     private func playPattern() {} // will add the possibility to append specific pattern of obstacles in future
@@ -59,10 +55,10 @@ class ObstacleNodeAppender {
 
 extension ObstacleNodeAppender {
     
-    fileprivate var randomObstacle: ObstacleNode? {
-        let randomRawHeight = arc4random_uniform(5)
-        guard let height = ObstacleHeight(rawValue: Int(randomRawHeight)) else { return nil }
-        let obstacle = ObstacleNode(withHeight: height, textureName: nil)
+    fileprivate var randomObstacle: ObstacleNode {
+        let randomRawHeight = arc4random_uniform(UInt32(ObstacleHeight.count))
+        let height = ObstacleHeight(rawValue: Int(randomRawHeight))
+        let obstacle = ObstacleNode(withHeight: height!, textureName: nil)
         return obstacle
     }
 }
@@ -71,7 +67,7 @@ extension ObstacleNodeAppender {
 
 extension ObstacleNodeAppender {
     
-    fileprivate func remember(_ obstacle: ObstacleNode?) {
+    fileprivate func remember(_ obstacle: ObstacleNode) {
         obstaclesHistory.append(obstacle)
         if obstaclesHistory.count >= ObstacleNodeAppender.historyObstaclesCount {
             obstaclesHistory.removeFirst()

@@ -25,6 +25,8 @@ class EndlessLevelScene: SKScene {
             }
         }
         
+        obstaclePage.obstacleAppender.appendRules.append(NoMoreThanFourTrapsRule())
+        
         self.physicsWorld.contactDelegate = self
     }
 }

@@ -17,6 +17,10 @@ enum ObstacleHeight: Int { // case's rawValue times the ObstacleNode.width
     case two = 2
     case three = 3
     case four = 4
+    
+    static var count: Int {
+        return 5
+    }
 }
 
 //MARK: - ObstacleNode Implementation
@@ -35,15 +39,22 @@ class ObstacleNode: SKNode {
     static fileprivate var collisionBitMaskHelper: UInt32 = 0
     
     
+    //MARK: - Properties
+    
+    let height: ObstacleHeight
+    
     //MARK: - Initializers
     
-    convenience init?(withHeight obstacleHeight: ObstacleHeight, textureName: String?) {
-        guard obstacleHeight != .noObstacle else { return nil }
-        
-        self.init()
+    init(withHeight obstacleHeight: ObstacleHeight, textureName: String?) {
+        height = obstacleHeight
+        super.init()
         name = ObstaclesLayerNode.obstacleName
         prepareUI(forHeight: obstacleHeight, texture: textureName)
         preparePhysics(forHeight: obstacleHeight)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -63,7 +74,12 @@ extension ObstacleNode {
     
     fileprivate func preparePhysics(forHeight obstacleHeight: ObstacleHeight) {
         
-        let physicsRect = CGSize(width: ObstacleNode.width, height: obstacleHeight.rawValue * ObstacleNode.width)
+        var physicsRectHeight = 10
+        if obstacleHeight != .noObstacle {
+            physicsRectHeight = obstacleHeight.rawValue * ObstacleNode.width
+        }
+        
+        let physicsRect = CGSize(width: ObstacleNode.width, height: physicsRectHeight)
         let physicsRectCenter = CGPoint(x: physicsRect.scaled(at: 0.5).width, y: physicsRect.scaled(at: 0.5).height)
         
         self.physicsBody = SKPhysicsBody(rectangleOf: physicsRect, center: physicsRectCenter)
