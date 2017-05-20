@@ -27,8 +27,7 @@ class ObstaclesLayerNode: SKNode {
         super.init()
         rate = 1
         placeObstacleRemoveMarker()
-        NotificationCenter.default.addObserver(self, selector: #selector(performEnterForegroundCleanUp), name: Notification.Name.applicationWillEnterForeground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(prepareForBackground), name: Notification.Name.applicationDidEnterBackground, object: nil)
+        subscribeToNotifications()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,8 +35,7 @@ class ObstaclesLayerNode: SKNode {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationWillEnterForeground, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationDidEnterBackground, object: nil)
+        unsubscribeToNotifications()
     }
 }
 
@@ -98,8 +96,19 @@ extension ObstaclesLayerNode {
     }
 }
 
+//MARK: - Notifications Handling
 
 extension ObstaclesLayerNode {
+    
+    func subscribeToNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(performEnterForegroundCleanUp), name: Notification.Name.applicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(prepareForBackground), name: Notification.Name.applicationDidEnterBackground, object: nil)
+    }
+    
+    func unsubscribeToNotifications() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationWillEnterForeground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationDidEnterBackground, object: nil)
+    }
     
     func performEnterForegroundCleanUp() {
         guard let removeMarker = self.childNode(withName: ObstaclesLayerNode.removeMarkerName) as? SKSpriteNode else { return }
