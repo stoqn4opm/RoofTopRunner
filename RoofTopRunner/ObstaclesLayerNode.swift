@@ -18,8 +18,10 @@ class ObstaclesLayerNode: SKNode {
     //MARK: - Properties
     
     let size: CGSize
-    let obstacleAppender = ObstacleNodeAppender()
     var rate: CGFloat = 1
+    
+    fileprivate let _obstacleAppender = ObstacleNodeAppender()
+    var obstacleAppender: ObstacleNodeAppender { return _obstacleAppender }
     
     //MARK: - Initializers
     
@@ -38,7 +40,7 @@ class ObstaclesLayerNode: SKNode {
         placeObstacleRemoveMarker()
         name = ObstaclesLayerNode.obstacleLayerName
         
-        let newObstacle = obstacleAppender.next
+        let newObstacle = _obstacleAppender.next
         self.addChild(newObstacle)
         newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
     }
@@ -73,7 +75,7 @@ extension ObstaclesLayerNode {
         if (contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
             (contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) {
             
-            let newObstacle = obstacleAppender.next
+            let newObstacle = _obstacleAppender.next
             newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
             self.addChild(newObstacle)
         }
