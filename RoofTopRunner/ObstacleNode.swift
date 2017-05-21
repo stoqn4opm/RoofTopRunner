@@ -32,8 +32,8 @@ class ObstacleNode: SKNode {
     static let width = 100
     
     static var categoryBitMask: UInt32                  = 0b0000001000000
-    static var removalObjectBitMask: UInt32             = 0b0000010000000
-    static var removalObjectCollisionBitMask: UInt32    = 0b0000100000000
+    static var markerObjectBitMask: UInt32             = 0b0000010000000
+    static var markerObjectCollisionBitMask: UInt32    = 0b0000100000000
     
     static fileprivate var collisionBitMaskCategoriesCount: UInt32 = 4
     static fileprivate var collisionBitMaskHelper: UInt32 = 0
@@ -86,13 +86,13 @@ extension ObstacleNode {
         self.physicsBody?.affectedByGravity = false
         
         self.physicsBody?.categoryBitMask = ObstacleNode.categoryBitMask
-        self.physicsBody?.contactTestBitMask = ObstacleNode.removalObjectBitMask
+        self.physicsBody?.contactTestBitMask = ObstacleNode.markerObjectBitMask
         
         self.physicsBody?.collisionBitMask = ObstacleNode.collisionBitMaskHelper
-        ObstacleNode.collisionBitMaskHelper += 1
-        if ObstacleNode.collisionBitMaskHelper == ObstacleNode.collisionBitMaskCategoriesCount {
-           ObstacleNode.collisionBitMaskHelper = 0
-        }
+//        ObstacleNode.collisionBitMaskHelper += 1
+//        if ObstacleNode.collisionBitMaskHelper == ObstacleNode.collisionBitMaskCategoriesCount {
+//           ObstacleNode.collisionBitMaskHelper = 0
+//        }
         
     }
 }

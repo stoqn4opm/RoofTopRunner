@@ -11,24 +11,28 @@ import SpriteKit
 class ObstaclesLayerNode: SKNode {
     
     static let removeMarkerName = "RemoveMarker"
+    static let spawnMarkerName = "SpawnMarker"
     static let obstacleName = "Obstacle"
+    static let obstacleLayerName = "ObstacleLayer"
     
     //MARK: - Properties
     
     let size: CGSize
     let obstacleAppender = ObstacleNodeAppender()
-    fileprivate var spawnTimer: Timer = Timer()
-    fileprivate var _rate: TimeInterval = 1
     
     //MARK: - Initializers
     
     init(withSize size: CGSize) {
         self.size = size
-        spawnTimer = Timer()
         super.init()
-        rate = 1
+        placeObstacleSpawnMarker()
         placeObstacleRemoveMarker()
         subscribeToNotifications()
+        
+        name = ObstaclesLayerNode.obstacleLayerName
+        let newObstacle = obstacleAppender.next
+        self.addChild(newObstacle)
+        newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,59 +44,42 @@ class ObstaclesLayerNode: SKNode {
     }
 }
 
-//MARK: - Speed Control
-
 extension ObstaclesLayerNode {
-    
-    var rate: TimeInterval {
-        set {
-            _rate = newValue
-            spawnTimer.invalidate()
-            spawnTimer = Timer.scheduledTimer(timeInterval: 1 / _rate, target: self,
-                                              selector: #selector(tick), userInfo: nil,
-                                              repeats: true)
-        }
-        get {
-            return _rate
-        }
-    }
-}
-
-//MARK: - Obstacles Logic
-
-extension ObstaclesLayerNode {
-    
-    @objc fileprivate func tick() {
-        appendObstacle()
-        for obstacles in self.children {
-            if obstacles.name != ObstaclesLayerNode.removeMarkerName {
-                obstacles.run(SKAction.moveBy(x: -CGFloat(ObstacleNode.width), y: 0, duration: 1 / rate))
+    func update(_ currentTime: TimeInterval) {
+        for child in self.children {
+            if child.name == ObstaclesLayerNode.obstacleName {
+                child.position.x -= 40
             }
         }
     }
-    
-    fileprivate func appendObstacle() {
-        
-        let obstacleNode = obstacleAppender.next
-        self.addChild(obstacleNode)
-        obstacleNode.position = CGPoint(x: self.position.x - CGFloat(ObstacleNode.width) + size.width, y: self.position.y)
-    }
 }
 
-//MARK: - Removal Marker Logic
+//MARK: - Marker Logic
 
 extension ObstaclesLayerNode {
     
     func placeObstacleRemoveMarker() {
         let removeMarker = SKSpriteNode(color: .green, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
         self.addChild(removeMarker)
-        removeMarker.position = self.position
+        removeMarker.position = CGPoint(x: self.position.x + CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
         removeMarker.name = ObstaclesLayerNode.removeMarkerName
         removeMarker.physicsBody = SKPhysicsBody(rectangleOf: removeMarker.size, center: .zero)
         removeMarker.physicsBody?.affectedByGravity = false
         removeMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
-        removeMarker.physicsBody?.collisionBitMask = ObstacleNode.removalObjectCollisionBitMask
-        removeMarker.physicsBody?.categoryBitMask = ObstacleNode.removalObjectBitMask
+        removeMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
+        removeMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
+    }
+    
+    func placeObstacleSpawnMarker() {
+        let spawnMarker = SKSpriteNode(color: .gray, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
+        self.addChild(spawnMarker)
+        spawnMarker.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
+        spawnMarker.name = ObstaclesLayerNode.spawnMarkerName
+        spawnMarker.physicsBody = SKPhysicsBody(rectangleOf: spawnMarker.size, center: .zero)
+        spawnMarker.physicsBody?.affectedByGravity = false
+        spawnMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
+        spawnMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
+        spawnMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
     }
 }
 
@@ -122,11 +109,33 @@ extension ObstaclesLayerNode {
                 }
             }
         }
-        
-        self.rate = self._rate //this will reschedule the timer
     }
     
     func prepareForBackground() {
-        spawnTimer.invalidate()
+    }
+}
+
+//MARK: - Obstacles Spawning/Removing
+
+extension ObstaclesLayerNode {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstaclesLayerNode.obstacleName {
+            contact.bodyB.node?.removeFromParent()
+        } else if contact.bodyA.node?.name == ObstaclesLayerNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName {
+            contact.bodyA.node?.removeFromParent()
+        }
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstaclesLayerNode.obstacleName {
+            let newObstacle = obstacleAppender.next
+            newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
+            self.addChild(newObstacle)
+        } else if contact.bodyA.node?.name == ObstaclesLayerNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName {
+            let newObstacle = obstacleAppender.next
+            newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
+            self.addChild(newObstacle)
+        }
     }
 }

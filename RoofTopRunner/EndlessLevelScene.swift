@@ -18,12 +18,7 @@ class EndlessLevelScene: SKScene {
         
         let obstaclePage = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstaclePage)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { 
-            obstaclePage.rate = 3
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                obstaclePage.rate = 10
-            }
-        }
+        
         
         obstaclePage.obstacleAppender.appendRules.append(NoMoreThanFourTrapsRule())
         
@@ -31,13 +26,22 @@ class EndlessLevelScene: SKScene {
     }
 }
 
+extension EndlessLevelScene {
+    override func update(_ currentTime: TimeInterval) {
+        let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+        obstacleLayer?.update(currentTime)
+    }
+}
+
 extension EndlessLevelScene : SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstaclesLayerNode.obstacleName {
-           contact.bodyB.node?.removeFromParent()
-        } else if contact.bodyA.node?.name == ObstaclesLayerNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName {
-            contact.bodyA.node?.removeFromParent()
-        }
+        let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+        obstacleLayer?.didBegin(contact)
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+        obstacleLayer?.didEnd(contact)
     }
 }
