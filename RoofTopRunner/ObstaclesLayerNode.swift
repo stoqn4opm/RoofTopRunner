@@ -19,62 +19,40 @@ class ObstaclesLayerNode: SKNode {
     
     let size: CGSize
     let obstacleAppender = ObstacleNodeAppender()
+    var rate: CGFloat = 1
     
     //MARK: - Initializers
     
     init(withSize size: CGSize) {
         self.size = size
         super.init()
-        placeObstacleSpawnMarker()
-        placeObstacleRemoveMarker()
-        
-        name = ObstaclesLayerNode.obstacleLayerName
-        let newObstacle = obstacleAppender.next
-        self.addChild(newObstacle)
-        newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
+        initialPreparation()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func initialPreparation() {
+        placeObstacleSpawnMarker()
+        placeObstacleRemoveMarker()
+        name = ObstaclesLayerNode.obstacleLayerName
+        
+        let newObstacle = obstacleAppender.next
+        self.addChild(newObstacle)
+        newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
+    }
 }
+
+//MARK: - Obstacle Movement
 
 extension ObstaclesLayerNode {
     func update(_ currentTime: TimeInterval) {
         for child in self.children {
             if child.name == ObstacleNode.obstacleName {
-                child.position.x -= 40
+                child.position.x -= rate
             }
         }
-    }
-}
-
-//MARK: - Marker Logic
-
-extension ObstaclesLayerNode {
-    
-    func placeObstacleRemoveMarker() {
-        let removeMarker = SKSpriteNode(color: .green, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
-        self.addChild(removeMarker)
-        removeMarker.position = CGPoint(x: self.position.x + CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
-        removeMarker.name = ObstaclesLayerNode.removeMarkerName
-        removeMarker.physicsBody = SKPhysicsBody(rectangleOf: removeMarker.size, center: .zero)
-        removeMarker.physicsBody?.affectedByGravity = false
-        removeMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
-        removeMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
-        removeMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
-    }
-    
-    func placeObstacleSpawnMarker() {
-        let spawnMarker = SKSpriteNode(color: .gray, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
-        self.addChild(spawnMarker)
-        spawnMarker.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
-        spawnMarker.name = ObstaclesLayerNode.spawnMarkerName
-        spawnMarker.physicsBody = SKPhysicsBody(rectangleOf: spawnMarker.size, center: .zero)
-        spawnMarker.physicsBody?.affectedByGravity = false
-        spawnMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
-        spawnMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
-        spawnMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
     }
 }
 
@@ -91,13 +69,42 @@ extension ObstaclesLayerNode {
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-
+        
         if (contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
             (contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) {
-
+            
             let newObstacle = obstacleAppender.next
             newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
             self.addChild(newObstacle)
         }
+    }
+}
+
+//MARK: - Marker Logic
+
+extension ObstaclesLayerNode {
+    
+    fileprivate func placeObstacleRemoveMarker() {
+        let removeMarker = SKSpriteNode(color: .green, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
+        self.addChild(removeMarker)
+        removeMarker.position = CGPoint(x: self.position.x + CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
+        removeMarker.name = ObstaclesLayerNode.removeMarkerName
+        removeMarker.physicsBody = SKPhysicsBody(rectangleOf: removeMarker.size, center: .zero)
+        removeMarker.physicsBody?.affectedByGravity = false
+        removeMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
+        removeMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
+        removeMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
+    }
+    
+    fileprivate func placeObstacleSpawnMarker() {
+        let spawnMarker = SKSpriteNode(color: .gray, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
+        self.addChild(spawnMarker)
+        spawnMarker.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
+        spawnMarker.name = ObstaclesLayerNode.spawnMarkerName
+        spawnMarker.physicsBody = SKPhysicsBody(rectangleOf: spawnMarker.size, center: .zero)
+        spawnMarker.physicsBody?.affectedByGravity = false
+        spawnMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
+        spawnMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
+        spawnMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
     }
 }
