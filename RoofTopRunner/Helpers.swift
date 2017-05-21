@@ -42,4 +42,9 @@ extension CGSize {
         let size = CGSize(width: width * scale, height: height * scale)
         return size
     }
+    
+    func deltaInRegardsTo(_ size: CGSize) -> CGSize {
+        let result = CGSize(width: fabs(size.width - self.width), height: fabs(size.height - self.height))
+        return result
+    }
 }

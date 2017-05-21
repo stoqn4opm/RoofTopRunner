@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		320EB5731ECA46D7004DE20D /* ObstaclePageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclePageNode.swift */; };
+		320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */; };
+		32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */; };
+		32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */; };
 		323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */; };
 		323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45EB1ECA40FA003E7E71 /* Helpers.swift */; };
 		327458E01ECAFE3D00CCA1D0 /* page_model.json in Resources */ = {isa = PBXBuildFile; fileRef = 327458DF1ECAFE3D00CCA1D0 /* page_model.json */; };
@@ -22,14 +24,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		320EB5721ECA46D7004DE20D /* ObstaclePageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstaclePageNode.swift; sourceTree = "<group>"; };
+		320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObstaclesLayerNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppender.swift; sourceTree = "<group>"; };
+		32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppendRules.swift; sourceTree = "<group>"; };
 		323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		323C45EB1ECA40FA003E7E71 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		327458DF1ECAFE3D00CCA1D0 /* page_model.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = page_model.json; sourceTree = "<group>"; };
 		327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndlessLevelScene.swift; sourceTree = "<group>"; };
-		327458E71ECB1A0300CCA1D0 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		327458E71ECB1A0300CCA1D0 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GameManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		328747331EC9D49D004D54F6 /* RoofTopRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoofTopRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		328747361EC9D49D004D54F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		328747361EC9D49D004D54F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3287473E1EC9D49D004D54F6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		328747411EC9D49D004D54F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		328747431EC9D49D004D54F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,13 +72,15 @@
 			name = "ObstaclePage Models";
 			sourceTree = "<group>";
 		};
-		327458E41ECB181100CCA1D0 /* Obstacle Pages */ = {
+		327458E41ECB181100CCA1D0 /* Obstacles Layer */ = {
 			isa = PBXGroup;
 			children = (
-				320EB5721ECA46D7004DE20D /* ObstaclePageNode.swift */,
+				32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */,
+				32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */,
+				320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */,
 				323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */,
 			);
-			name = "Obstacle Pages";
+			name = "Obstacles Layer";
 			sourceTree = "<group>";
 		};
 		327458E51ECB186100CCA1D0 /* Game Scenes */ = {
@@ -130,7 +136,7 @@
 				327458E71ECB1A0300CCA1D0 /* GameManager.swift */,
 				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
 				327458E51ECB186100CCA1D0 /* Game Scenes */,
-				327458E41ECB181100CCA1D0 /* Obstacle Pages */,
+				327458E41ECB181100CCA1D0 /* Obstacles Layer */,
 				327458E31ECB17DD00CCA1D0 /* ObstaclePage Models */,
 				327458E91ECB208700CCA1D0 /* Art */,
 			);
@@ -277,7 +283,9 @@
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,
 				323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */,
 				328747371EC9D49D004D54F6 /* AppDelegate.swift in Sources */,
-				320EB5731ECA46D7004DE20D /* ObstaclePageNode.swift in Sources */,
+				320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */,
+				32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */,
+				32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,32 +9,65 @@
 import SpriteKit
 import SwiftyJSON
 
+//MARK: Scene Loading
+
 class EndlessLevelScene: SKScene {
     
+    var timeOfLastUpdate: TimeInterval?
+    var timeOfSceneLoad: TimeInterval?
+    
     override func sceneDidLoad() {
-        self.backgroundColor = .blue
         self.anchorPoint = .normalizedLowerLeft
-        guard let model = loadLevelInfo() else { return }
-        let obstaclePage = ObstaclePageNode(obstacleModel: model)
-        self.addChild(obstaclePage)
+        self.physicsWorld.contactDelegate = self
         
-        obstaclePage.run(SKAction.moveBy(x: -obstaclePage.length, y: 0, duration: 5))
+        loadObstacleLayer()
+    }
+}
+
+//MARK: - Obstacles Layer
+
+extension EndlessLevelScene {
+    func loadObstacleLayer() {
+        let obstaclePage = ObstaclesLayerNode(withSize: self.size)
+        self.addChild(obstaclePage)
+        obstaclePage.obstacleAppender.appendRules.append(NoMoreThanFourTrapsRule())
+        obstaclePage.showCurrentRateOnScreen(true)
+    }
+}
+
+//MARK: - Main Loop
+
+extension EndlessLevelScene {
+    override func update(_ currentTime: TimeInterval) {
+        let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+        obstacleLayer?.update(currentTime)
+        
+        if let lastUpdateTime = timeOfLastUpdate, let initialTime = timeOfSceneLoad {
+            
+            let timeSinceLastUpdate = currentTime - lastUpdateTime
+            
+            if timeSinceLastUpdate > 0.1 {
+                obstacleLayer?.rate = CGFloat(currentTime - initialTime)
+                timeOfLastUpdate = currentTime
+            }
+        } else {
+            timeOfLastUpdate = currentTime
+            timeOfSceneLoad = currentTime
+        }
+    }
+}
+
+//MARK: - Physics CallBacks
+
+extension EndlessLevelScene : SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+        obstacleLayer?.didBegin(contact)
     }
     
-    func loadLevelInfo() -> JSON? {
-        guard let filePath = Bundle.main.path(forResource: "page_model", ofType: "json") else {
-            print("page_model.json not found")
-            return nil
-        }
-        guard let jsonString = try? String.init(contentsOfFile: filePath, encoding: .utf8) else {
-            print("can not load page_model.json file")
-            return nil
-        }
-        guard let dataFromString = jsonString.data(using: .utf8, allowLossyConversion: false) else {
-            return nil
-        }
-        let json = JSON(data: dataFromString)
-        return json
+    func didEnd(_ contact: SKPhysicsContact) {
+        let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+        obstacleLayer?.didEnd(contact)
     }
-
 }
