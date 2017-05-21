@@ -128,11 +128,10 @@ extension ObstaclesLayerNode {
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName {
-            let newObstacle = obstacleAppender.next
-            newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
-            self.addChild(newObstacle)
-        } else if contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName {
+
+        if (contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
+            (contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) {
+
             let newObstacle = obstacleAppender.next
             newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
             self.addChild(newObstacle)
