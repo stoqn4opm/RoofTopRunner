@@ -18,9 +18,8 @@ enum ObstacleHeight: Int { // case's rawValue times the ObstacleNode.width
     case three = 3
     case four = 4
     
-    static var count: Int {
-        return 5
-    }
+    // keep this property ip to date with the count of cases
+    static var count: Int { return 5 }
 }
 
 //MARK: - ObstacleNode Implementation
@@ -32,12 +31,10 @@ class ObstacleNode: SKNode {
     static let obstacleName = "Obstacle"
     static let width = 100
     
-    static var categoryBitMask: UInt32                  = 0b0000001000000
+    static var categoryBitMask: UInt32                 = 0b0000001000000
     static var markerObjectBitMask: UInt32             = 0b0000010000000
     static var markerObjectCollisionBitMask: UInt32    = 0b0000100000000
-    
-    static fileprivate var collisionBitMaskCategoriesCount: UInt32 = 4
-    static fileprivate var collisionBitMaskHelper: UInt32 = 0
+    static fileprivate var collisionBitMask: UInt32    = 0b0001000000000
     
     
     //MARK: - Properties
@@ -85,15 +82,8 @@ extension ObstacleNode {
         
         self.physicsBody = SKPhysicsBody(rectangleOf: physicsRect, center: physicsRectCenter)
         self.physicsBody?.affectedByGravity = false
-        
         self.physicsBody?.categoryBitMask = ObstacleNode.categoryBitMask
         self.physicsBody?.contactTestBitMask = ObstacleNode.markerObjectBitMask
-        
-        self.physicsBody?.collisionBitMask = ObstacleNode.collisionBitMaskHelper
-//        ObstacleNode.collisionBitMaskHelper += 1
-//        if ObstacleNode.collisionBitMaskHelper == ObstacleNode.collisionBitMaskCategoriesCount {
-//           ObstacleNode.collisionBitMaskHelper = 0
-//        }
-        
+        self.physicsBody?.collisionBitMask = ObstacleNode.collisionBitMask
     }
 }
