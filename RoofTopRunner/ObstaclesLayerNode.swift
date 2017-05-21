@@ -28,6 +28,7 @@ class ObstaclesLayerNode: SKNode {
         set {
             if newValue < 30 {
                 _rate = newValue
+                updateSpeedLabelIfNeeded(speed: newValue)
             }
         }
     }
@@ -129,5 +130,26 @@ extension ObstaclesLayerNode {
         spawnMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
         spawnMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
         spawnMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
+    }
+}
+
+//MARK: - Current Rate On Screen
+
+extension ObstaclesLayerNode {
+    
+    func showCurrentRateOnScreen(_ currentRate: Bool) {
+        self.childNode(withName: "speedLabel")?.removeFromParent()
+        
+        if currentRate {
+            let speedLabel = SKLabelNode(text: "speed:")
+            speedLabel.name = "speedLabel"
+            self.addChild(speedLabel)
+            speedLabel.position = CGPoint(x: 140, y: size.height - 80)
+        }
+    }
+    
+    fileprivate func updateSpeedLabelIfNeeded(speed: CGFloat) {
+        let speedLabel = self.childNode(withName: "speedLabel") as? SKLabelNode
+        speedLabel?.text = String(format: "speed %.2f", speed)
     }
 }

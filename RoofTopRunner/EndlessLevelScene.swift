@@ -31,6 +31,7 @@ extension EndlessLevelScene {
         let obstaclePage = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstaclePage)
         obstaclePage.obstacleAppender.appendRules.append(NoMoreThanFourTrapsRule())
+        obstaclePage.showCurrentRateOnScreen(true)
     }
 }
 
