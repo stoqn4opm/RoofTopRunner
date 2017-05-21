@@ -10,11 +10,6 @@ import Foundation
 import SpriteKit
 import SwiftyJSON
 
-extension Notification.Name {
-    static let applicationWillEnterForeground = Notification.Name("applicationWillEnterForeground")
-    static let applicationDidEnterBackground = Notification.Name("applicationDidEnterBackground")
-}
-
 class GameManager {
     
     //MARK: Shared Instance

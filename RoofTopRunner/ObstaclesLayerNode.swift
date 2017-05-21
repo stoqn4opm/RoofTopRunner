@@ -27,7 +27,6 @@ class ObstaclesLayerNode: SKNode {
         super.init()
         placeObstacleSpawnMarker()
         placeObstacleRemoveMarker()
-        subscribeToNotifications()
         
         name = ObstaclesLayerNode.obstacleLayerName
         let newObstacle = obstacleAppender.next
@@ -37,10 +36,6 @@ class ObstaclesLayerNode: SKNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    deinit {
-        unsubscribeToNotifications()
     }
 }
 
@@ -80,38 +75,6 @@ extension ObstaclesLayerNode {
         spawnMarker.physicsBody?.contactTestBitMask = ObstacleNode.categoryBitMask
         spawnMarker.physicsBody?.collisionBitMask = ObstacleNode.markerObjectCollisionBitMask
         spawnMarker.physicsBody?.categoryBitMask = ObstacleNode.markerObjectBitMask
-    }
-}
-
-//MARK: - Notifications Handling
-
-extension ObstaclesLayerNode {
-    
-    func subscribeToNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(performEnterForegroundCleanUp), name: Notification.Name.applicationWillEnterForeground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(prepareForBackground), name: Notification.Name.applicationDidEnterBackground, object: nil)
-    }
-    
-    func unsubscribeToNotifications() {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationWillEnterForeground, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.applicationDidEnterBackground, object: nil)
-    }
-    
-    func performEnterForegroundCleanUp() {
-        guard let removeMarker = self.childNode(withName: ObstaclesLayerNode.removeMarkerName) as? SKSpriteNode else { return }
-        
-        for obstacle in self.children {
-            if obstacle.name == ObstacleNode.obstacleName {
-                obstacle.removeAllActions()
-                
-                if removeMarker.position.x + removeMarker.size.width >= obstacle.position.x {
-                    obstacle.removeFromParent()
-                }
-            }
-        }
-    }
-    
-    func prepareForBackground() {
     }
 }
 
