@@ -19,6 +19,7 @@ class ObstaclesLayerNode: SKNode {
     
     let size: CGSize
     fileprivate var _rate: CGFloat = 1 // dependant of the width of spawnMarker. Max tested that code can handle: 30
+    fileprivate var lastPlacedObstacle: ObstacleNode?
     
     var rate: CGFloat {
         get {
@@ -85,10 +86,19 @@ extension ObstaclesLayerNode {
         
         if (contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
             (contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) {
-            
-            let newObstacle = _obstacleAppender.next
-            newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
-            self.addChild(newObstacle)
+
+            if let previousObstacle = lastPlacedObstacle {
+                
+                let newObstacle = _obstacleAppender.next
+                newObstacle.position = CGPoint(x: previousObstacle.position.x + CGFloat(ObstacleNode.width), y: previousObstacle.position.y)
+                self.addChild(newObstacle)
+                lastPlacedObstacle = newObstacle
+            } else {
+                let newObstacle = _obstacleAppender.next
+                newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
+                self.addChild(newObstacle)
+                lastPlacedObstacle = newObstacle
+            }
         }
     }
 }
