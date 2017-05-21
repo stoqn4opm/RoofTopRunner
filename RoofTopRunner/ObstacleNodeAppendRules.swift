@@ -29,7 +29,7 @@ struct NoMoreThanFourTrapsRule: ObstacleNodeAppendRule {
     
     func lastObstaclesWereTraps(last obstacles: [ObstacleNode], checkLast count: Int) -> Bool {
         
-        guard obstacles.count < 3 else { return false }
+        guard obstacles.count >= count else { return false }
         let lastObstacles = obstacles.reversed()[0..<count]
         
         var allLastAreTraps = true
