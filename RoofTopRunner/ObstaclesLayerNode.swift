@@ -12,7 +12,7 @@ class ObstaclesLayerNode: SKNode {
     
     static let removeMarkerName = "RemoveMarker"
     static let spawnMarkerName = "SpawnMarker"
-    static let obstacleName = "Obstacle"
+    
     static let obstacleLayerName = "ObstacleLayer"
     
     //MARK: - Properties
@@ -47,7 +47,7 @@ class ObstaclesLayerNode: SKNode {
 extension ObstaclesLayerNode {
     func update(_ currentTime: TimeInterval) {
         for child in self.children {
-            if child.name == ObstaclesLayerNode.obstacleName {
+            if child.name == ObstacleNode.obstacleName {
                 child.position.x -= 40
             }
         }
@@ -101,7 +101,7 @@ extension ObstaclesLayerNode {
         guard let removeMarker = self.childNode(withName: ObstaclesLayerNode.removeMarkerName) as? SKSpriteNode else { return }
         
         for obstacle in self.children {
-            if obstacle.name == ObstaclesLayerNode.obstacleName {
+            if obstacle.name == ObstacleNode.obstacleName {
                 obstacle.removeAllActions()
                 
                 if removeMarker.position.x + removeMarker.size.width >= obstacle.position.x {
@@ -120,19 +120,19 @@ extension ObstaclesLayerNode {
 extension ObstaclesLayerNode {
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstaclesLayerNode.obstacleName {
+        if contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName {
             contact.bodyB.node?.removeFromParent()
-        } else if contact.bodyA.node?.name == ObstaclesLayerNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName {
+        } else if contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName {
             contact.bodyA.node?.removeFromParent()
         }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstaclesLayerNode.obstacleName {
+        if contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName {
             let newObstacle = obstacleAppender.next
             newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
             self.addChild(newObstacle)
-        } else if contact.bodyA.node?.name == ObstaclesLayerNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName {
+        } else if contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName {
             let newObstacle = obstacleAppender.next
             newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
             self.addChild(newObstacle)

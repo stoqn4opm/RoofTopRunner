@@ -29,6 +29,7 @@ class ObstacleNode: SKNode {
     
     //MARK: - Static Settings
     
+    static let obstacleName = "Obstacle"
     static let width = 100
     
     static var categoryBitMask: UInt32                  = 0b0000001000000
@@ -48,7 +49,7 @@ class ObstacleNode: SKNode {
     init(withHeight obstacleHeight: ObstacleHeight, textureName: String?) {
         height = obstacleHeight
         super.init()
-        name = ObstaclesLayerNode.obstacleName
+        name = ObstacleNode.obstacleName
         prepareUI(forHeight: obstacleHeight, texture: textureName)
         preparePhysics(forHeight: obstacleHeight)
     }
