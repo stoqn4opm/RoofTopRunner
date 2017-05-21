@@ -18,7 +18,18 @@ class ObstaclesLayerNode: SKNode {
     //MARK: - Properties
     
     let size: CGSize
-    var rate: CGFloat = 1
+    fileprivate var _rate: CGFloat = 1 // dependant of the width of spawnMarker. Max tested that code can handle: 30
+    
+    var rate: CGFloat {
+        get {
+            return _rate
+        }
+        set {
+            if newValue < 30 {
+                _rate = newValue
+            }
+        }
+    }
     
     fileprivate let _obstacleAppender = ObstacleNodeAppender()
     var obstacleAppender: ObstacleNodeAppender { return _obstacleAppender }
@@ -52,7 +63,7 @@ extension ObstaclesLayerNode {
     func update(_ currentTime: TimeInterval) {
         for child in self.children {
             if child.name == ObstacleNode.obstacleName {
-                child.position.x -= rate
+                child.position.x -= _rate
             }
         }
     }
