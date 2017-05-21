@@ -9,22 +9,29 @@
 import SpriteKit
 import SwiftyJSON
 
+//MARK: Scene Loading
+
 class EndlessLevelScene: SKScene {
     
     override func sceneDidLoad() {
-        self.backgroundColor = .blue
         self.anchorPoint = .normalizedLowerLeft
-        
-        
-        let obstaclePage = ObstaclesLayerNode(withSize: self.size)
-        self.addChild(obstaclePage)
-        
-        
-        obstaclePage.obstacleAppender.appendRules.append(NoMoreThanFourTrapsRule())
-        
         self.physicsWorld.contactDelegate = self
+        
+        loadObstacleLayer()
     }
 }
+
+//MARK: - Obstacles Layer
+
+extension EndlessLevelScene {
+    func loadObstacleLayer() {
+        let obstaclePage = ObstaclesLayerNode(withSize: self.size)
+        self.addChild(obstaclePage)
+        obstaclePage.obstacleAppender.appendRules.append(NoMoreThanFourTrapsRule())
+    }
+}
+
+//MARK: - Main Loop
 
 extension EndlessLevelScene {
     override func update(_ currentTime: TimeInterval) {
@@ -32,6 +39,8 @@ extension EndlessLevelScene {
         obstacleLayer?.update(currentTime)
     }
 }
+
+//MARK: - Physics CallBacks
 
 extension EndlessLevelScene : SKPhysicsContactDelegate {
     
