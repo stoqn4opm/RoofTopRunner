@@ -38,7 +38,7 @@
 		328747411EC9D49D004D54F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		328747431EC9D49D004D54F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		328747461EC9D49D004D54F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RoofTopRunner/Info.plist; sourceTree = "<group>"; };
 		354206165E7FBB02C39D6183 /* Pods-RoofTopRunner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoofTopRunner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoofTopRunner/Pods-RoofTopRunner.debug.xcconfig"; sourceTree = "<group>"; };
 		7BCFBBF2540ACC3BD2630C6F /* Pods-RoofTopRunner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoofTopRunner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoofTopRunner/Pods-RoofTopRunner.release.xcconfig"; sourceTree = "<group>"; };
 		C954112B745794B726884FED /* Pods_RoofTopRunner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoofTopRunner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,12 +64,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		327458E31ECB17DD00CCA1D0 /* ObstaclePage Models */ = {
+		327458E31ECB17DD00CCA1D0 /* ObstaclePage Patterns */ = {
 			isa = PBXGroup;
 			children = (
 				327458DF1ECAFE3D00CCA1D0 /* page_model.json */,
 			);
-			name = "ObstaclePage Models";
+			name = "ObstaclePage Patterns";
 			sourceTree = "<group>";
 		};
 		327458E41ECB181100CCA1D0 /* Obstacles Layer */ = {
@@ -86,21 +86,19 @@
 		327458E51ECB186100CCA1D0 /* Game Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				32E7281B1ED3F4F0004DFDFB /* Endless Level Scene */,
 			);
 			name = "Game Scenes";
 			sourceTree = "<group>";
 		};
-		327458E61ECB188F00CCA1D0 /* UIApplication stuff */ = {
+		327458E61ECB188F00CCA1D0 /* View Controllers & StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
-				328747361EC9D49D004D54F6 /* AppDelegate.swift */,
 				3287473E1EC9D49D004D54F6 /* GameViewController.swift */,
 				328747401EC9D49D004D54F6 /* Main.storyboard */,
 				328747451EC9D49D004D54F6 /* LaunchScreen.storyboard */,
-				328747481EC9D49D004D54F6 /* Info.plist */,
 			);
-			name = "UIApplication stuff";
+			name = "View Controllers & StoryBoards";
 			sourceTree = "<group>";
 		};
 		327458E91ECB208700CCA1D0 /* Art */ = {
@@ -115,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				328747351EC9D49D004D54F6 /* RoofTopRunner */,
+				328747481EC9D49D004D54F6 /* Info.plist */,
 				328747341EC9D49D004D54F6 /* Products */,
 				DC69658B901FC96CE377F60C /* Pods */,
 				1E0DC57D1535109F497889C5 /* Frameworks */,
@@ -132,15 +131,32 @@
 		328747351EC9D49D004D54F6 /* RoofTopRunner */ = {
 			isa = PBXGroup;
 			children = (
-				327458E61ECB188F00CCA1D0 /* UIApplication stuff */,
-				327458E71ECB1A0300CCA1D0 /* GameManager.swift */,
-				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
+				328747361EC9D49D004D54F6 /* AppDelegate.swift */,
+				327458E61ECB188F00CCA1D0 /* View Controllers & StoryBoards */,
+				32E7281C1ED3F53A004DFDFB /* Shared Functionality */,
 				327458E51ECB186100CCA1D0 /* Game Scenes */,
-				327458E41ECB181100CCA1D0 /* Obstacles Layer */,
-				327458E31ECB17DD00CCA1D0 /* ObstaclePage Models */,
 				327458E91ECB208700CCA1D0 /* Art */,
 			);
 			path = RoofTopRunner;
+			sourceTree = "<group>";
+		};
+		32E7281B1ED3F4F0004DFDFB /* Endless Level Scene */ = {
+			isa = PBXGroup;
+			children = (
+				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				327458E41ECB181100CCA1D0 /* Obstacles Layer */,
+				327458E31ECB17DD00CCA1D0 /* ObstaclePage Patterns */,
+			);
+			name = "Endless Level Scene";
+			sourceTree = "<group>";
+		};
+		32E7281C1ED3F53A004DFDFB /* Shared Functionality */ = {
+			isa = PBXGroup;
+			children = (
+				327458E71ECB1A0300CCA1D0 /* GameManager.swift */,
+				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
+			);
+			name = "Shared Functionality";
 			sourceTree = "<group>";
 		};
 		DC69658B901FC96CE377F60C /* Pods */ = {
