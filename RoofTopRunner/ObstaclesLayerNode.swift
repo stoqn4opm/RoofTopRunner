@@ -32,7 +32,7 @@ class ObstaclesLayerNode: SKNode {
             return _rate
         }
         set {
-            if newValue < 3 { // 30
+            if newValue < 30 { // 30
                 _rate = newValue
                 updateSpeedLabelIfNeeded(speed: newValue)
             }
