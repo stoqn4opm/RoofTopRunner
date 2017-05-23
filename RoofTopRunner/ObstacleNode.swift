@@ -29,8 +29,8 @@ class ObstacleNode: SKNode {
     //MARK: - Static Settings
     
     static let obstacleName = "Obstacle"
-    static let width: CGFloat = 100
-    
+    static let width: CGFloat = 140
+    static let height: CGFloat = ObstacleNode.width * 0.7
     static var categoryBitMask: UInt32                 = 0b0000001000000
     static var markerObjectBitMask: UInt32             = 0b0000010000000
     static var markerObjectCollisionBitMask: UInt32    = 0b0000100000000
@@ -63,9 +63,9 @@ extension ObstacleNode {
     fileprivate func prepareUI(forHeight obstacleHeight: ObstacleHeight, texture textureName: String?) {
         for i in 0..<obstacleHeight.rawValue {
             let spriteBlock = SKSpriteNode(imageNamed: textureName ?? "redbox")
-            spriteBlock.size = CGSize(width: ObstacleNode.width, height: ObstacleNode.width)
+            spriteBlock.size = CGSize(width: ObstacleNode.width, height: ObstacleNode.height)
             self.addChild(spriteBlock)
-            spriteBlock.position = CGPoint(x: self.position.x, y: self.position.y + CGFloat(i) * ObstacleNode.width)
+            spriteBlock.position = CGPoint(x: self.position.x, y: self.position.y + CGFloat(i) * ObstacleNode.height)
             spriteBlock.anchorPoint = .normalizedLowerLeft
         }
     }
@@ -74,7 +74,7 @@ extension ObstacleNode {
         
         var physicsRectHeight: CGFloat = 10
         if obstacleHeight != .noObstacle {
-            physicsRectHeight = CGFloat(obstacleHeight.rawValue) * ObstacleNode.width
+            physicsRectHeight = CGFloat(obstacleHeight.rawValue) * ObstacleNode.height
         }
         
         let physicsRect = CGSize(width: ObstacleNode.width, height: physicsRectHeight)
