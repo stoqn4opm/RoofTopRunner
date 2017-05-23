@@ -29,7 +29,7 @@ class ObstacleNode: SKNode {
     //MARK: - Static Settings
     
     static let obstacleName = "Obstacle"
-    static let width: CGFloat = 140
+    static let width: CGFloat = 180
     static let height: CGFloat = ObstacleNode.width * 0.7
     static var categoryBitMask: UInt32                 = 0b0000001000000
     static var markerObjectBitMask: UInt32             = 0b0000010000000
