@@ -102,4 +102,24 @@ struct SameAsPriorToTwoHolesRule: ObstacleNodeAppendRule {
     }
 }
 
-
+struct NoBiggerHeightDifferenceThanOneAfterHoleRule: ObstacleNodeAppendRule {
+    
+    internal func shouldAppend(_ obstacle: ObstacleNode, after oldObstacles: [ObstacleNode]) -> Bool {
+        
+        guard oldObstacles.count >= 2 else { return true }
+        let lastObstacle = oldObstacles.reversed()[0]
+        let obstaclePriorToLastObstacle = oldObstacles.reversed()[1]
+        
+        if lastObstacle.height == .noObstacle {
+            
+            if abs(obstacle.height.rawValue - obstaclePriorToLastObstacle.height.rawValue) <= 1 {
+                return true
+            } else {
+                return false
+            }
+            
+        } else {
+            return true
+        }
+    }
+}
