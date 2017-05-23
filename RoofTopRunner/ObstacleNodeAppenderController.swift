@@ -31,6 +31,7 @@ extension ObstacleNodeAppenderController {
         
         rules.append(HoleOrSameAsPreviousRule())
         rules.append(SameAsPriorToTwoHolesRule())
+        rules.append(NoBiggerHeightDifferenceThanOneAfterHoleRule())
         
         return rules
     }
