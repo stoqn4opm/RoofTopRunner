@@ -77,11 +77,9 @@
 		327458E41ECB181100CCA1D0 /* Obstacles Layer */ = {
 			isa = PBXGroup;
 			children = (
-				32E7281D1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift */,
-				32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */,
-				32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */,
 				320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */,
-				323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */,
+				32E7281F1ED40423004DFDFB /* Controller */,
+				32E728201ED40435004DFDFB /* View */,
 			);
 			name = "Obstacles Layer";
 			sourceTree = "<group>";
@@ -160,6 +158,24 @@
 				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
 			);
 			name = "Shared Functionality";
+			sourceTree = "<group>";
+		};
+		32E7281F1ED40423004DFDFB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				32E7281D1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift */,
+				32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */,
+				32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		32E728201ED40435004DFDFB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		DC69658B901FC96CE377F60C /* Pods */ = {

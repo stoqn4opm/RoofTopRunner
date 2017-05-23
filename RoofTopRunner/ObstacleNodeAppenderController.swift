@@ -29,7 +29,8 @@ extension ObstacleNodeAppenderController {
     var appendRules: [ObstacleNodeAppendRule] {
         var rules: [ObstacleNodeAppendRule] = []
         
-        rules.append(NoMoreThanFourTrapsRule())
+        rules.append(HoleOrSameAsPreviousRule())
+        rules.append(SameAsPriorToTwoHolesRule())
         
         return rules
     }
