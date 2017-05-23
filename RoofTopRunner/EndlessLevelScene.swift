@@ -13,9 +13,6 @@ import SwiftyJSON
 
 class EndlessLevelScene: SKScene {
     
-    var timeOfLastUpdate: TimeInterval?
-    var timeOfSceneLoad: TimeInterval?
-    
     override func sceneDidLoad() {
         self.anchorPoint = .normalizedLowerLeft
         self.physicsWorld.contactDelegate = self
@@ -28,10 +25,10 @@ class EndlessLevelScene: SKScene {
 
 extension EndlessLevelScene {
     func loadObstacleLayer() {
-        let obstaclePage = ObstaclesLayerNode(withSize: self.size)
-        self.addChild(obstaclePage)
-        obstaclePage.obstacleAppender.appendRules.append(NoMoreThanFourTrapsRule())
-        obstaclePage.showCurrentRateOnScreen(true)
+
+        let obstacleLayer = ObstaclesLayerNode(withSize: self.size)
+        self.addChild(obstacleLayer)
+        obstacleLayer.showCurrentRateOnScreen(true)
     }
 }
 
@@ -41,19 +38,6 @@ extension EndlessLevelScene {
     override func update(_ currentTime: TimeInterval) {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.update(currentTime)
-        
-        if let lastUpdateTime = timeOfLastUpdate, let initialTime = timeOfSceneLoad {
-            
-            let timeSinceLastUpdate = currentTime - lastUpdateTime
-            
-            if timeSinceLastUpdate > 0.1 {
-                obstacleLayer?.rate = CGFloat(currentTime - initialTime)
-                timeOfLastUpdate = currentTime
-            }
-        } else {
-            timeOfLastUpdate = currentTime
-            timeOfSceneLoad = currentTime
-        }
     }
 }
 
