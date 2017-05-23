@@ -42,7 +42,7 @@ extension ObstacleNodeAppenderController {
 extension ObstacleNodeAppenderController {
     
     func speedRate(forPassedTime time: TimeInterval) -> CGFloat {
-        return CGFloat(time)
+        return CGFloat((time * time) / 100)
     }
 }
 
