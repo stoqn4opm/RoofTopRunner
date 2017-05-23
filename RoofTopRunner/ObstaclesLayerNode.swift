@@ -59,7 +59,7 @@ class ObstaclesLayerNode: SKNode {
         
         let newObstacle = obstacleAppender.next
         self.addChild(newObstacle)
-        newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
+        newObstacle.position = CGPoint(x: self.position.x + self.size.width - ObstacleNode.width, y: self.position.y)
     }
 }
 
@@ -116,12 +116,12 @@ extension ObstaclesLayerNode {
             if let previousObstacle = lastPlacedObstacle {
                 
                 let newObstacle = obstacleAppender.next
-                newObstacle.position = CGPoint(x: previousObstacle.position.x + CGFloat(ObstacleNode.width), y: previousObstacle.position.y)
+                newObstacle.position = CGPoint(x: previousObstacle.position.x + ObstacleNode.width, y: previousObstacle.position.y)
                 self.addChild(newObstacle)
                 lastPlacedObstacle = newObstacle
             } else {
                 let newObstacle = obstacleAppender.next
-                newObstacle.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width), y: self.position.y)
+                newObstacle.position = CGPoint(x: self.position.x + self.size.width - ObstacleNode.width, y: self.position.y)
                 self.addChild(newObstacle)
                 lastPlacedObstacle = newObstacle
             }
@@ -136,7 +136,7 @@ extension ObstaclesLayerNode {
     fileprivate func placeObstacleRemoveMarker() {
         let removeMarker = SKSpriteNode(color: .green, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
         self.addChild(removeMarker)
-        removeMarker.position = CGPoint(x: self.position.x + CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
+        removeMarker.position = CGPoint(x: self.position.x + ObstacleNode.width / 2, y: self.position.y + ObstacleNode.width / 2)
         removeMarker.name = ObstaclesLayerNode.removeMarkerName
         removeMarker.physicsBody = SKPhysicsBody(rectangleOf: removeMarker.size, center: .zero)
         removeMarker.physicsBody?.affectedByGravity = false
@@ -148,7 +148,7 @@ extension ObstaclesLayerNode {
     fileprivate func placeObstacleSpawnMarker() {
         let spawnMarker = SKSpriteNode(color: .gray, size: CGSize(width: ObstacleNode.width, height: ObstacleNode.width))
         self.addChild(spawnMarker)
-        spawnMarker.position = CGPoint(x: self.position.x + self.size.width - CGFloat(ObstacleNode.width) / 2, y: self.position.y + CGFloat(ObstacleNode.width) / 2)
+        spawnMarker.position = CGPoint(x: self.position.x + self.size.width - ObstacleNode.width / 2, y: self.position.y + ObstacleNode.width / 2)
         spawnMarker.name = ObstaclesLayerNode.spawnMarkerName
         spawnMarker.physicsBody = SKPhysicsBody(rectangleOf: spawnMarker.size, center: .zero)
         spawnMarker.physicsBody?.affectedByGravity = false
