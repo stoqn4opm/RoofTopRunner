@@ -16,10 +16,10 @@ enum ObstacleHeight: Int { // case's rawValue times the ObstacleNode.width
     case one = 1
     case two = 2
     case three = 3
-    case four = 4
+//    case four = 4
     
     // keep this property ip to date with the count of cases
-    static var count: Int { return 5 }
+    static var count: Int { return 4 }
 }
 
 //MARK: - ObstacleNode Implementation
