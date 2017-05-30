@@ -57,10 +57,14 @@ class ObstaclesLayerNode: SKNode {
         placeObstacleRemoveMarker()
         name = ObstaclesLayerNode.obstacleLayerName
         
-        let newObstacle = obstacleAppender.next
-        newObstacle.position = CGPoint(x: self.position.x + self.size.width + 2 * ObstacleNode.width, y: self.position.y)
-        self.addChild(newObstacle)
-        lastPlacedObstacle = newObstacle
+        var newObstacle = obstacleAppender.next
+        for i in 0..<Int(self.size.width / ObstacleNode.width) + 2 {
+            
+            newObstacle.position = CGPoint(x: self.position.x + CGFloat(i) * ObstacleNode.width, y: self.position.y)
+            self.addChild(newObstacle)
+            lastPlacedObstacle = newObstacle
+            newObstacle = ObstacleNode(sameAs: newObstacle)
+        }
     }
 }
 

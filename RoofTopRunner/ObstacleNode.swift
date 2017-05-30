@@ -38,13 +38,14 @@ class ObstacleNode: SKNode {
     
     
     //MARK: - Properties
-    
+    let textureName: String?
     let height: ObstacleHeight
     
     //MARK: - Initializers
     
     init(withHeight obstacleHeight: ObstacleHeight, textureName: String?) {
         height = obstacleHeight
+        self.textureName = textureName
         super.init()
         name = ObstacleNode.obstacleName
         prepareUI(forHeight: obstacleHeight, texture: textureName)
@@ -53,6 +54,10 @@ class ObstacleNode: SKNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(sameAs obstacleNode: ObstacleNode) {
+        self.init(withHeight: obstacleNode.height, textureName: obstacleNode.textureName)
     }
 }
 

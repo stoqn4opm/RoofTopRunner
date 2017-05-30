@@ -50,16 +50,25 @@ struct HoleOrSameAsPreviousRule: ObstacleNodeAppendRule {
         
         let lastObstacle = oldObstacles.reversed().first
         
-        if lastObstacle?.height != .noObstacle {
-            if obstacle.height == lastObstacle?.height ||
-                obstacle.height == .noObstacle {
+        if lastObstacle != nil {
+            if lastObstacle?.height != .noObstacle {
+                if obstacle.height == lastObstacle?.height ||
+                    obstacle.height == .noObstacle {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                return true
+            }            
+        } else {
+            if obstacle.height != .noObstacle {
                 return true
             } else {
                 return false
             }
-        } else {
-            return true
         }
+        
     }
 }
 
