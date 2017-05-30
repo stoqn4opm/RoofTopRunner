@@ -40,10 +40,27 @@ extension ObstacleNodeAppenderController {
 
 //MARK: - Speed Rate
 
+fileprivate let initialWaitDuration: TimeInterval = 3
+fileprivate let firstLevelOfAccelerationDuration: TimeInterval = 3
+fileprivate let desiredAccelerationOnFirstLevel: Double = 5
+fileprivate let finalLevelOfAccelerationDuration: Double = 1200 // 20 mins in seconds
+
 extension ObstacleNodeAppenderController {
     
     func speedRate(forPassedTime time: TimeInterval) -> CGFloat {
-        return CGFloat((time * time) / 100)
+        if time <= initialWaitDuration {
+            return 0
+        } else if initialWaitDuration < time && time <= initialWaitDuration + firstLevelOfAccelerationDuration {
+            
+            let slope = (desiredAccelerationOnFirstLevel - 0) / (firstLevelOfAccelerationDuration - 0)
+            let result = slope * (time - initialWaitDuration - 0) + 0
+            return CGFloat(result)
+            
+        } else {
+            let slope = (Double(ObstaclesLayerNode.speedRateLimiter) - desiredAccelerationOnFirstLevel) / ((finalLevelOfAccelerationDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)) - (firstLevelOfAccelerationDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)))
+            let result = slope * (time - initialWaitDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)) + desiredAccelerationOnFirstLevel
+            return CGFloat(result)
+        }
     }
 }
 

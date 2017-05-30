@@ -14,6 +14,7 @@ class ObstaclesLayerNode: SKNode {
     static let spawnMarkerName = "SpawnMarker"
     
     static let obstacleLayerName = "ObstacleLayer"
+    static let speedRateLimiter: CGFloat = 30
     
     //MARK: - Properties
     
@@ -32,7 +33,7 @@ class ObstaclesLayerNode: SKNode {
             return _rate
         }
         set {
-            if newValue < 30 { // 30
+            if newValue < ObstaclesLayerNode.speedRateLimiter {
                 _rate = newValue
                 updateSpeedLabelIfNeeded(speed: newValue)
             }
