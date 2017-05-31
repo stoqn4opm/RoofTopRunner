@@ -29,8 +29,9 @@ class ObstacleNode: SKNode {
     //MARK: - Static Settings
     
     static let obstacleName = "Obstacle"
-    static let width: CGFloat = 180
-    static let height: CGFloat = ObstacleNode.width * 0.7
+    static let width: CGFloat = UIScreen.main.bounds.width / 3.70
+    static let height: CGFloat = UIScreen.main.bounds.height * UIScreen.main.scale / 2.5 / 3.0
+    
     static var categoryBitMask: UInt32                 = 0b0000001000000
     static var markerObjectBitMask: UInt32             = 0b0000010000000
     static var markerObjectCollisionBitMask: UInt32    = 0b0000100000000
