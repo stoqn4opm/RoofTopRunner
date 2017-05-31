@@ -30,7 +30,7 @@ class ObstacleNode: SKNode {
     
     static let obstacleName = "Obstacle"
     static let width: CGFloat = UIScreen.main.bounds.width / 3.70
-    static let height: CGFloat = UIScreen.main.bounds.height / 6.0
+    static let height: CGFloat = UIScreen.main.bounds.height * UIScreen.main.scale / 2.5 / 3.0
     
     static var categoryBitMask: UInt32                 = 0b0000001000000
     static var markerObjectBitMask: UInt32             = 0b0000010000000
