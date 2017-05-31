@@ -61,10 +61,17 @@ class ObstaclesLayerNode: SKNode {
         var newObstacle = obstacleAppender.next
         for i in 0..<Int(self.size.width / ObstacleNode.width) + 2 {
             
-            newObstacle.position = CGPoint(x: self.position.x + CGFloat(i) * ObstacleNode.width, y: self.position.y)
-            self.addChild(newObstacle)
-            lastPlacedObstacle = newObstacle
-            newObstacle = ObstacleNode(sameAs: newObstacle)
+            if i != Int(self.size.width / ObstacleNode.width) + 1 {
+                newObstacle.position = CGPoint(x: self.position.x + CGFloat(i) * ObstacleNode.width, y: self.position.y)
+                self.addChild(newObstacle)
+                lastPlacedObstacle = newObstacle
+                newObstacle = ObstacleNode(sameAs: newObstacle)
+            } else {
+                let hole = obstacleAppender.hole
+                hole.position = CGPoint(x: self.position.x + CGFloat(i) * ObstacleNode.width, y: self.position.y)
+                self.addChild(hole)
+                lastPlacedObstacle = hole
+            }
         }
     }
 }

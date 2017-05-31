@@ -49,6 +49,11 @@ class ObstacleNodeAppender {
     
     private func playPattern() {} // will add the possibility to append specific pattern of obstacles in future
     
+    var hole: ObstacleNode {
+        let hole = ObstacleNode(withHeight: .noObstacle, textureName: nil)
+        remember(hole)
+        return hole
+    }
 }
 
 //MARK: - Random Obstacle Generation
