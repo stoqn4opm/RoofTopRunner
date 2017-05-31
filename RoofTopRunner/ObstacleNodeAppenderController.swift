@@ -40,10 +40,11 @@ extension ObstacleNodeAppenderController {
 
 //MARK: - Speed Rate
 
-fileprivate let initialWaitDuration: TimeInterval = 3
-fileprivate let firstLevelOfAccelerationDuration: TimeInterval = 3
-fileprivate let desiredAccelerationOnFirstLevel: Double = 5
-fileprivate let finalLevelOfAccelerationDuration: Double = 1200 // 20 mins in seconds
+fileprivate let initialWaitDuration: TimeInterval = 1
+fileprivate let firstLevelOfAccelerationDuration: TimeInterval = 1
+fileprivate let desiredAccelerationOnFirstLevel: Double = 4.5
+fileprivate let finalLevelOfAccelerationDuration: Double = 780 - 2 // approx 13 mins in seconds
+fileprivate let desiredAccelerationOnLastLevel: Double = 20
 
 extension ObstacleNodeAppenderController {
     
@@ -57,9 +58,9 @@ extension ObstacleNodeAppenderController {
             return CGFloat(result)
             
         } else {
-            let slope = (Double(ObstaclesLayerNode.speedRateLimiter) - desiredAccelerationOnFirstLevel) / ((finalLevelOfAccelerationDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)) - (firstLevelOfAccelerationDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)))
+            let slope = (desiredAccelerationOnLastLevel - desiredAccelerationOnFirstLevel) / ((finalLevelOfAccelerationDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)) - (firstLevelOfAccelerationDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)))
             let result = slope * (time - initialWaitDuration - (initialWaitDuration + firstLevelOfAccelerationDuration)) + desiredAccelerationOnFirstLevel
-            return CGFloat(result)
+            return CGFloat(result < desiredAccelerationOnLastLevel ? result : desiredAccelerationOnLastLevel)
         }
     }
 }
