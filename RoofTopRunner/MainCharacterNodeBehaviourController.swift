@@ -38,3 +38,13 @@ extension MainCharacterNodeBehaviourController {
         return behaviours
     }
 }
+
+//MARK: - Update Behaviours
+
+extension MainCharacterNodeBehaviourController {
+    func update(_ currentTime: TimeInterval) {
+        for behaviour in mainCharacter.behaviours {
+            behaviour.update?(currentTime)
+        }
+    }
+}
