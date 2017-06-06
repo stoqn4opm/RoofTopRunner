@@ -27,6 +27,7 @@
 		32E3D63E1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D63D1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift */; };
 		32E3D6401EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D63F1EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift */; };
 		32E7281E1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7281D1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift */; };
+		32EA791D1EE67D2500B0F4D4 /* MainCharacterNodeHorizontalLimitBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EA791C1EE67D2500B0F4D4 /* MainCharacterNodeHorizontalLimitBehaviour.swift */; };
 		8466B094605E51820B47893A /* Pods_RoofTopRunner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C954112B745794B726884FED /* Pods_RoofTopRunner.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		32E3D63D1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeContinuousBehaviour.swift; sourceTree = "<group>"; };
 		32E3D63F1EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeBehaviourController.swift; sourceTree = "<group>"; };
 		32E7281D1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppenderController.swift; sourceTree = "<group>"; };
+		32EA791C1EE67D2500B0F4D4 /* MainCharacterNodeHorizontalLimitBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeHorizontalLimitBehaviour.swift; sourceTree = "<group>"; };
 		354206165E7FBB02C39D6183 /* Pods-RoofTopRunner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoofTopRunner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoofTopRunner/Pods-RoofTopRunner.debug.xcconfig"; sourceTree = "<group>"; };
 		7BCFBBF2540ACC3BD2630C6F /* Pods-RoofTopRunner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoofTopRunner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoofTopRunner/Pods-RoofTopRunner.release.xcconfig"; sourceTree = "<group>"; };
 		C954112B745794B726884FED /* Pods_RoofTopRunner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoofTopRunner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				32E3D63D1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift */,
+				32EA791C1EE67D2500B0F4D4 /* MainCharacterNodeHorizontalLimitBehaviour.swift */,
 			);
 			name = Continuous;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				32E3D6351EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift in Sources */,
 				323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */,
 				327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */,
+				32EA791D1EE67D2500B0F4D4 /* MainCharacterNodeHorizontalLimitBehaviour.swift in Sources */,
 				327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */,
 				32E3D63C1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift in Sources */,
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,

@@ -1,21 +1,14 @@
 //
-//  MainCharacterNodeJumpBehaviour.swift
+//  MainCharacterNodeHorizontalLimitBehaviour.swift
 //  RoofTopRunner
 //
-//  Created by Stoyan Stoyanov on 6/1/17.
+//  Created by Stoyan Stoyanov on 6/6/17.
 //  Copyright © 2017 Stoyan Stoyanov. All rights reserved.
 //
 
 import SpriteKit
 
-class MainCharacterNodeJumpBehaviour: MainCharacterNodeEventDrivenBehaviour {
-    
-    //MARK: - Static Properties
-    
-    static let eventName = Notification.Name("JumpEvent")
-    static func makeEvent() {
-        NotificationCenter.default.post(name: MainCharacterNodeJumpBehaviour.eventName, object: nil)
-    }
+class MainCharacterNodeHorizontalLimitBehaviour: MainCharacterNodeContinuousBehaviour {
     
     //MARK: - Properties
     
@@ -25,8 +18,9 @@ class MainCharacterNodeJumpBehaviour: MainCharacterNodeEventDrivenBehaviour {
     
     init(forMainCharacter character: MainCharacterNode) {
         self.wasHavingPhysicsBody = character.physicsBody != nil
-        super.init(withEventName: MainCharacterNodeJumpBehaviour.eventName, mainCharacterNode: character)
+        super.init(forMainCharacter: character, duration: 0)
         createPhysicsBodyIfNeeded()
+        perform()
     }
     
     deinit {
@@ -45,8 +39,9 @@ class MainCharacterNodeJumpBehaviour: MainCharacterNodeEventDrivenBehaviour {
     //MARK: - Behaviour
     
     override func perform() {
-        
         guard let physicsBody = node?.physicsBody else { return }
-        physicsBody.applyImpulse(CGVector(dx: 0, dy: 280))
+        physicsBody.allowsRotation = false
+        super.perform()
     }
 }
+
