@@ -27,6 +27,7 @@ class MainCharacterNode: SKSpriteNode {
     //MARK: - Static Properties
     
     static let characterSize = CGSize(width: 50, height: 140)
+    static let characterName = "CharacterNode"
     
     //MARK: - Properties
     
@@ -40,6 +41,7 @@ class MainCharacterNode: SKSpriteNode {
         self.representedCharacter = representingCharacterType
         super.init(texture: nil, color: .gray, size: MainCharacterNode.characterSize)
         self.behaviourController = MainCharacterNodeBehaviourController(withMainCharacter: self)
+        self.name = MainCharacterNode.characterName
     }
     
     required init?(coder aDecoder: NSCoder) {
