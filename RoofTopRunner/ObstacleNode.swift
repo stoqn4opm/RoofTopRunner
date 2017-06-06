@@ -92,5 +92,7 @@ extension ObstacleNode {
         self.physicsBody?.contactTestBitMask = ObstacleNode.markerObjectBitMask
         self.physicsBody?.collisionBitMask = ObstacleNode.collisionBitMask
         self.physicsBody?.isDynamic = false
+        self.physicsBody?.restitution = 0.0
+
     }
 }

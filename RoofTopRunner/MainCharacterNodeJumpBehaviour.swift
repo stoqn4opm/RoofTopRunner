@@ -21,6 +21,8 @@ class MainCharacterNodeJumpBehaviour: MainCharacterNodeEventDrivenBehaviour {
         NotificationCenter.default.post(name: MainCharacterNodeJumpBehaviour.eventEndName, object: nil)
     }
     
+    static let jumpDuration: TimeInterval = 0.1
+    
     //MARK: - Properties
     
     fileprivate let wasHavingPhysicsBody: Bool
@@ -46,6 +48,7 @@ class MainCharacterNodeJumpBehaviour: MainCharacterNodeEventDrivenBehaviour {
         if !wasHavingPhysicsBody {
             guard let character = node else { return }
             character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
+            character.physicsBody?.restitution = 0.0
         }
     }
     
@@ -66,13 +69,24 @@ class MainCharacterNodeJumpBehaviour: MainCharacterNodeEventDrivenBehaviour {
         if isPerforming {
             
             if startOfPerforming == nil {
+                
+                guard node?.isInAir != true else {
+                    isPerforming = false
+                    return
+                }
+                
                 startOfPerforming = currentTime
             }
             
+            guard let physicsBody = node?.physicsBody else { return }
             let timeSinceStartOfPerforming = currentTime - startOfPerforming!
             
-            guard let physicsBody = node?.physicsBody else { return }
-            physicsBody.applyImpulse(CGVector(dx: 0, dy: 40 * log(timeSinceStartOfPerforming) + 20))
+            if timeSinceStartOfPerforming < MainCharacterNodeJumpBehaviour.jumpDuration {
+                physicsBody.applyForce(CGVector(dx: 0, dy: 3000 - timeSinceStartOfPerforming))
+                node?.isInAir = true
+            } else {
+                stopPerforming()
+            }
         }
     }
 }

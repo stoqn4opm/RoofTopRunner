@@ -63,10 +63,16 @@ extension EndlessLevelScene : SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.didBegin(contact)
+        
+        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
+        mainCharacter?.didBegin(contact)
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.didEnd(contact)
+        
+        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
+        mainCharacter?.didEnd(contact)
     }
 }

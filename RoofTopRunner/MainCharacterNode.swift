@@ -34,6 +34,8 @@ class MainCharacterNode: SKSpriteNode {
     let representedCharacter: MainCharacters
     var behaviours: [MainCharacterNodeBehaviour] = []
     var behaviourController: MainCharacterNodeBehaviourController!
+    var isInAir = false // behaviour thats makes the character leave the ground should update this appropriately
+    
     
     //MARK: - Constructors
     
@@ -46,5 +48,26 @@ class MainCharacterNode: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+//MARK: - Physics Collisions
+
+extension MainCharacterNode {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if (contact.bodyA.node?.name == MainCharacterNode.characterName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
+            (contact.bodyB.node?.name == MainCharacterNode.characterName && contact.bodyA.node?.name == ObstacleNode.obstacleName) {
+            
+            isInAir = false
+        }
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+        if (contact.bodyA.node?.name == MainCharacterNode.characterName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
+            (contact.bodyB.node?.name == MainCharacterNode.characterName && contact.bodyA.node?.name == ObstacleNode.obstacleName) {
+
+        }
     }
 }
