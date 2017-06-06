@@ -25,7 +25,11 @@ class EndlessLevelScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        MainCharacterNodeJumpBehaviour.makeEvent()
+        MainCharacterNodeJumpBehaviour.makeStartEvent()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        MainCharacterNodeJumpBehaviour.makeEndEvent()
     }
 }
 
@@ -46,6 +50,9 @@ extension EndlessLevelScene {
     override func update(_ currentTime: TimeInterval) {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.update(currentTime)
+        
+        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
+        mainCharacter?.behaviourController.update(currentTime)
     }
 }
 
