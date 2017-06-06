@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				32E3D63D1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift */,
-				32EA791C1EE67D2500B0F4D4 /* MainCharacterNodeHorizontalLimitBehaviour.swift */,
+				32EA791E1EE687CD00B0F4D4 /* Concrete Events */,
 			);
 			name = Continuous;
 			sourceTree = "<group>";
@@ -237,6 +237,14 @@
 				323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		32EA791E1EE687CD00B0F4D4 /* Concrete Events */ = {
+			isa = PBXGroup;
+			children = (
+				32EA791C1EE67D2500B0F4D4 /* MainCharacterNodeHorizontalLimitBehaviour.swift */,
+			);
+			name = "Concrete Events";
 			sourceTree = "<group>";
 		};
 		DC69658B901FC96CE377F60C /* Pods */ = {
