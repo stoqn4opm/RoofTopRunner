@@ -9,8 +9,10 @@
 import Foundation
 import SpriteKit
 
-protocol MainCharacterNodeBehaviour {
+@objc protocol MainCharacterNodeBehaviour {
     weak var node: MainCharacterNode? { get }
     func perform()
     func stopPerforming()
+    
+    @objc optional func update(_ currentTime: TimeInterval)
 }
