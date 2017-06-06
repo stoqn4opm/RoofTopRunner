@@ -1,5 +1,5 @@
 //
-//  MainCharacterNodeHorizontalLimitBehaviour.swift
+//  MainCharacterNodeNoRotationBehaviour.swift
 //  RoofTopRunner
 //
 //  Created by Stoyan Stoyanov on 6/6/17.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class MainCharacterNodeHorizontalLimitBehaviour: MainCharacterNodeContinuousBehaviour {
+class MainCharacterNodeNoRotationBehaviour: MainCharacterNodeContinuousBehaviour {
     
     //MARK: - Properties
     

@@ -32,7 +32,7 @@ extension MainCharacterNodeBehaviourController {
     var basicCharacterBehaviour: [MainCharacterNodeBehaviour] {
         let behaviours: [MainCharacterNodeBehaviour] = [
             MainCharacterNodeJumpBehaviour(forMainCharacter: mainCharacter),
-            MainCharacterNodeHorizontalLimitBehaviour(forMainCharacter: mainCharacter)
+            MainCharacterNodeNoRotationBehaviour(forMainCharacter: mainCharacter)
         ]
         
         return behaviours
