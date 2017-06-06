@@ -16,9 +16,25 @@ class MainCharacterNodeBehaviourController {
         self.mainCharacter = mainCharacter
         self.mainCharacter.behaviours = behaviours
     }
+}
+
+//MARK: - Possible Behaviours
+
+extension MainCharacterNodeBehaviourController {
     
     var behaviours: [MainCharacterNodeBehaviour] {
-        let behaviours = [MainCharacterNodeJumpBehaviour(forMainCharacter: mainCharacter)]
+        switch mainCharacter.representedCharacter {
+        case .basic:
+            return basicCharacterBehaviour;
+        }
+    }
+    
+    var basicCharacterBehaviour: [MainCharacterNodeBehaviour] {
+        let behaviours: [MainCharacterNodeBehaviour] = [
+            MainCharacterNodeJumpBehaviour(forMainCharacter: mainCharacter),
+            MainCharacterNodeHorizontalLimitBehaviour(forMainCharacter: mainCharacter)
+        ]
+        
         return behaviours
     }
 }
