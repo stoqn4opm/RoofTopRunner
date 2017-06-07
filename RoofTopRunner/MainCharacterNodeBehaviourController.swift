@@ -33,7 +33,8 @@ extension MainCharacterNodeBehaviourController {
         let behaviours: [MainCharacterNodeBehaviour] = [
             MainCharacterNodeJumpBehaviour(forMainCharacter: mainCharacter),
             MainCharacterNodeNoRotationBehaviour(forMainCharacter: mainCharacter),
-            MainCharacterNodeDownwardJumpBehaviour(forMainCharacter: mainCharacter)
+            MainCharacterNodeDownwardJumpBehaviour(forMainCharacter: mainCharacter),
+            MainCharacterNodeDieBehaviour(forMainCharacter: mainCharacter)
         ]
         
         return behaviours

@@ -86,7 +86,7 @@ extension ObstaclesLayerNode {
     
     func moveChildren() {
         for child in self.children {
-            if child.name == ObstacleNode.obstacleName {
+            if child.name == ObstacleNode.obstacleName || child.name == ObstacleNode.holeName {
                 child.position.x -= _rate
             }
         }
@@ -124,7 +124,9 @@ extension ObstaclesLayerNode {
     func didEnd(_ contact: SKPhysicsContact) {
         
         if (contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
-            (contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) {
+            (contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) ||
+            (contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.holeName) ||
+            (contact.bodyA.node?.name == ObstacleNode.holeName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) {
 
             if let previousObstacle = lastPlacedObstacle {
                 

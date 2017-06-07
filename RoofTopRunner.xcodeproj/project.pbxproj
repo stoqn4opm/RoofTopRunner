@@ -21,6 +21,7 @@
 		328747441EC9D49D004D54F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328747431EC9D49D004D54F6 /* Assets.xcassets */; };
 		328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747451EC9D49D004D54F6 /* LaunchScreen.storyboard */; };
 		32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */; };
+		32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */; };
 		32E30A5D1EDF407D00C24959 /* MainCharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E30A5C1EDF407D00C24959 /* MainCharacterNode.swift */; };
 		32E3D6351EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D6341EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift */; };
 		32E3D63A1EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D6391EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift */; };
@@ -49,6 +50,7 @@
 		328747461EC9D49D004D54F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RoofTopRunner/Info.plist; sourceTree = "<group>"; };
 		32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDownwardJumpBehaviour.swift; sourceTree = "<group>"; };
+		32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDieBehaviour.swift; sourceTree = "<group>"; };
 		32E30A5C1EDF407D00C24959 /* MainCharacterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNode.swift; sourceTree = "<group>"; };
 		32E3D6341EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeBehaviour.swift; sourceTree = "<group>"; };
 		32E3D6391EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeEventDrivenBehaviour.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				32E3D63B1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift */,
 				32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */,
+				32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */,
 			);
 			name = "Concrete Events";
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,
 				32E3D6401EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift in Sources */,
 				323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */,
+				32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */,
 				328747371EC9D49D004D54F6 /* AppDelegate.swift in Sources */,
 				320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */,
 				32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */,

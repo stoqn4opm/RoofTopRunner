@@ -61,13 +61,18 @@ extension MainCharacterNode {
             
             isInAir = false
         }
+        else if (contact.bodyA.node?.name == MainCharacterNode.characterName && contact.bodyB.node?.name == ObstacleNode.holeName) ||
+            (contact.bodyB.node?.name == MainCharacterNode.characterName && contact.bodyA.node?.name == ObstacleNode.holeName)  {
+            
+            MainCharacterNodeDieBehaviour.makeStartEvent()
+        }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
         
         if (contact.bodyA.node?.name == MainCharacterNode.characterName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
             (contact.bodyB.node?.name == MainCharacterNode.characterName && contact.bodyA.node?.name == ObstacleNode.obstacleName) {
-
+            
         }
     }
 }

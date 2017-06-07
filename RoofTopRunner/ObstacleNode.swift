@@ -29,6 +29,7 @@ class ObstacleNode: SKNode {
     //MARK: - Static Settings
     
     static let obstacleName = "Obstacle"
+    static let holeName = "Hole"
     static let width: CGFloat = UIScreen.main.bounds.width / 3.70
     static let height: CGFloat = UIScreen.main.bounds.height * UIScreen.main.scale / 2.5 / 3.0
     
@@ -48,7 +49,7 @@ class ObstacleNode: SKNode {
         height = obstacleHeight
         self.textureName = textureName
         super.init()
-        name = ObstacleNode.obstacleName
+        name = obstacleHeight == .noObstacle ? ObstacleNode.holeName : ObstacleNode.obstacleName
         prepareUI(forHeight: obstacleHeight, texture: textureName)
         preparePhysics(forHeight: obstacleHeight)
     }
