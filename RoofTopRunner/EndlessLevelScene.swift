@@ -18,6 +18,19 @@ class EndlessLevelScene: SKScene {
         self.physicsWorld.contactDelegate = self
         
         loadObstacleLayer()
+        
+        let mainChar = MainCharacterNode.basic
+        self.addChild(mainChar)
+        mainChar.position = CGPoint(x: 300, y: 300)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        MainCharacterNodeJumpBehaviour.makeStartEvent()
+        MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        MainCharacterNodeJumpBehaviour.makeEndEvent()
     }
 }
 
@@ -38,6 +51,9 @@ extension EndlessLevelScene {
     override func update(_ currentTime: TimeInterval) {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.update(currentTime)
+        
+        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
+        mainCharacter?.behaviourController.update(currentTime)
     }
 }
 
@@ -48,10 +64,16 @@ extension EndlessLevelScene : SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.didBegin(contact)
+        
+        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
+        mainCharacter?.didBegin(contact)
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.didEnd(contact)
+        
+        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
+        mainCharacter?.didEnd(contact)
     }
 }
