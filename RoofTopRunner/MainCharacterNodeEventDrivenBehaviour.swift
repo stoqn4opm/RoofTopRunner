@@ -11,10 +11,10 @@ import Foundation
 class MainCharacterNodeEventDrivenBehaviour: MainCharacterNodeBehaviour {
     
     let eventStartName: NSNotification.Name
-    let eventEndName: NSNotification.Name
+    let eventEndName: NSNotification.Name?
     weak var node: MainCharacterNode?
     
-    init(withEventStartName eventStartName: NSNotification.Name, eventEndName: NSNotification.Name, mainCharacterNode: MainCharacterNode) {
+    init(withEventStartName eventStartName: NSNotification.Name, eventEndName: NSNotification.Name?, mainCharacterNode: MainCharacterNode) {
         self.eventStartName = eventStartName
         self.eventEndName = eventEndName
         self.node = mainCharacterNode

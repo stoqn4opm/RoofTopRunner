@@ -26,6 +26,7 @@ class EndlessLevelScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         MainCharacterNodeJumpBehaviour.makeStartEvent()
+        MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
