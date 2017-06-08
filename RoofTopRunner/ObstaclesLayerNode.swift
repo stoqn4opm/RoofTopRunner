@@ -114,9 +114,11 @@ extension ObstaclesLayerNode {
 extension ObstaclesLayerNode {
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName {
+        if (contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstacleNode.obstacleName) ||
+            (contact.bodyA.node?.name == ObstaclesLayerNode.removeMarkerName && contact.bodyB.node?.name == ObstacleNode.holeName) {
             contact.bodyB.node?.removeFromParent()
-        } else if contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName {
+        } else if (contact.bodyA.node?.name == ObstacleNode.obstacleName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName) ||
+            (contact.bodyA.node?.name == ObstacleNode.holeName && contact.bodyB.node?.name == ObstaclesLayerNode.removeMarkerName) {
             contact.bodyA.node?.removeFromParent()
         }
     }
