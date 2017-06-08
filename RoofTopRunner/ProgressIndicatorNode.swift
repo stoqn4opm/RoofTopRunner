@@ -22,7 +22,18 @@ class ProgressIndicatorNode: SKSpriteNode {
     
     init(with size: CGSize, borderWidth: CGFloat, progress: Double) {
         super.init(texture: nil, color: ProgressIndicatorNode.borderColor, size: size)
+        setupProgressLineContainer(with: size, borderWidth: borderWidth, progress: progress)
         
+        let icon = SKSpriteNode(color: .red, size: CGSize(width: size.height, height: size.height).scaled(at: 1.3))
+        icon.position = CGPoint(x: -icon.size.width * 0.8 - size.width / 2, y: 0)
+        addChild(icon)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupProgressLineContainer(with size: CGSize, borderWidth: CGFloat, progress: Double) {
         let progressLineContainer = SKSpriteNode(color: ProgressIndicatorNode.backgroundColor,
                                                  size: CGSize(width: size.width - 2 * borderWidth,
                                                               height: size.height - 2 * borderWidth))
@@ -32,10 +43,6 @@ class ProgressIndicatorNode: SKSpriteNode {
         progressLineContainer.addChild(progressLine)
         progressLine.position = CGPoint(x: -progressLineContainer.size.width / 2, y: 0)
         addChild(progressLineContainer)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     var progress: Double {
