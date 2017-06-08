@@ -10,17 +10,22 @@ import SpriteKit
 
 class ProgressIndicatorNode: SKSpriteNode {
     
+    //MARK: - Static Properties
+    
     static let foregroundColor = UIColor.blue
     static let backgroundColor = UIColor.darkGray
     static let borderColor = UIColor.white
-    static let borderWidth: CGFloat = 10
     
     static let hudSize = CGSize(width: 280, height: 50)
     static let hudBorderWidth: CGFloat = 7
     
+    //MARK: - Properties
+    
     fileprivate let progressLineContainerName = "ProgressLineContainerName"
     
-    init(with size: CGSize, borderWidth: CGFloat, progress: Double) {
+    //MARK: - Initialization
+    
+    init(with size: CGSize, borderWidth: CGFloat, progress: Double = 1.0) {
         super.init(texture: nil, color: ProgressIndicatorNode.borderColor, size: size)
         setupProgressLineContainer(with: size, borderWidth: borderWidth, progress: progress)
         
@@ -39,11 +44,17 @@ class ProgressIndicatorNode: SKSpriteNode {
                                                               height: size.height - 2 * borderWidth))
         
         progressLineContainer.name = progressLineContainerName
-        let progressLine = ProgressLineNode(with: progressLineContainer.size, progress: progress)
+        let progressLine = ProgressLineNode(with: progressLineContainer.size)
         progressLineContainer.addChild(progressLine)
         progressLine.position = CGPoint(x: -progressLineContainer.size.width / 2, y: 0)
         addChild(progressLineContainer)
+        progressLine.xScale = CGFloat(progress)
     }
+}
+
+//MARK: - Updating Progress
+
+extension ProgressIndicatorNode {
     
     var progress: Double {
         get {
@@ -61,11 +72,13 @@ class ProgressIndicatorNode: SKSpriteNode {
     }
 }
 
+//MARK: - Helper Class
+
 fileprivate class ProgressLineNode: SKCropNode {
     
     static let lineName = "ProgressLineNode"
     
-    init(with size: CGSize, progress: Double) {
+    init(with size: CGSize) {
         super.init()
         name = ProgressLineNode.lineName
         
@@ -73,9 +86,9 @@ fileprivate class ProgressLineNode: SKCropNode {
         mask.anchorPoint = .normalizedLeft
         maskNode = mask
         
-        let backgound = SKSpriteNode(color: ProgressIndicatorNode.foregroundColor, size: size)
-        backgound.anchorPoint = .normalizedLeft
-        addChild(backgound)
+        let line = SKSpriteNode(color: ProgressIndicatorNode.foregroundColor, size: size)
+        line.anchorPoint = .normalizedLeft
+        addChild(line)
     }
     
     required init?(coder aDecoder: NSCoder) {

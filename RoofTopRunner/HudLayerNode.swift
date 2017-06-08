@@ -24,13 +24,19 @@ class HudLayerNode: SKNode {
         NotificationCenter.default.post(name: achievementsUpdateNotification, object: nil)
     }
     
+    static let energyBarName = "energyBarName"
+    static let energyBarUpdateNotification = Notification.Name("EnergyBarNotification")
+    static func updateEnergyBarEvent() {
+        NotificationCenter.default.post(name: energyBarUpdateNotification, object: nil)
+    }
+    
     //MARK: - Initializers
     
     override init() {
         super.init()
         prepareRunningDistanceLabel()
         prepareAchievementsMultiplierLabel()
-        prepareProgressIndicator()
+        prepareEnergyBar()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,10 +46,11 @@ class HudLayerNode: SKNode {
     deinit {
         NotificationCenter.default.removeObserver(self, name: HudLayerNode.runningDistanceUpdateNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: HudLayerNode.achievementsUpdateNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: HudLayerNode.energyBarUpdateNotification, object: nil)
     }
 }
 
-//MARK: - Labels Preparation
+//MARK: - HUD Preparation
 
 extension HudLayerNode {
     
@@ -71,17 +78,15 @@ extension HudLayerNode {
         NotificationCenter.default.addObserver(self, selector: #selector(updateRunningDistanceLabel), name: HudLayerNode.achievementsUpdateNotification, object: nil)
     }
     
-    fileprivate func prepareProgressIndicator() {
-        let p = ProgressIndicatorNode(with: ProgressIndicatorNode.hudSize,
-                                      borderWidth: ProgressIndicatorNode.hudBorderWidth,
-                                      progress: 0.2)
-        addChild(p)
+    fileprivate func prepareEnergyBar() {
+        let progressIndicator = ProgressIndicatorNode(with: ProgressIndicatorNode.hudSize, borderWidth: ProgressIndicatorNode.hudBorderWidth)
+        progressIndicator.name = HudLayerNode.energyBarName
+        progressIndicator.position = CGPoint(x: progressIndicator.size.width / 2 + progressIndicator.size.height * 2,
+                                             y: screenSize.height * 0.92)
+        addChild(progressIndicator)
+        updateEnergyBar()
         
-        p.position = CGPoint(x: 400, y: screenSize.height * 0.92)
-     
-        
-        run(SKAction.sequence([SKAction.wait(forDuration: 2), SKAction.run { p.progress = 0.5 }, SKAction.wait(forDuration: 2), SKAction.run { p.progress = 1 }
-            ]))
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRunningDistanceLabel), name: HudLayerNode.energyBarUpdateNotification, object: nil)
     }
     
     private var screenSize : CGSize {
@@ -89,7 +94,7 @@ extension HudLayerNode {
     }
 }
 
-//MARK: - Labels Update
+//MARK: - HUD Update
 
 extension HudLayerNode {
     
@@ -105,5 +110,12 @@ extension HudLayerNode {
         
         guard let endlessLevelScene = label?.scene as? EndlessLevelScene else { return }
         label?.text = "\(endlessLevelScene.scores.achievementsCount) x"
+    }
+    
+    func updateEnergyBar() {
+        guard let progressIndicator = childNode(withName: HudLayerNode.energyBarName) as? ProgressIndicatorNode else { return }
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2), SKAction.run { progressIndicator.progress = 0 },
+                                                      SKAction.wait(forDuration: 2), SKAction.run { progressIndicator.progress = 1 }
+            ])))
     }
 }
