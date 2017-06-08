@@ -9,9 +9,20 @@
 import SpriteKit
 import SwiftyJSON
 
-//MARK: Scene Loading
-
 class EndlessLevelScene: SKScene {
+ 
+    //MARK: - Scores
+    
+    class Scores {
+        var runningDistance: Int64 = 0
+        var energyLevel: Double = 1.0
+        var coins: Int64 = 0
+        var achievementsCount: Int64 = 0
+    }
+    
+    var scores = Scores()
+    
+    //MARK: Scene Loading
     
     override func sceneDidLoad() {
         self.anchorPoint = .normalizedLowerLeft
@@ -20,7 +31,8 @@ class EndlessLevelScene: SKScene {
         loadObstacleLayer()
         loadMainCharacter()
         
-        
+        let hud = HudLayerNode()
+        addChild(hud)
     }
 }
 
