@@ -18,19 +18,19 @@ class EndlessLevelScene: SKScene {
         self.physicsWorld.contactDelegate = self
         
         loadObstacleLayer()
+        loadMainCharacter()
         
+        
+    }
+}
+
+//MARK: - Main Character
+
+extension EndlessLevelScene {
+    func loadMainCharacter() {
         let mainChar = MainCharacterNode.basic
         self.addChild(mainChar)
         mainChar.position = CGPoint(x: 300, y: 300)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        MainCharacterNodeJumpBehaviour.makeStartEvent()
-        MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        MainCharacterNodeJumpBehaviour.makeEndEvent()
     }
 }
 
@@ -42,6 +42,19 @@ extension EndlessLevelScene {
         let obstacleLayer = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstacleLayer)
         obstacleLayer.showCurrentRateOnScreen(true)
+    }
+}
+
+//MARK: - Touch Handling
+
+extension EndlessLevelScene {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        MainCharacterNodeJumpBehaviour.makeStartEvent()
+        MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        MainCharacterNodeJumpBehaviour.makeEndEvent()
     }
 }
 
