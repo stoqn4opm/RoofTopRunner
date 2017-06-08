@@ -34,6 +34,10 @@ extension CGPoint {
     static var normalizedLowerLeft: CGPoint {
         return CGPoint(x: 0, y: 0)
     }
+    
+    static var normalizedLeft: CGPoint {
+        return CGPoint(x: 0, y: 0.5)
+    }
 }
 
 extension CGSize {

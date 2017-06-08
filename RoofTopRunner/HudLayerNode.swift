@@ -30,6 +30,7 @@ class HudLayerNode: SKNode {
         super.init()
         prepareRunningDistanceLabel()
         prepareAchievementsMultiplierLabel()
+        prepareProgressIndicator()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,8 +51,7 @@ extension HudLayerNode {
         let distanceLabel = SKLabelNode(text: "")
         distanceLabel.name = HudLayerNode.runningDistanceLabelName
         
-        let size = GameManager.shared.skView.frame.size.scaled()
-        distanceLabel.position = CGPoint(x: size.width / 2, y: size.height * 0.89)
+        distanceLabel.position = CGPoint(x: screenSize.width / 2, y: screenSize.height * 0.89)
         distanceLabel.fontSize = 50
         addChild(distanceLabel)
         updateRunningDistanceLabel()
@@ -63,13 +63,29 @@ extension HudLayerNode {
         let achievementsLabel = SKLabelNode(text: "57x")
         achievementsLabel.name = HudLayerNode.achievementsLabelName
         
-        let size = GameManager.shared.skView.frame.size.scaled()
-        achievementsLabel.position = CGPoint(x: size.width / 2, y: size.height * 0.8)
+        achievementsLabel.position = CGPoint(x: screenSize.width / 2, y: screenSize.height * 0.8)
         achievementsLabel.fontSize = 50
         addChild(achievementsLabel)
         updateAchievementsLabel()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateRunningDistanceLabel), name: HudLayerNode.achievementsUpdateNotification, object: nil)
+    }
+    
+    fileprivate func prepareProgressIndicator() {
+        let p = ProgressIndicatorNode(with: ProgressIndicatorNode.hudSize,
+                                      borderWidth: ProgressIndicatorNode.hudBorderWidth,
+                                      progress: 0.2)
+        addChild(p)
+        
+        p.position = CGPoint(x: 400, y: screenSize.height * 0.92)
+     
+        
+        run(SKAction.sequence([SKAction.wait(forDuration: 2), SKAction.run { p.progress = 0.5 }, SKAction.wait(forDuration: 2), SKAction.run { p.progress = 1 }
+            ]))
+    }
+    
+    private var screenSize : CGSize {
+        return GameManager.shared.skView.frame.size.scaled()
     }
 }
 
