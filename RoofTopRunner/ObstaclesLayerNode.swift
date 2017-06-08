@@ -193,7 +193,7 @@ extension ObstaclesLayerNode {
             let speedLabel = SKLabelNode(text: "speed:")
             speedLabel.name = "speedLabel"
             self.addChild(speedLabel)
-            speedLabel.position = CGPoint(x: 140, y: size.height - 80)
+            speedLabel.position = CGPoint(x: 140, y: size.height - 180)
         }
     }
     

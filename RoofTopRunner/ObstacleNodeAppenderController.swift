@@ -42,7 +42,7 @@ extension ObstacleNodeAppenderController {
 
 fileprivate let initialWaitDuration: TimeInterval = 1
 fileprivate let firstLevelOfAccelerationDuration: TimeInterval = 1
-fileprivate let desiredAccelerationOnFirstLevel: Double = 4.5
+fileprivate let desiredAccelerationOnFirstLevel: Double = 7
 fileprivate let finalLevelOfAccelerationDuration: Double = 780 - 2 // approx 13 mins in seconds
 fileprivate let desiredAccelerationOnLastLevel: Double = 20
 

@@ -82,7 +82,7 @@ class MainCharacterNodeJumpBehaviour: MainCharacterNodeEventDrivenBehaviour {
             let timeSinceStartOfPerforming = currentTime - startOfPerforming!
             
             if timeSinceStartOfPerforming < MainCharacterNodeJumpBehaviour.jumpDuration {
-                physicsBody.applyForce(CGVector(dx: 0, dy: 3000 - timeSinceStartOfPerforming))
+                physicsBody.applyForce(CGVector(dx: 0, dy: 2200 - timeSinceStartOfPerforming))
                 node?.isInAir = true
             } else {
                 stopPerforming()
