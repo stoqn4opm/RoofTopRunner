@@ -21,6 +21,7 @@
 		328747441EC9D49D004D54F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328747431EC9D49D004D54F6 /* Assets.xcassets */; };
 		328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747451EC9D49D004D54F6 /* LaunchScreen.storyboard */; };
 		32DBD1641EEA6FDA004CC9C2 /* SKIconLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */; };
+		32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */; };
 		32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */; };
 		32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */; };
 		32E24D8D1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E24D8C1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift */; };
@@ -53,6 +54,7 @@
 		328747461EC9D49D004D54F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RoofTopRunner/Info.plist; sourceTree = "<group>"; };
 		32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKIconLabelNode.swift; sourceTree = "<group>"; };
+		32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
 		32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDownwardJumpBehaviour.swift; sourceTree = "<group>"; };
 		32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDieBehaviour.swift; sourceTree = "<group>"; };
 		32E24D8C1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorNode.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				32E416541EE9205900083ACE /* HudLayerNode.swift */,
 				32E24D8C1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift */,
 				32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */,
+				32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */,
 			);
 			name = "Hud Layer";
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */,
 				32E7281E1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift in Sources */,
 				32E3D63A1EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift in Sources */,
+				32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */,
 				32E24D8D1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift in Sources */,
 				32E30A5D1EDF407D00C24959 /* MainCharacterNode.swift in Sources */,
 				32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */,

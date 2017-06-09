@@ -11,6 +11,7 @@ import SpriteKit
 class HudLayerNode: SKNode {
     
     //MARK: - Static Properties
+    static let hudName = "HudLayerNodeName"
     
     static let runningDistanceLabelName = "RunningDistanceLabelName"
     static let runningDistanceUpdateNotification = Notification.Name("RunningDistanceUpdateNotification")
@@ -40,10 +41,12 @@ class HudLayerNode: SKNode {
     
     override init() {
         super.init()
+        name = HudLayerNode.hudName
         prepareRunningDistanceLabel()
         prepareAchievementsMultiplierLabel()
         prepareEnergyBar()
         prepareCoinsLabel()
+        preparePauseButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -107,6 +110,12 @@ extension HudLayerNode {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoinsLabel), name: HudLayerNode.coinsLabelUpdateNotification, object: nil)
     }
     
+    func preparePauseButton() {
+        let pauseButton = SKButtonNode.pauseButton { print("pause button FTW!!!") }
+        addChild(pauseButton)
+        pauseButton.position = CGPoint(x: screenSize.width  - pauseButton.size.width * 1.5, y: screenSize.height - pauseButton.size.height * 1.5)
+    }
+    
     private var screenSize : CGSize {
         return GameManager.shared.skView.frame.size.scaled()
     }
@@ -141,5 +150,16 @@ extension HudLayerNode {
         let label = childNode(withName: HudLayerNode.coinsLabelName) as? SKLabelNode
         guard let endlessLevelScene = label?.scene as? EndlessLevelScene else { return }
         label?.text = String(format:"%d", endlessLevelScene.scores.coins)
+    }
+}
+
+//MARK: - HUD Touch Handling
+
+extension HudLayerNode {
+    func hudTouchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        guard let location = touch?.location(in: self) else { return }
+        let touchedNode = self.nodes(at: location).first as? SKButtonNode
+        touchedNode?.fireAction()
     }
 }

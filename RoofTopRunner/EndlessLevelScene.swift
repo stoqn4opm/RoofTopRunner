@@ -63,6 +63,9 @@ extension EndlessLevelScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         MainCharacterNodeJumpBehaviour.makeStartEvent()
         MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
+        
+        let hud = childNode(withName: HudLayerNode.hudName) as? HudLayerNode
+        hud?.hudTouchesBegan(touches, with: event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
