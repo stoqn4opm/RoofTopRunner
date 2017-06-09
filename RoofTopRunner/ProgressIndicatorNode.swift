@@ -22,16 +22,15 @@ class ProgressIndicatorNode: SKSpriteNode {
     //MARK: - Properties
     
     fileprivate let progressLineContainerName = "ProgressLineContainerName"
+    fileprivate let progressLabelName = "ProgressLabelName"
     
     //MARK: - Initialization
     
     init(with size: CGSize, borderWidth: CGFloat, progress: Double = 1.0) {
         super.init(texture: nil, color: ProgressIndicatorNode.borderColor, size: size)
         setupProgressLineContainer(with: size, borderWidth: borderWidth, progress: progress)
-        
-        let icon = SKSpriteNode(color: .red, size: CGSize(width: size.height, height: size.height).scaled(at: 1.3))
-        icon.position = CGPoint(x: -icon.size.width * 0.8 - size.width / 2, y: 0)
-        addChild(icon)
+        setupIcon()
+        setupProgressLabel(progress: progress)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,6 +48,20 @@ class ProgressIndicatorNode: SKSpriteNode {
         progressLine.position = CGPoint(x: -progressLineContainer.size.width / 2, y: 0)
         addChild(progressLineContainer)
         progressLine.xScale = CGFloat(progress)
+    }
+    
+    func setupIcon() {
+        let icon = SKSpriteNode(color: .red, size: CGSize(width: size.height, height: size.height).scaled(at: 1.3))
+        icon.position = CGPoint(x: -icon.size.width * 0.8 - size.width / 2, y: 0)
+        addChild(icon)
+    }
+    
+    func setupProgressLabel(progress: Double) {
+        let progressLabel = SKLabelNode(text: String(format: "%.0f%%", progress * 100))
+        progressLabel.verticalAlignmentMode = .center
+        progressLabel.horizontalAlignmentMode = .center
+        progressLabel.name = progressLabelName
+        addChild(progressLabel)
     }
 }
 
@@ -68,6 +81,9 @@ extension ProgressIndicatorNode {
             let updateAction = SKAction.scaleX(to: CGFloat(newValue), duration: 0.5)
             updateAction.timingMode = .easeInEaseOut
             line.run(updateAction)
+            
+            guard let label = childNode(withName: progressLabelName) as? SKLabelNode else { return }
+            label.text = String(format: "%.0f%%", newValue * 100)
         }
     }
 }
