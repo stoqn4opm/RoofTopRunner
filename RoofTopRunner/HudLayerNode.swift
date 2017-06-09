@@ -30,6 +30,12 @@ class HudLayerNode: SKNode {
         NotificationCenter.default.post(name: energyBarUpdateNotification, object: nil)
     }
     
+    static let coinsLabelName = "coinsLabelName"
+    static let coinsLabelUpdateNotification = Notification.Name("CoinsLabelNotification")
+    static func updateCoinsLabelEvent() {
+        NotificationCenter.default.post(name: coinsLabelUpdateNotification, object: nil)
+    }
+    
     //MARK: - Initializers
     
     override init() {
@@ -37,6 +43,7 @@ class HudLayerNode: SKNode {
         prepareRunningDistanceLabel()
         prepareAchievementsMultiplierLabel()
         prepareEnergyBar()
+        prepareCoinsLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,6 +54,7 @@ class HudLayerNode: SKNode {
         NotificationCenter.default.removeObserver(self, name: HudLayerNode.runningDistanceUpdateNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: HudLayerNode.achievementsUpdateNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: HudLayerNode.energyBarUpdateNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: HudLayerNode.coinsLabelUpdateNotification, object: nil)
     }
 }
 
@@ -89,6 +97,16 @@ extension HudLayerNode {
         NotificationCenter.default.addObserver(self, selector: #selector(updateRunningDistanceLabel), name: HudLayerNode.energyBarUpdateNotification, object: nil)
     }
     
+    func prepareCoinsLabel() {
+        let coinsLabel = SKLabelNode.iconLabelNode(withText: "00000000", iconNamed: "")
+        coinsLabel.name = HudLayerNode.coinsLabelName
+        coinsLabel.position = CGPoint(x: coinsLabel.frame.width / 2 + coinsLabel.frame.height * 2,
+                                      y: screenSize.height * 0.8)
+        addChild(coinsLabel)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCoinsLabel), name: HudLayerNode.coinsLabelUpdateNotification, object: nil)
+    }
+    
     private var screenSize : CGSize {
         return GameManager.shared.skView.frame.size.scaled()
     }
@@ -117,5 +135,11 @@ extension HudLayerNode {
         run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2), SKAction.run { progressIndicator.progress = 0 },
                                                       SKAction.wait(forDuration: 2), SKAction.run { progressIndicator.progress = 1 }
             ])))
+    }
+    
+    func updateCoinsLabel() {
+        let label = childNode(withName: HudLayerNode.coinsLabelName) as? SKLabelNode
+        guard let endlessLevelScene = label?.scene as? EndlessLevelScene else { return }
+        label?.text = String(format:"%d", endlessLevelScene.scores.coins)
     }
 }
