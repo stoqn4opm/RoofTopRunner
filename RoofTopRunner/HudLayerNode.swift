@@ -170,10 +170,11 @@ extension HudLayerNode {
 //MARK: - HUD Touch Handling
 
 extension HudLayerNode {
-    func hudTouchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func hudTouchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) -> Bool {
         let touch = touches.first
-        guard let location = touch?.location(in: self) else { return }
-        let touchedNode = self.nodes(at: location).first as? SKButtonNode
-        touchedNode?.fireAction()
+        guard let location = touch?.location(in: self) else { return false }
+        guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return false }
+        touchedNode.fireAction()
+        return true
     }
 }
