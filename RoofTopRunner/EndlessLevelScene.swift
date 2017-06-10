@@ -34,6 +34,10 @@ class EndlessLevelScene: SKScene {
         let hud = HudLayerNode()
         addChild(hud)
     }
+    
+    override func didMove(to view: SKView) {
+        view.isMultipleTouchEnabled = true
+    }
 }
 
 //MARK: - Main Character
@@ -53,7 +57,6 @@ extension EndlessLevelScene {
 
         let obstacleLayer = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstacleLayer)
-        obstacleLayer.showCurrentRateOnScreen(true)
     }
 }
 
@@ -65,8 +68,16 @@ extension EndlessLevelScene {
             if hud.hudTouchesBegan(touches, with: event) { return }
         }
         
-        MainCharacterNodeJumpBehaviour.makeStartEvent()
-        MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
+        if touches.count == 3 {
+            let obstacleLayer = childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+            obstacleLayer?.showCurrentRateOnScreen(true)
+            return
+        }
+        
+        if touches.count == 1 {
+            MainCharacterNodeJumpBehaviour.makeStartEvent()
+            MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
