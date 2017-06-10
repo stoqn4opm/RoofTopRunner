@@ -47,6 +47,8 @@ class HudLayerNode: SKNode {
         prepareEnergyBar()
         prepareCoinsLabel()
         preparePauseButton()
+        prepareMusicControlButton()
+        prepareSFXControlButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -110,10 +112,22 @@ extension HudLayerNode {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoinsLabel), name: HudLayerNode.coinsLabelUpdateNotification, object: nil)
     }
     
+    func prepareMusicControlButton() {
+        let musicButton = SKButtonNode.musicControlButton { print("music button FTW!!!") }
+        addChild(musicButton)
+        musicButton.position = CGPoint(x: screenSize.width  - SKButtonNode.hudButtonSize.width * 3.6, y: screenSize.height - SKButtonNode.hudButtonSize.width * 1.2)
+    }
+
     func preparePauseButton() {
         let pauseButton = SKButtonNode.pauseButton { print("pause button FTW!!!") }
         addChild(pauseButton)
-        pauseButton.position = CGPoint(x: screenSize.width  - pauseButton.size.width * 1.5, y: screenSize.height - pauseButton.size.height * 1.5)
+        pauseButton.position = CGPoint(x: screenSize.width  - SKButtonNode.hudButtonSize.width * 2.4, y: screenSize.height - SKButtonNode.hudButtonSize.width * 1.2)
+    }
+    
+    func prepareSFXControlButton() {
+        let sfxButton = SKButtonNode.sfxControlButton { print("sfx button FTW!!!") }
+        addChild(sfxButton)
+        sfxButton.position = CGPoint(x: screenSize.width - SKButtonNode.hudButtonSize.width * 1.2 , y: screenSize.height - SKButtonNode.hudButtonSize.height * 1.2)
     }
     
     private var screenSize : CGSize {
