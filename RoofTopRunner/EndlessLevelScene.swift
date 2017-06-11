@@ -54,6 +54,29 @@ class EndlessLevelScene: SKScene {
         loadObstacleLayer()
         loadMainCharacter()
         loadHUD()
+        
+        let gameOverNode = GameOverNode(
+            withTopButtonImageName: "", topButtonAction: { (Void) in
+                print("top button pressed")
+        },
+            withBottomButtonImageName: "", bottomButtonAction: { (Void) in
+                print("bottom button pressed")
+        },
+            withLeftTopButtonImageName: "", leftTopButtonAction: { (Void) in
+                print("let top button pressed")
+        },
+            withLeftBottomButtonImageName: "", leftBottomButtonAction: { (Void) in
+                print("left bottom button pressed")
+        },
+            withRightTopButtonImageName: "", rightTopButtonAction: { (Void) in
+                print("right top button pressed")
+        },
+            withRightBottomButtonImageName: "") { (Void) in
+                print("right bottom button pressed")
+        }
+        addChild(gameOverNode)
+        gameOverNode.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        gameOverNode.zPosition = 1
     }
     
     override func didMove(to view: SKView) {
@@ -96,6 +119,10 @@ extension EndlessLevelScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let hud = childNode(withName: HudLayerNode.hudName) as? HudLayerNode {
             if hud.hudTouchesBegan(touches, with: event) { return }
+        }
+        
+        if let gameOver = childNode(withName: GameOverNode.gameOverName) as? GameOverNode {
+            gameOver.gameOverTouchesBegan(touches, with: event)
         }
         
         if touches.count == 3 {
