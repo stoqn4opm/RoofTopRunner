@@ -10,9 +10,13 @@ import SpriteKit
 
 class GameOverNode: SKSpriteNode {
     
+    //MARK: Static Properties
+    
     static let gameOverName = "GameOverNodeName"
     static let gameOverSize = CGSize(width: 700, height: 550)
     fileprivate static let arrangeFactor: CGFloat = 0.5
+    
+    //MARK: - Initialization
     
     init(withTopButtonImageName tbImageName: String?,
          topButtonAction tbAction: ((Void) -> Void)?,
@@ -30,7 +34,7 @@ class GameOverNode: SKSpriteNode {
          rightTopButtonAction rtAction: ((Void) -> Void)?,
          
          withRightBottomButtonImageName rbbImageName: String?,
-         RightBottomButtonAction rbAction: ((Void) -> Void)?) {
+         rightBottomButtonAction rbAction: ((Void) -> Void)?) {
         
         super.init(texture: nil, color: .green, size: GameOverNode.gameOverSize)
         name = GameOverNode.gameOverName
@@ -125,10 +129,11 @@ extension GameOverNode {
 //MARK: - Touch Handling
 
 extension GameOverNode {
-    func gameOverTouchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func gameOverTouchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) -> Bool {
         let touch = touches.first
-        guard let location = touch?.location(in: self) else { return }
-        guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return }
+        guard let location = touch?.location(in: self) else { return false }
+        guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return false }
         touchedNode.fireAction()
+        return true
     }
 }

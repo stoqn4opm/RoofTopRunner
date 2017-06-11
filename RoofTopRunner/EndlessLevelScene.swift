@@ -54,7 +54,6 @@ class EndlessLevelScene: SKScene {
         loadObstacleLayer()
         loadMainCharacter()
         loadHUD()
-        loadGameOverLayer()
     }
     
     override func didMove(to view: SKView) {
@@ -111,7 +110,9 @@ extension EndlessLevelScene {
         }
         
         if let gameOverLayer = childNode(withName: GameOverLayerNode.gameOverLayerName) as? GameOverLayerNode {
-            gameOverLayer.gameOverNode?.gameOverTouchesBegan(touches, with: event)
+            if let node = gameOverLayer.gameOverNode {
+                if node.gameOverTouchesBegan(touches, with: event) { return }
+            }
         }
         
         if touches.count == 3 {
@@ -139,8 +140,13 @@ extension EndlessLevelScene {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.update(currentTime)
         
-        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
-        mainCharacter?.behaviourController.update(currentTime)
+        if let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode {
+            mainCharacter.behaviourController.update(currentTime)
+        } else {
+            if childNode(withName: GameOverLayerNode.gameOverLayerName) == nil {
+                loadGameOverLayer()
+            }
+        }
     }
 }
 

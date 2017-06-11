@@ -10,31 +10,24 @@ import SpriteKit
 
 class GameOverLayerNode: SKNode {
     
+    //MARK: - Static Properties
+    
     static let gameOverLayerName = "GameOverLayerName"
+    
+    //MARK: - Initialization
     
     override init() {
         super.init()
         name = GameOverLayerNode.gameOverLayerName
 
         let gameOverNode = GameOverNode (
-            withTopButtonImageName: "", topButtonAction: { (Void) in
-                print("top button pressed")
-        },
-            withBottomButtonImageName: "", bottomButtonAction: { (Void) in
-                print("bottom button pressed")
-        },
-            withLeftTopButtonImageName: "", leftTopButtonAction: { (Void) in
-                print("let top button pressed")
-        },
-            withLeftBottomButtonImageName: "", leftBottomButtonAction: { (Void) in
-                print("left bottom button pressed")
-        },
-            withRightTopButtonImageName: "", rightTopButtonAction: { (Void) in
-                print("right top button pressed")
-        },
-            withRightBottomButtonImageName: "") { (Void) in
-                print("right bottom button pressed")
-        }
+            withTopButtonImageName: "", topButtonAction: mainMenuButton,
+            withBottomButtonImageName: "", bottomButtonAction: retryButtonAction,
+            withLeftTopButtonImageName: "", leftTopButtonAction: facebookButtonAction,
+            withLeftBottomButtonImageName: "", leftBottomButtonAction: twitterButtonAction,
+            withRightTopButtonImageName: "", rightTopButtonAction: googlePlusButtonAction,
+            withRightBottomButtonImageName: "", rightBottomButtonAction: moreButtonAction
+        )
         addChild(gameOverNode)
         gameOverNode.zPosition = 1
     }
@@ -42,8 +35,65 @@ class GameOverLayerNode: SKNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+//MARK: GameOverNode ref
+
+extension GameOverLayerNode {
     var gameOverNode: GameOverNode? {
         return childNode(withName: GameOverNode.gameOverName) as? GameOverNode
+    }
+}
+
+//MARK: - Button Actions
+//MARK: - 
+
+//MARK: Game Menu Button
+extension GameOverLayerNode {
+    
+    var mainMenuButton: (Void) -> Void  {
+        return { print("top button pressed") }
+    }
+}
+
+//MARK: Retry Button
+extension GameOverLayerNode {
+    
+    var retryButtonAction: (Void) -> Void  {
+        return {
+            GameManager.shared.loadEndlessLevelScene()
+        }
+    }
+}
+
+//MARK: Facebook Button
+extension GameOverLayerNode {
+    
+    var facebookButtonAction: (Void) -> Void  {
+        return { print("top button pressed") }
+    }
+}
+
+//MARK: Twitter Button
+extension GameOverLayerNode {
+    
+    var twitterButtonAction: (Void) -> Void  {
+        return { print("top button pressed") }
+    }
+}
+
+//MARK: Google+ Button
+extension GameOverLayerNode {
+    
+    var googlePlusButtonAction: (Void) -> Void  {
+        return { print("top button pressed") }
+    }
+}
+
+//MARK: More Button
+extension GameOverLayerNode {
+    
+    var moreButtonAction: (Void) -> Void  {
+        return { print("top button pressed") }
     }
 }
