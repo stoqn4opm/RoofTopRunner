@@ -119,7 +119,10 @@ extension HudLayerNode {
     }
 
     func preparePauseButton() {
-        let pauseButton = SKButtonNode.pauseButton { print("pause button FTW!!!") }
+        let pauseButton = SKButtonNode.pauseButton {
+            guard let scene = self.scene as? EndlessLevelScene else { return }
+            scene.state = scene.state == .running ? .pause : .running
+        }
         addChild(pauseButton)
         pauseButton.position = CGPoint(x: screenSize.width  - SKButtonNode.hudButtonSize.width * 2.4, y: screenSize.height - SKButtonNode.hudButtonSize.width * 1.2)
     }

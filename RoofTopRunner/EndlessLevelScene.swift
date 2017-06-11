@@ -22,6 +22,17 @@ class EndlessLevelScene: SKScene {
     
     var scores = Scores()
     
+    //MARK: - States
+    
+    enum States {
+        case running
+        case pause
+        case gameOver
+    }
+    
+    var state: States = .running
+    
+    
     //MARK: Scene Loading
     
     override func sceneDidLoad() {
@@ -89,6 +100,7 @@ extension EndlessLevelScene {
 
 extension EndlessLevelScene {
     override func update(_ currentTime: TimeInterval) {
+        
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.update(currentTime)
         
