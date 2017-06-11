@@ -130,19 +130,26 @@ extension ObstaclesLayerNode {
             (contact.bodyA.node?.name == ObstaclesLayerNode.spawnMarkerName && contact.bodyB.node?.name == ObstacleNode.holeName) ||
             (contact.bodyA.node?.name == ObstacleNode.holeName && contact.bodyB.node?.name == ObstaclesLayerNode.spawnMarkerName) {
 
+            let newObstacle = obstacleAppender.next
             if let previousObstacle = lastPlacedObstacle {
-                
-                let newObstacle = obstacleAppender.next
                 newObstacle.position = CGPoint(x: previousObstacle.position.x + ObstacleNode.width, y: previousObstacle.position.y)
-                self.addChild(newObstacle)
-                lastPlacedObstacle = newObstacle
             } else {
-                let newObstacle = obstacleAppender.next
                 newObstacle.position = CGPoint(x: self.position.x + self.size.width + 2 * ObstacleNode.width, y: self.position.y)
-                self.addChild(newObstacle)
-                lastPlacedObstacle = newObstacle
             }
+            self.addChild(newObstacle)
+            lastPlacedObstacle = newObstacle
+            trackDistance()
         }
+    }
+}
+
+//MARK: - Distance Tracking
+
+extension ObstaclesLayerNode {
+    fileprivate func trackDistance() {
+        guard let scene = self.scene as? EndlessLevelScene else { return }
+        scene.scores.runningDistance += 1
+        HudLayerNode.updateRunningDistanceEvent()
     }
 }
 
@@ -186,7 +193,7 @@ extension ObstaclesLayerNode {
             let speedLabel = SKLabelNode(text: "speed:")
             speedLabel.name = "speedLabel"
             self.addChild(speedLabel)
-            speedLabel.position = CGPoint(x: 140, y: size.height - 80)
+            speedLabel.position = CGPoint(x: 140, y: size.height - 180)
         }
     }
     

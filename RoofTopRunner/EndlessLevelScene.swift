@@ -9,28 +9,44 @@
 import SpriteKit
 import SwiftyJSON
 
-//MARK: Scene Loading
-
 class EndlessLevelScene: SKScene {
+ 
+    //MARK: - Scores
+    
+    class Scores {
+        var runningDistance: Int64 = 0
+        var energyLevel: Double = 1.0
+        var coins: Int64 = 0
+        var achievementsCount: Int64 = 0
+    }
+    
+    var scores = Scores()
+    
+    //MARK: Scene Loading
     
     override func sceneDidLoad() {
         self.anchorPoint = .normalizedLowerLeft
         self.physicsWorld.contactDelegate = self
         
         loadObstacleLayer()
+        loadMainCharacter()
         
+        let hud = HudLayerNode()
+        addChild(hud)
+    }
+    
+    override func didMove(to view: SKView) {
+        view.isMultipleTouchEnabled = true
+    }
+}
+
+//MARK: - Main Character
+
+extension EndlessLevelScene {
+    func loadMainCharacter() {
         let mainChar = MainCharacterNode.basic
         self.addChild(mainChar)
         mainChar.position = CGPoint(x: 300, y: 300)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        MainCharacterNodeJumpBehaviour.makeStartEvent()
-        MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        MainCharacterNodeJumpBehaviour.makeEndEvent()
     }
 }
 
@@ -41,7 +57,31 @@ extension EndlessLevelScene {
 
         let obstacleLayer = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstacleLayer)
-        obstacleLayer.showCurrentRateOnScreen(true)
+    }
+}
+
+//MARK: - Touch Handling
+
+extension EndlessLevelScene {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let hud = childNode(withName: HudLayerNode.hudName) as? HudLayerNode {
+            if hud.hudTouchesBegan(touches, with: event) { return }
+        }
+        
+        if touches.count == 3 {
+            let obstacleLayer = childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
+            obstacleLayer?.showCurrentRateOnScreen(true)
+            return
+        }
+        
+        if touches.count == 1 {
+            MainCharacterNodeJumpBehaviour.makeStartEvent()
+            MainCharacterNodeDownwardJumpBehaviour.makeStartEvent()
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        MainCharacterNodeJumpBehaviour.makeEndEvent()
     }
 }
 
