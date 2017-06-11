@@ -30,8 +30,20 @@ class EndlessLevelScene: SKScene {
         case gameOver
     }
     
-    var state: States = .running
-    
+    private var _state: States = .running
+    var state: States {
+        get { return _state }
+        set {
+            switch _state {
+            case .running:
+                _state = newValue
+            case .gameOver:
+                break
+            case .pause:
+                _state = newValue == .running ? newValue : .pause
+            }
+        }
+    }
     
     //MARK: Scene Loading
     
