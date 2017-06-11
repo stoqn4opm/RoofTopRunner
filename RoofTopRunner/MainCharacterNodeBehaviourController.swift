@@ -45,8 +45,20 @@ extension MainCharacterNodeBehaviourController {
 
 extension MainCharacterNodeBehaviourController {
     func update(_ currentTime: TimeInterval) {
-        for behaviour in mainCharacter.behaviours {
-            behaviour.update?(currentTime)
+        
+        guard let scene = mainCharacter.scene as? EndlessLevelScene else { return }
+        switch scene.state {
+        
+        case .running:
+            mainCharacter.physicsBody?.isDynamic = true
+            for behaviour in mainCharacter.behaviours {
+                behaviour.update?(currentTime)
+            }
+        
+        case .pause:
+            mainCharacter.physicsBody?.isDynamic = false
+        
+        default: break
         }
     }
 }

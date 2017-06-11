@@ -46,7 +46,11 @@ class MainCharacterNodeDieBehaviour: MainCharacterNodeEventDrivenBehaviour {
     //MARK: - Behaviour
     
     override func perform() {
-        node?.removeAllActions()
-        node?.removeFromParent()
+
+        guard let node = self.node else { return }
+        guard let scene = node.scene as? EndlessLevelScene else { return }
+        scene.state = .gameOver
+        node.removeAllActions()
+        node.removeFromParent()
     }
 }

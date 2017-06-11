@@ -80,8 +80,11 @@ class ObstaclesLayerNode: SKNode {
 
 extension ObstaclesLayerNode {
     func update(_ currentTime: TimeInterval) {
-        moveChildren()
-        updateSpeedRate(forCurrentTime: currentTime)
+        guard let scene = scene as? EndlessLevelScene else { return }
+        if scene.state == .running {            
+            moveChildren()
+            updateSpeedRate(forCurrentTime: currentTime)
+        }
     }
     
     func moveChildren() {

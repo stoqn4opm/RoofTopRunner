@@ -22,6 +22,29 @@ class EndlessLevelScene: SKScene {
     
     var scores = Scores()
     
+    //MARK: - States
+    
+    enum States {
+        case running
+        case pause
+        case gameOver
+    }
+    
+    private var _state: States = .running
+    var state: States {
+        get { return _state }
+        set {
+            switch _state {
+            case .running:
+                _state = newValue
+            case .gameOver:
+                break
+            case .pause:
+                _state = newValue == .running ? newValue : .pause
+            }
+        }
+    }
+    
     //MARK: Scene Loading
     
     override func sceneDidLoad() {
@@ -30,9 +53,7 @@ class EndlessLevelScene: SKScene {
         
         loadObstacleLayer()
         loadMainCharacter()
-        
-        let hud = HudLayerNode()
-        addChild(hud)
+        loadHUD()
     }
     
     override func didMove(to view: SKView) {
@@ -57,6 +78,15 @@ extension EndlessLevelScene {
 
         let obstacleLayer = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstacleLayer)
+    }
+}
+
+//MARK: - HUD Layer
+
+extension EndlessLevelScene {
+    func loadHUD() {
+        let hud = HudLayerNode()
+        addChild(hud)
     }
 }
 
@@ -89,6 +119,7 @@ extension EndlessLevelScene {
 
 extension EndlessLevelScene {
     override func update(_ currentTime: TimeInterval) {
+        
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.update(currentTime)
         
