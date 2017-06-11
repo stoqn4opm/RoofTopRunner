@@ -53,9 +53,7 @@ class EndlessLevelScene: SKScene {
         
         loadObstacleLayer()
         loadMainCharacter()
-        
-        let hud = HudLayerNode()
-        addChild(hud)
+        loadHUD()
     }
     
     override func didMove(to view: SKView) {
@@ -80,6 +78,15 @@ extension EndlessLevelScene {
 
         let obstacleLayer = ObstaclesLayerNode(withSize: self.size)
         self.addChild(obstacleLayer)
+    }
+}
+
+//MARK: - HUD Layer
+
+extension EndlessLevelScene {
+    func loadHUD() {
+        let hud = HudLayerNode()
+        addChild(hud)
     }
 }
 
