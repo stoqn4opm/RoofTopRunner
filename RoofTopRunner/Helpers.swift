@@ -35,6 +35,10 @@ extension CGPoint {
         return CGPoint(x: 0, y: 0)
     }
     
+    static var normalizedLowerRight: CGPoint {
+        return CGPoint(x: 1, y: 0)
+    }
+    
     static var normalizedLeft: CGPoint {
         return CGPoint(x: 0, y: 0.5)
     }

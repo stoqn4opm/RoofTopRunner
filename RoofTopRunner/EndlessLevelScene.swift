@@ -90,12 +90,29 @@ extension EndlessLevelScene {
     }
 }
 
+//MARK: - Game Over
+
+extension EndlessLevelScene {
+    func loadGameOverLayer() {
+        let gameOverLayer = GameOverLayerNode()
+        gameOverLayer.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        gameOverLayer.zPosition = 1
+        addChild(gameOverLayer)
+    }
+}
+
 //MARK: - Touch Handling
 
 extension EndlessLevelScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let hud = childNode(withName: HudLayerNode.hudName) as? HudLayerNode {
             if hud.hudTouchesBegan(touches, with: event) { return }
+        }
+        
+        if let gameOverLayer = childNode(withName: GameOverLayerNode.gameOverLayerName) as? GameOverLayerNode {
+            if let node = gameOverLayer.gameOverNode {
+                if node.gameOverTouchesBegan(touches, with: event) { return }
+            }
         }
         
         if touches.count == 3 {
@@ -123,8 +140,13 @@ extension EndlessLevelScene {
         let obstacleLayer = self.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode
         obstacleLayer?.update(currentTime)
         
-        let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
-        mainCharacter?.behaviourController.update(currentTime)
+        if let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode {
+            mainCharacter.behaviourController.update(currentTime)
+        } else {
+            if childNode(withName: GameOverLayerNode.gameOverLayerName) == nil {
+                loadGameOverLayer()
+            }
+        }
     }
 }
 

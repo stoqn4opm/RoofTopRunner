@@ -8,36 +8,17 @@
 
 import SpriteKit
 
-extension SKButtonNode {
+class SKButtonNode: SKSpriteNode {
     
-    static let pauseButtonName = "PauseButtonName"
-    static let musicControlButtonName = "MusicControlButtonName"
-    static let sfxControlButtonName = "SFXControlButtonName"
+    //MARK: - Static Properties
     
     static let hudButtonSize = CGSize(width: 100, height: 100)
     
-    static func pauseButton(action: @escaping (Void) -> Void) -> SKButtonNode {
-        let pauseButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize, action: action)
-        pauseButton.name = SKButtonNode.pauseButtonName
-        return pauseButton
-    }
-    
-    static func musicControlButton(action: @escaping (Void) -> Void) -> SKButtonNode {
-        let musicControlButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize, action: action)
-        musicControlButton.name = SKButtonNode.musicControlButtonName
-        return musicControlButton
-    }
-    
-    static func sfxControlButton(action: @escaping (Void) -> Void) -> SKButtonNode {
-        let sfxControlButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize, action: action)
-        sfxControlButton.name = SKButtonNode.sfxControlButtonName
-        return sfxControlButton
-    }
-}
-
-class SKButtonNode: SKSpriteNode {
+    //MARK: - Properties
     
     var action: (Void) -> Void
+    
+    //MARK: - Initializer
     
     init(withImageName imageName: String, size: CGSize, action: @escaping (Void) -> Void) {
         self.action = action
@@ -49,6 +30,8 @@ class SKButtonNode: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+//MARK: - Action Firing
 
 extension SKButtonNode {
     

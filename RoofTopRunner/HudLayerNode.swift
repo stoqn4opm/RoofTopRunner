@@ -113,13 +113,13 @@ extension HudLayerNode {
     }
     
     func prepareMusicControlButton() {
-        let musicButton = SKButtonNode.musicControlButton { print("music button FTW!!!") }
+        let musicButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) { print("music button FTW!!!") }
         addChild(musicButton)
         musicButton.position = CGPoint(x: screenSize.width  - SKButtonNode.hudButtonSize.width * 3.6, y: screenSize.height - SKButtonNode.hudButtonSize.width * 1.2)
     }
 
     func preparePauseButton() {
-        let pauseButton = SKButtonNode.pauseButton {
+        let pauseButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) {
             guard let scene = self.scene as? EndlessLevelScene else { return }
             scene.state = scene.state == .running ? .pause : .running
         }
@@ -128,7 +128,7 @@ extension HudLayerNode {
     }
     
     func prepareSFXControlButton() {
-        let sfxButton = SKButtonNode.sfxControlButton { print("sfx button FTW!!!") }
+        let sfxButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) { print("sfx button FTW!!!") }
         addChild(sfxButton)
         sfxButton.position = CGPoint(x: screenSize.width - SKButtonNode.hudButtonSize.width * 1.2 , y: screenSize.height - SKButtonNode.hudButtonSize.height * 1.2)
     }

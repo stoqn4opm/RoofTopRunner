@@ -24,6 +24,8 @@
 		32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */; };
 		32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */; };
 		32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */; };
+		32E1C4B01EED66410075D0AD /* GameOverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4AF1EED66410075D0AD /* GameOverNode.swift */; };
+		32E1C4B21EED819F0075D0AD /* GameOverLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */; };
 		32E24D8D1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E24D8C1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift */; };
 		32E30A5D1EDF407D00C24959 /* MainCharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E30A5C1EDF407D00C24959 /* MainCharacterNode.swift */; };
 		32E3D6351EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D6341EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift */; };
@@ -57,6 +59,8 @@
 		32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
 		32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDownwardJumpBehaviour.swift; sourceTree = "<group>"; };
 		32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDieBehaviour.swift; sourceTree = "<group>"; };
+		32E1C4AF1EED66410075D0AD /* GameOverNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverNode.swift; sourceTree = "<group>"; };
+		32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLayerNode.swift; sourceTree = "<group>"; };
 		32E24D8C1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorNode.swift; sourceTree = "<group>"; };
 		32E30A5C1EDF407D00C24959 /* MainCharacterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNode.swift; sourceTree = "<group>"; };
 		32E3D6341EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeBehaviour.swift; sourceTree = "<group>"; };
@@ -167,6 +171,15 @@
 			path = RoofTopRunner;
 			sourceTree = "<group>";
 		};
+		32E1C4AE1EED661D0075D0AD /* Game Over  */ = {
+			isa = PBXGroup;
+			children = (
+				32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */,
+				32E1C4AF1EED66410075D0AD /* GameOverNode.swift */,
+			);
+			name = "Game Over ";
+			sourceTree = "<group>";
+		};
 		32E30A5B1EDF405B00C24959 /* Main Character */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				32E1C4AE1EED661D0075D0AD /* Game Over  */,
 				32E416531EE9203700083ACE /* Hud Layer */,
 				32E30A5B1EDF405B00C24959 /* Main Character */,
 				327458E41ECB181100CCA1D0 /* Obstacles Layer */,
@@ -424,6 +438,8 @@
 				32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */,
 				32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */,
 				32E7281E1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift in Sources */,
+				32E1C4B21EED819F0075D0AD /* GameOverLayerNode.swift in Sources */,
+				32E1C4B01EED66410075D0AD /* GameOverNode.swift in Sources */,
 				32E3D63A1EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift in Sources */,
 				32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */,
 				32E24D8D1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift in Sources */,
