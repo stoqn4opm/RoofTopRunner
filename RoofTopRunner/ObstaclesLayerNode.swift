@@ -28,7 +28,7 @@ class ObstaclesLayerNode: SKNode {
 
     
     fileprivate var _rate: CGFloat = 1 // dependant of the width of spawnMarker. Max tested that code can handle: 30
-    fileprivate var rate: CGFloat {
+    var rate: CGFloat {
         get {
             return _rate
         }

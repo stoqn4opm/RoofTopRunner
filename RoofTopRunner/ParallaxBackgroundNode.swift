@@ -28,25 +28,11 @@ class ParallaxBackgroundNode: SKNode {
 
     //MARK: - Properties
     
-    fileprivate var timeOfLastUpdate: TimeInterval?
-    fileprivate var timeOfSceneLoad: TimeInterval?
-    
-    
-    fileprivate var _rate: CGFloat = 1 // dependant of the width of spawnMarker. Max tested that code can handle: 30
-    fileprivate var rate: CGFloat {
-        get {
-            return _rate
-        }
-        set {
-            if newValue < ObstaclesLayerNode.speedRateLimiter {
-                _rate = newValue
-            }
-        }
-    }
+    fileprivate var rate: CGFloat = 1 // controlled by the speed of obstacle layer
     
     //MARK: - Initializer
     
-    init(withLayers layers: [String]) {
+    override init() {
         super.init()
         name = ParallaxBackgroundNode.parallaxBackgroundName
         prepareSpawnMarker()
@@ -117,15 +103,8 @@ extension ParallaxBackgroundNode {
                 addChild(layer)
                 layer.position = CGPoint(x: CGFloat(i) * layer.size.width, y: 0)
             }
-            
-            
         }
     }
-    
-    func prepareFirstLayer() {
-        
-    }
-    
 }
 
 //MARK: - Spawn/Remove Logic
@@ -133,20 +112,20 @@ extension ParallaxBackgroundNode {
 extension ParallaxBackgroundNode {
     
     func didBegin(_ contact: SKPhysicsContact) {
-        if (contact.bodyA.node?.name == ParallaxBackgroundNode.removeMarkerName && contact.bodyB.node?.name == ParallaxBackgroundNode.layer1Name) {
+        if (contact.bodyA.node?.name == ParallaxBackgroundNode.removeMarkerName && contact.bodyB.node?.name == ParallaxBackgroundNode.parallaxLayerName) {
             contact.bodyB.node?.removeFromParent()
-        } else if (contact.bodyA.node?.name == ParallaxBackgroundNode.layer1Name && contact.bodyB.node?.name == ParallaxBackgroundNode.removeMarkerName) {
+        } else if (contact.bodyA.node?.name == ParallaxBackgroundNode.parallaxLayerName && contact.bodyB.node?.name == ParallaxBackgroundNode.removeMarkerName) {
             contact.bodyA.node?.removeFromParent()
         }
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
         
-        if (contact.bodyA.node?.name == ParallaxBackgroundNode.spawnMarkerName && contact.bodyB.node?.name == ParallaxBackgroundNode.layer1Name) {
+        if (contact.bodyA.node?.name == ParallaxBackgroundNode.spawnMarkerName && contact.bodyB.node?.name == ParallaxBackgroundNode.parallaxLayerName) {
             guard let newSprite = contact.bodyB.node?.copy() as? SKSpriteNode else { return }
             newSprite.position = CGPoint(x: newSprite.position.x + newSprite.size.width, y: newSprite.position.y)
             addChild(newSprite)
-        } else if (contact.bodyA.node?.name == ParallaxBackgroundNode.layer1Name && contact.bodyB.node?.name == ParallaxBackgroundNode.spawnMarkerName) {
+        } else if (contact.bodyA.node?.name == ParallaxBackgroundNode.parallaxLayerName && contact.bodyB.node?.name == ParallaxBackgroundNode.spawnMarkerName) {
             guard let newSprite = contact.bodyA.node?.copy() as? SKSpriteNode else { return }
             addChild(newSprite)
             newSprite.position = CGPoint(x: newSprite.position.x + newSprite.size.width, y: newSprite.position.y)
@@ -167,17 +146,17 @@ extension ParallaxBackgroundNode {
     
     func moveChildren() {
         for child in self.children {
-            if child.name == ParallaxBackgroundNode.layer1Name {
+            if child.name == ParallaxBackgroundNode.parallaxLayerName {
                 guard let collisionBitmask = child.physicsBody?.contactTestBitMask else { continue }
                 switch collisionBitmask {
                 case ParallaxBackgroundNode.layer1BitMask:
-                    child.position.x -= _rate
+                    child.position.x -= rate
                 case ParallaxBackgroundNode.layer2BitMask:
-                    child.position.x -= _rate / 2
+                    child.position.x -= rate / 2
                 case ParallaxBackgroundNode.layer3BitMask:
-                    child.position.x -= _rate / 4
+                    child.position.x -= rate / 4
                 case ParallaxBackgroundNode.layer4BitMask:
-                    child.position.x -= _rate / 8
+                    child.position.x -= rate / 8
 //                case ParallaxBackgroundNode.layer5BitMask: // don't move the background with the moon
 //                    child.position.x -= _rate / 16
                 default:
@@ -189,18 +168,7 @@ extension ParallaxBackgroundNode {
     }
     
     func updateSpeedRate(forCurrentTime currentTime: TimeInterval) {
-        if let lastUpdateTime = timeOfLastUpdate, let initialTime = timeOfSceneLoad {
-            
-            let timeSinceLastUpdate = currentTime - lastUpdateTime
-            
-            if timeSinceLastUpdate > 0.1 {
-                let timePassed = currentTime - initialTime
-//                self.rate = obstacleNodeAppenderController.speedRate(forPassedTime: timePassed)
-                timeOfLastUpdate = currentTime
-            }
-        } else {
-            timeOfLastUpdate = currentTime
-            timeOfSceneLoad = currentTime
-        }
+        guard let obstacleLayer = self.scene?.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode else { return }
+        rate = obstacleLayer.rate
     }
 }

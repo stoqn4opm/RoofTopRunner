@@ -8,17 +8,13 @@
 
 import SpriteKit
 
-extension ParallaxBackgroundNode {
- static let layer1Name = "ParallaxLayer1"
-}
-
 extension SKSpriteNode {
 
     static func parallaxLayer(OfDepth depth: Int) -> SKSpriteNode {
         let texture = SKTexture(imageNamed: "parallax-layer\(depth)")
         texture.filteringMode = .nearest
         let sprite = SKSpriteNode(texture: texture)
-        sprite.name = ParallaxBackgroundNode.layer1Name
+        sprite.name = ParallaxBackgroundNode.parallaxLayerName
         sprite.anchorPoint = .normalizedLowerLeft
         sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size, center: CGPoint(x: sprite.size.width / 2, y: sprite.size.height / 2))
         sprite.physicsBody?.affectedByGravity = false
@@ -26,10 +22,8 @@ extension SKSpriteNode {
         sprite.physicsBody?.categoryBitMask = 0
         sprite.zPosition = -CGFloat(depth)
         
-        print("old size: \(sprite.size)")
         let factor = GameManager.shared.skView.frame.size.scaled().height / sprite.size.height
         sprite.size = sprite.size.scaled(at: factor)
-        print("new size: \(sprite.size)")
         
         switch depth {
         case 1:

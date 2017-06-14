@@ -51,12 +51,10 @@ class EndlessLevelScene: SKScene {
         self.anchorPoint = .normalizedLowerLeft
         self.physicsWorld.contactDelegate = self
         
-//        loadObstacleLayer()
-//        loadMainCharacter()
-//        loadHUD()
-        
-        let background = ParallaxBackgroundNode(withLayers: ["", "", "", ""])
-        addChild(background)
+        loadObstacleLayer()
+        loadMainCharacter()
+        loadHUD()
+        loadBackgroundLayer()
     }
     
     override func didMove(to view: SKView) {
@@ -90,6 +88,15 @@ extension EndlessLevelScene {
     func loadHUD() {
         let hud = HudLayerNode()
         addChild(hud)
+    }
+}
+
+//MARK: - Background Layer
+
+extension EndlessLevelScene {
+    func loadBackgroundLayer() {
+        let background = ParallaxBackgroundNode()
+        addChild(background)
     }
 }
 
@@ -147,7 +154,7 @@ extension EndlessLevelScene {
             mainCharacter.behaviourController.update(currentTime)
         } else {
             if childNode(withName: GameOverLayerNode.gameOverLayerName) == nil {
-//                loadGameOverLayer()
+                loadGameOverLayer()
             }
         }
         
