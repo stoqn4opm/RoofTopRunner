@@ -24,10 +24,13 @@
 		32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */; };
 		32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */; };
 		32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */; };
+		32E0D36F1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0D36E1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift */; };
 		32E1C4B01EED66410075D0AD /* GameOverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4AF1EED66410075D0AD /* GameOverNode.swift */; };
 		32E1C4B21EED819F0075D0AD /* GameOverLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */; };
 		32E24D8D1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E24D8C1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift */; };
 		32E30A5D1EDF407D00C24959 /* MainCharacterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E30A5C1EDF407D00C24959 /* MainCharacterNode.swift */; };
+		32E398801EF1090900D20BF7 /* ParallaxLayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3987F1EF1090900D20BF7 /* ParallaxLayers.swift */; };
+		32E398821EF1185600D20BF7 /* Textures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 32E398811EF1185600D20BF7 /* Textures.atlas */; };
 		32E3D6351EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D6341EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift */; };
 		32E3D63A1EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D6391EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift */; };
 		32E3D63C1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D63B1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift */; };
@@ -59,10 +62,13 @@
 		32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
 		32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDownwardJumpBehaviour.swift; sourceTree = "<group>"; };
 		32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDieBehaviour.swift; sourceTree = "<group>"; };
+		32E0D36E1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxBackgroundNode.swift; sourceTree = "<group>"; };
 		32E1C4AF1EED66410075D0AD /* GameOverNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverNode.swift; sourceTree = "<group>"; };
 		32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLayerNode.swift; sourceTree = "<group>"; };
 		32E24D8C1EE9D3EE00A00EBC /* ProgressIndicatorNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorNode.swift; sourceTree = "<group>"; };
 		32E30A5C1EDF407D00C24959 /* MainCharacterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNode.swift; sourceTree = "<group>"; };
+		32E3987F1EF1090900D20BF7 /* ParallaxLayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxLayers.swift; sourceTree = "<group>"; };
+		32E398811EF1185600D20BF7 /* Textures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Textures.atlas; sourceTree = "<group>"; };
 		32E3D6341EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeBehaviour.swift; sourceTree = "<group>"; };
 		32E3D6391EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeEventDrivenBehaviour.swift; sourceTree = "<group>"; };
 		32E3D63B1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeJumpBehaviour.swift; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				328747431EC9D49D004D54F6 /* Assets.xcassets */,
+				32E398811EF1185600D20BF7 /* Textures.atlas */,
 			);
 			name = Art;
 			sourceTree = "<group>";
@@ -169,6 +176,15 @@
 				327458E91ECB208700CCA1D0 /* Art */,
 			);
 			path = RoofTopRunner;
+			sourceTree = "<group>";
+		};
+		32E0D36D1EEFC55900D7E7F0 /* Parallax Background */ = {
+			isa = PBXGroup;
+			children = (
+				32E0D36E1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift */,
+				32E3987F1EF1090900D20BF7 /* ParallaxLayers.swift */,
+			);
+			name = "Parallax Background";
 			sourceTree = "<group>";
 		};
 		32E1C4AE1EED661D0075D0AD /* Game Over  */ = {
@@ -243,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				32E0D36D1EEFC55900D7E7F0 /* Parallax Background */,
 				32E1C4AE1EED661D0075D0AD /* Game Over  */,
 				32E416531EE9203700083ACE /* Hud Layer */,
 				32E30A5B1EDF405B00C24959 /* Main Character */,
@@ -360,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				328747421EC9D49D004D54F6 /* Main.storyboard in Resources */,
+				32E398821EF1185600D20BF7 /* Textures.atlas in Resources */,
 				327458E01ECAFE3D00CCA1D0 /* page_model.json in Resources */,
 				328747441EC9D49D004D54F6 /* Assets.xcassets in Resources */,
 				328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */,
@@ -439,6 +457,8 @@
 				32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */,
 				32E7281E1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift in Sources */,
 				32E1C4B21EED819F0075D0AD /* GameOverLayerNode.swift in Sources */,
+				32E0D36F1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift in Sources */,
+				32E398801EF1090900D20BF7 /* ParallaxLayers.swift in Sources */,
 				32E1C4B01EED66410075D0AD /* GameOverNode.swift in Sources */,
 				32E3D63A1EDFE52C0006EFE8 /* MainCharacterNodeEventDrivenBehaviour.swift in Sources */,
 				32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */,

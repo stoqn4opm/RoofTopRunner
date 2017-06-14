@@ -51,9 +51,12 @@ class EndlessLevelScene: SKScene {
         self.anchorPoint = .normalizedLowerLeft
         self.physicsWorld.contactDelegate = self
         
-        loadObstacleLayer()
-        loadMainCharacter()
-        loadHUD()
+//        loadObstacleLayer()
+//        loadMainCharacter()
+//        loadHUD()
+        
+        let background = ParallaxBackgroundNode(withLayers: ["", "", "", ""])
+        addChild(background)
     }
     
     override func didMove(to view: SKView) {
@@ -144,9 +147,12 @@ extension EndlessLevelScene {
             mainCharacter.behaviourController.update(currentTime)
         } else {
             if childNode(withName: GameOverLayerNode.gameOverLayerName) == nil {
-                loadGameOverLayer()
+//                loadGameOverLayer()
             }
         }
+        
+        let parallaxBg = self.childNode(withName: ParallaxBackgroundNode.parallaxBackgroundName) as? ParallaxBackgroundNode
+        parallaxBg?.update(currentTime)
     }
 }
 
@@ -160,6 +166,9 @@ extension EndlessLevelScene : SKPhysicsContactDelegate {
         
         let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
         mainCharacter?.didBegin(contact)
+        
+        let background = self.childNode(withName: ParallaxBackgroundNode.parallaxBackgroundName) as? ParallaxBackgroundNode
+        background?.didBegin(contact)
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -168,5 +177,8 @@ extension EndlessLevelScene : SKPhysicsContactDelegate {
         
         let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
         mainCharacter?.didEnd(contact)
+        
+        let background = self.childNode(withName: ParallaxBackgroundNode.parallaxBackgroundName) as? ParallaxBackgroundNode
+        background?.didEnd(contact)
     }
 }
