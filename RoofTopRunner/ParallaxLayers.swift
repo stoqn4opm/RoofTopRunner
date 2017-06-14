@@ -16,14 +16,15 @@ extension SKSpriteNode {
         let sprite = SKSpriteNode(texture: texture)
         sprite.name = ParallaxBackgroundNode.parallaxLayerName
         sprite.anchorPoint = .normalizedLowerLeft
+
+        let factor = GameManager.shared.skView.frame.size.scaled().height / sprite.size.height
+        sprite.size = sprite.size.scaled(at: factor)
+        
         sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size, center: CGPoint(x: sprite.size.width / 2, y: sprite.size.height / 2))
         sprite.physicsBody?.affectedByGravity = false
         sprite.physicsBody?.collisionBitMask = 0
         sprite.physicsBody?.categoryBitMask = 0
         sprite.zPosition = -CGFloat(depth)
-        
-        let factor = GameManager.shared.skView.frame.size.scaled().height / sprite.size.height
-        sprite.size = sprite.size.scaled(at: factor)
         
         switch depth {
         case 1:
