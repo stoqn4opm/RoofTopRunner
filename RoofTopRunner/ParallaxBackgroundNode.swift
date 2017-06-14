@@ -76,7 +76,7 @@ extension ParallaxBackgroundNode {
         let spawnMarker = SKSpriteNode(color: .gray, size: CGSize(width: 300, height: 500))
         spawnMarker.anchorPoint = .normalizedLowerLeft
         self.addChild(spawnMarker)
-        spawnMarker.position = CGPoint(x: self.position.x + screenSize.width - 1 * spawnMarker.size.width, y: 0)
+        spawnMarker.position = CGPoint(x: self.position.x + screenSize.width + 2600, y: 0) // 2600 is the length on the longest layer
         spawnMarker.name = ParallaxBackgroundNode.spawnMarkerName
         spawnMarker.physicsBody = SKPhysicsBody(rectangleOf: spawnMarker.size,
                                                 center: CGPoint(x: spawnMarker.size.width / 2, y: spawnMarker.size.height / 2))
@@ -90,7 +90,7 @@ extension ParallaxBackgroundNode {
         let removeMarker = SKSpriteNode(color: .green, size: CGSize(width: 300, height: 500))
         removeMarker.anchorPoint = .normalizedLowerLeft
         self.addChild(removeMarker)
-        removeMarker.position = CGPoint(x: self.position.x + 0 * removeMarker.size.width, y: 0)
+        removeMarker.position = CGPoint(x: self.position.x - 2600, y: 0)  // 2600 is the length on the longest layer
         removeMarker.name = ParallaxBackgroundNode.removeMarkerName
         removeMarker.physicsBody = SKPhysicsBody(rectangleOf: removeMarker.size,
                                                  center: CGPoint(x: removeMarker.size.width / 2, y: removeMarker.size.height / 2))
@@ -168,7 +168,22 @@ extension ParallaxBackgroundNode {
     func moveChildren() {
         for child in self.children {
             if child.name == ParallaxBackgroundNode.layer1Name {
-                child.position.x -= _rate
+                guard let collisionBitmask = child.physicsBody?.contactTestBitMask else { continue }
+                switch collisionBitmask {
+                case ParallaxBackgroundNode.layer1BitMask:
+                    child.position.x -= _rate
+                case ParallaxBackgroundNode.layer2BitMask:
+                    child.position.x -= _rate / 2
+                case ParallaxBackgroundNode.layer3BitMask:
+                    child.position.x -= _rate / 4
+                case ParallaxBackgroundNode.layer4BitMask:
+                    child.position.x -= _rate / 8
+//                case ParallaxBackgroundNode.layer5BitMask: // don't move the background with the moon
+//                    child.position.x -= _rate / 16
+                default:
+                    break
+                }
+                
             }
         }
     }
