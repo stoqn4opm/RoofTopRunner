@@ -54,6 +54,7 @@ class EndlessLevelScene: SKScene {
         loadObstacleLayer()
         loadMainCharacter()
         loadHUD()
+        loadBackgroundLayer()
     }
     
     override func didMove(to view: SKView) {
@@ -87,6 +88,15 @@ extension EndlessLevelScene {
     func loadHUD() {
         let hud = HudLayerNode()
         addChild(hud)
+    }
+}
+
+//MARK: - Background Layer
+
+extension EndlessLevelScene {
+    func loadBackgroundLayer() {
+        let background = ParallaxBackgroundNode()
+        addChild(background)
     }
 }
 
@@ -147,6 +157,9 @@ extension EndlessLevelScene {
                 loadGameOverLayer()
             }
         }
+        
+        let parallaxBg = self.childNode(withName: ParallaxBackgroundNode.parallaxBackgroundName) as? ParallaxBackgroundNode
+        parallaxBg?.update(currentTime)
     }
 }
 
@@ -160,6 +173,9 @@ extension EndlessLevelScene : SKPhysicsContactDelegate {
         
         let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
         mainCharacter?.didBegin(contact)
+        
+        let background = self.childNode(withName: ParallaxBackgroundNode.parallaxBackgroundName) as? ParallaxBackgroundNode
+        background?.didBegin(contact)
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -168,5 +184,8 @@ extension EndlessLevelScene : SKPhysicsContactDelegate {
         
         let mainCharacter = self.childNode(withName: MainCharacterNode.characterName) as? MainCharacterNode
         mainCharacter?.didEnd(contact)
+        
+        let background = self.childNode(withName: ParallaxBackgroundNode.parallaxBackgroundName) as? ParallaxBackgroundNode
+        background?.didEnd(contact)
     }
 }
