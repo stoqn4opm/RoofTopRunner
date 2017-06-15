@@ -62,7 +62,7 @@ extension ParallaxBackgroundNode {
         let spawnMarker = SKSpriteNode(color: .gray, size: CGSize(width: 300, height: 500))
         spawnMarker.anchorPoint = .normalizedLowerLeft
         self.addChild(spawnMarker)
-        spawnMarker.position = CGPoint(x: self.position.x + screenSize.width + 2600, y: 0) // 2600 is the length on the longest layer
+        spawnMarker.position = CGPoint(x: self.position.x + screenSize.width + 200, y: 0) // 2600 is the length on the longest layer
         spawnMarker.name = ParallaxBackgroundNode.spawnMarkerName
         spawnMarker.physicsBody = SKPhysicsBody(rectangleOf: spawnMarker.size,
                                                 center: CGPoint(x: spawnMarker.size.width / 2, y: spawnMarker.size.height / 2))
@@ -140,7 +140,7 @@ extension ParallaxBackgroundNode {
         guard let scene = scene as? EndlessLevelScene else { return }
         if scene.state == .running {
             moveChildren()
-            updateSpeedRate(forCurrentTime: currentTime)
+            updateSpeedRate()
         }
     }
     
@@ -162,12 +162,11 @@ extension ParallaxBackgroundNode {
                 default:
                     break
                 }
-                
             }
         }
     }
     
-    func updateSpeedRate(forCurrentTime currentTime: TimeInterval) {
+    func updateSpeedRate() {
         guard let obstacleLayer = self.scene?.childNode(withName: ObstaclesLayerNode.obstacleLayerName) as? ObstaclesLayerNode else { return }
         rate = obstacleLayer.rate
     }
