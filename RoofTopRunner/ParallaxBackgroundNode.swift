@@ -76,7 +76,7 @@ extension ParallaxBackgroundNode {
         let removeMarker = SKSpriteNode(color: .green, size: CGSize(width: 300, height: 500))
         removeMarker.anchorPoint = .normalizedLowerLeft
         self.addChild(removeMarker)
-        removeMarker.position = CGPoint(x: self.position.x - 2600, y: 0)  // 2600 is the length on the longest layer
+        removeMarker.position = CGPoint(x: self.position.x - 6000, y: 0)  // 2600 is the length on the longest layer
         removeMarker.name = ParallaxBackgroundNode.removeMarkerName
         removeMarker.physicsBody = SKPhysicsBody(rectangleOf: removeMarker.size,
                                                  center: CGPoint(x: removeMarker.size.width / 2, y: removeMarker.size.height / 2))
@@ -127,8 +127,8 @@ extension ParallaxBackgroundNode {
             addChild(newSprite)
         } else if (contact.bodyA.node?.name == ParallaxBackgroundNode.parallaxLayerName && contact.bodyB.node?.name == ParallaxBackgroundNode.spawnMarkerName) {
             guard let newSprite = contact.bodyA.node?.copy() as? SKSpriteNode else { return }
-            addChild(newSprite)
             newSprite.position = CGPoint(x: newSprite.position.x + newSprite.size.width, y: newSprite.position.y)
+            addChild(newSprite)
         }
     }
 }
