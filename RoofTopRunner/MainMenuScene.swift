@@ -16,6 +16,50 @@ class MainMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: 600, height: 600), items:
+            [MenuScrollItem(),MenuScrollItem()])
+        scrollMenu.name = "scroll"
+        addChild(scrollMenu)
+        scrollMenu.position = CGPoint(x: size.width / 2, y: size.height / 2)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        menu?.menuTouchesBegan(touches, with: event)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        menu?.menuTouchesMoved(touches, with: event)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        menu?.menuTouchesEnded(touches, with: event)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extension MainMenuScene {
+
+    func node() {
+        
         // Create Label node and add it to the scrolling node to see it
         let box = SKSpriteNode(texture: nil, color: .green, size: CGSize(width: 100, height: 100))
         box.position = CGPoint(x: size.width / 2, y: size.height / 2)
@@ -25,34 +69,6 @@ class MainMenuScene: SKScene {
         box.physicsBody?.mass = 0.0000001
         box.physicsBody?.linearDamping = 0.8
         addChild(box)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        let position = touches.first!.location(in: self)
-        let movableArea = childNode(withName: "movableArea")!
-        movableArea.position = CGPoint(x: position.x, y: movableArea.position.y)
-        
-        let now = DispatchTime.now().rawValue
-        
-        speedOfMovement = (movableArea.position.x - oldPosition) / CGFloat(now - lastTimeOfMethodCall)
-        
-        oldPosition = movableArea.position.x
-        lastTimeOfMethodCall = now
-        
-        print("speed \(speedOfMovement)")
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let movableArea = childNode(withName: "movableArea") as! SKSpriteNode
-  
-        movableArea.physicsBody?.applyImpulse(CGVector(dx: speedOfMovement, dy: 0))
-        print("applied speed \(speedOfMovement)")
-        speedOfMovement = 0
-        
+
     }
 }
