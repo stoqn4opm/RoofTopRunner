@@ -16,8 +16,12 @@ class MainMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: 600, height: 600), items:
-            [MenuScrollItem(),MenuScrollItem()])
+        physicsWorld.contactDelegate = self
+        
+        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: 900, height: 600), items:
+            [MenuScrollItem(color: .brown),
+             MenuScrollItem(color: .green),
+             MenuScrollItem(color: .yellow)])
         scrollMenu.name = "scroll"
         addChild(scrollMenu)
         scrollMenu.position = CGPoint(x: size.width / 2, y: size.height / 2)
@@ -40,35 +44,22 @@ class MainMenuScene: SKScene {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension MainMenuScene: SKPhysicsContactDelegate {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        menu?.didBegin(contact)
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        menu?.didEnd(contact)
+    }
+}
 
 extension MainMenuScene {
-
-    func node() {
-        
-        // Create Label node and add it to the scrolling node to see it
-        let box = SKSpriteNode(texture: nil, color: .green, size: CGSize(width: 100, height: 100))
-        box.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        box.name = "movableArea"
-        box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
-        box.physicsBody?.affectedByGravity = false
-        box.physicsBody?.mass = 0.0000001
-        box.physicsBody?.linearDamping = 0.8
-        addChild(box)
-
+    override func update(_ currentTime: TimeInterval) {
+        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        menu?.update(currentTime)
     }
 }

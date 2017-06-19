@@ -9,7 +9,7 @@
 import SpriteKit
 
 struct MenuScrollItem {
-    
+    let color: UIColor
 }
 
 class MenuScrollingNode: SKNode {
@@ -17,7 +17,9 @@ class MenuScrollingNode: SKNode {
     //MARK: - Static Properties
     
     static let movableAreaName = "MovableAreaName"
-    static let MenuItemName = "MenuItemNameName"
+    static let menuItemName = "MenuItemNameName"
+    static let itemContactTestBitMask: UInt32 = 0b000000000001
+    static let magneticBitMask: UInt32 = 0b000000000010
 
     //MARK: - Internal Inertia Helpers
     
@@ -25,6 +27,9 @@ class MenuScrollingNode: SKNode {
     fileprivate var oldPosition: CGFloat = 0.0
     fileprivate var lastTimeOfStoringSpeed = DispatchTime.now().rawValue
     fileprivate var initialDistance = CGFloat(0.0)
+    
+    fileprivate var isMoving: Bool = false
+    fileprivate var thereWasInitialTouch: Bool = false
     
     //MARK: - Properties
     
@@ -39,7 +44,8 @@ class MenuScrollingNode: SKNode {
         self.size = size
         self.items = items
         super.init()
-        self.physicsBody = SKPhysicsBody.init(edgeLoopFrom: CGRect(origin: CGPoint(x: -size.width / 2, y: -size.height / 2), size: size))
+        physicsBody = SKPhysicsBody.init(edgeLoopFrom: CGRect(origin: CGPoint(x: -size.width / 2, y: -size.height / 2), size: size))
+        physicsBody?.contactTestBitMask = MenuScrollingNode.itemContactTestBitMask
         layoutItems()
     }
     
@@ -58,17 +64,20 @@ extension MenuScrollingNode {
         movableArea.name = MenuScrollingNode.movableAreaName
         addChild(movableArea)
         
+        let marker = SKSpriteNode(color: .red, size: CGSize(width: 5, height: 200))
+        addChild(marker)
+        
         for itemIndex in 0..<items.count {
             
             let item = sprite(for: items[itemIndex], inside: movableArea)
             let xCoord = itemIndex == 0 ? itemsSpacing : itemsSpacing + CGFloat(itemIndex) * (itemSize.width + itemsSpacing)
             item.position = CGPoint(x: -size.width / 2 + xCoord, y: 0)
-            item.name = "\(MenuScrollingNode.MenuItemName)\(itemIndex)"
+            item.name = "\(MenuScrollingNode.menuItemName)\(itemIndex)"
         }
     }
     
     func sprite(for menuItem: MenuScrollItem, inside movableArea: SKNode) -> SKSpriteNode {
-        let item = SKSpriteNode(color: .brown, size: itemSize)
+        let item = SKSpriteNode(color: menuItem.color, size: itemSize)
         item.anchorPoint = .normalizedLeft
         movableArea.addChild(item)
      
@@ -77,6 +86,10 @@ extension MenuScrollingNode {
         item.physicsBody?.mass = 0.0000001
         item.physicsBody?.linearDamping = 1
         item.physicsBody?.allowsRotation = false
+        
+        item.physicsBody?.collisionBitMask = 0
+        item.physicsBody?.categoryBitMask = 0
+        item.physicsBody?.contactTestBitMask = MenuScrollingNode.itemContactTestBitMask
         
         return item
     }
@@ -91,6 +104,8 @@ extension MenuScrollingNode {
         guard let position = touches.first?.location(in: self) else { return }
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
         
+        isMoving = true
+        thereWasInitialTouch = true
         initialDistance = movableArea.position.x - position.x
         removeAllLeftOverInertia()
         calculateSpeed()
@@ -106,10 +121,50 @@ extension MenuScrollingNode {
     }
     
     func menuTouchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isMoving = false
+        
         if let items = menuItems {
             for item in items {
                 item.physicsBody?.applyImpulse(CGVector(dx: speedOfMovement, dy: 0))
             }
+        }
+    }
+}
+
+extension MenuScrollingNode {
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+    }
+}
+
+extension MenuScrollingNode {
+    func update(_ currentTime: TimeInterval) {
+        guard let itemBody = menuItems?.first?.physicsBody else { return }
+        
+        if itemBody.isResting && !isMoving && thereWasInitialTouch {
+            guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
+            thereWasInitialTouch = false
+            let translation = movableArea.position.x - position.x
+            
+            guard let menuItems = self.menuItems else { return }
+            guard var closestItem = menuItems.first else { return }
+            
+            for item in menuItems {
+                if abs(item.position.x - translation) < abs(closestItem.position.x - translation) {
+                    closestItem = item
+                }
+            }
+            
+            let closestItemGlobalXCoord = closestItem.position.x + translation
+            guard let scene = self.scene else { return }
+            let translationAction = SKAction.move(by: CGVector(dx: -closestItemGlobalXCoord - scene.size.width / 2, dy: 0), duration: 1)
+            
+            movableArea.run(translationAction)
         }
     }
 }
@@ -140,7 +195,7 @@ extension MenuScrollingNode {
         let items = movableArea.children.filter({ (child: SKNode) -> Bool in
             
             guard let name = child.name else { return false }
-            return name.hasPrefix(MenuScrollingNode.MenuItemName)
+            return name.hasPrefix(MenuScrollingNode.menuItemName)
         })
         return items
     }
