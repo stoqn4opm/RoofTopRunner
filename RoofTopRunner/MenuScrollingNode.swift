@@ -63,9 +63,21 @@ class MenuScrollingNode: SKNode {
 extension MenuScrollingNode {
     
     func setupPhysicsEdge() {
-        let origin = CGPoint(x: (screenSize.width - size.width) / 2, y: (screenSize.height - size.height) / 2)
-        physicsBody = SKPhysicsBody.init(edgeLoopFrom: CGRect(origin: origin, size: size))
+
+        let numberOfEdges = 10
+        var edgeLoops: [SKPhysicsBody] = []
+        
+        for i in 0...numberOfEdges {
+            
+            let sizeForEdge = size.scaled(at: 1.0 + CGFloat(i) / CGFloat(numberOfEdges))
+            let originForEdge = CGPoint(x: (screenSize.width - sizeForEdge.width) / 2, y: (screenSize.height - sizeForEdge.height) / 2)
+            let edge = SKPhysicsBody.init(edgeLoopFrom: CGRect(origin: originForEdge, size: sizeForEdge))
+            edgeLoops.append(edge)
+        }
+        
+        physicsBody = SKPhysicsBody(bodies: edgeLoops)
         physicsBody?.contactTestBitMask = MenuScrollingNode.itemContactTestBitMask
+        physicsBody?.affectedByGravity = false
     }
 }
 
@@ -330,9 +342,6 @@ extension MenuScrollingNode {
         let now = DispatchTime.now().rawValue
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
         speedOfMovement = (movableArea.position.x - oldPosition) / CGFloat(now - lastTimeOfStoringSpeed)
-//        speedOfMovement = speedOfMovement > 0.00000005 ? 0.000000005 : speedOfMovement //not working as expected
-        print("speed \(speedOfMovement)")
-        
         oldPosition = movableArea.position.x
         lastTimeOfStoringSpeed = now
     }
