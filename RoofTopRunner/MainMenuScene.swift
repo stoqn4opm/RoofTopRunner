@@ -21,10 +21,13 @@ class MainMenuScene: SKScene {
         let scrollMenu = MenuScrollingNode(withSize: CGSize(width: 900, height: 600), items:
             [MenuScrollItem(color: .brown),
              MenuScrollItem(color: .green),
+             MenuScrollItem(color: .yellow),
+             MenuScrollItem(color: .green),
+             MenuScrollItem(color: .yellow),
+             MenuScrollItem(color: .green),
              MenuScrollItem(color: .yellow)])
         scrollMenu.name = "scroll"
         addChild(scrollMenu)
-        scrollMenu.position = CGPoint(x: size.width / 2, y: size.height / 2)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
