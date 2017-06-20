@@ -18,14 +18,14 @@ class MainMenuScene: SKScene {
         
         physicsWorld.contactDelegate = self
         
-        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: 900, height: 600), items:
+        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 0.9, height: 600), items:
             [MenuScrollItem(color: .brown),
              MenuScrollItem(color: .green),
              MenuScrollItem(color: .yellow),
-             MenuScrollItem(color: .green),
-             MenuScrollItem(color: .yellow),
-             MenuScrollItem(color: .green),
-             MenuScrollItem(color: .yellow)])
+             MenuScrollItem(color: .blue),
+             MenuScrollItem(color: .red),
+             MenuScrollItem(color: .cyan),
+             MenuScrollItem(color: .lightGray)])
         scrollMenu.name = "scroll"
         addChild(scrollMenu)
     }
