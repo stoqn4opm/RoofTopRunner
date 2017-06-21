@@ -286,6 +286,36 @@ extension MenuScrollingNode {
 extension MenuScrollingNode {
     func update(_ currentTime: TimeInterval) {
         moveByInertiaAllMenuItems()
+        scaleInAccordanceToLocationAllMenuItems()
+    }
+    
+    func scaleInAccordanceToLocationAllMenuItems() {
+        guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
+        guard let menuItems = self.menuItems as? [SKSpriteNode] else { return }
+        
+        
+        for item in menuItems {
+            let positionInSelf = convert(item.position, from: movableArea)
+            let scale = scaleFactorFor(x: positionInSelf.x)
+            print("scale \(scale)")
+            item.xScale = scale //positionInSelf.x.truncatingRemainder(dividingBy: 50.0) / 50
+            item.yScale = scale //positionInSelf.x.truncatingRemainder(dividingBy: 50.0) / 50
+        }
+    }
+    
+    func scaleFactorFor(x: CGFloat) -> CGFloat {
+        
+        guard let scene = self.scene else { return 1 }
+        
+        let x1 = CGFloat(0.0)
+        let x2 = scene.size.width
+        let x0 = scene.size.width / 2
+        
+        let coefA = 5.0 / ((x0 - x2) * (x0 + x1 + 2.0 * x2))
+        let coefB = -coefA * (x1 + x2)
+        let coefC = -coefA * x2 * x2 - coefB * x2
+        
+        return coefA * (x*x) + coefB * x + coefC
     }
     
     func moveByInertiaAllMenuItems() {
