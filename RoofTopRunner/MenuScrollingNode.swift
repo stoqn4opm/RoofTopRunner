@@ -39,8 +39,8 @@ class MenuScrollingNode: SKNode {
     //MARK: - Properties
     
     var items: [MenuScrollItem]
-    let itemsSpacing: CGFloat = 20
-    let itemSize = CGSize(width: 150, height: 250)
+    let itemsSpacing: CGFloat = -40
+    let itemSize = CGSize(width: 400, height: 320)
     let size: CGSize
     
     //MARK: - Initializers
@@ -143,6 +143,11 @@ extension MenuScrollingNode {
         let xCoord = menuItemOnFarRight.position.x + itemsSpacing + newItem.size.width
         newItem.position = CGPoint(x: xCoord, y: screenSize.height / 2)
         newItem.name = "\(MenuScrollingNode.menuItemName)\(rightIndex)"
+        
+        let positionInSelf = convert(newItem.position, from: movableArea)
+        let scale = scaleFactorFor(x: positionInSelf.x)
+        applyScale(scale, for: newItem)
+        
         movableArea.addChild(newItem)
         
         guard let newItemPhysicsBody = newItem.physicsBody else { return }
@@ -179,6 +184,11 @@ extension MenuScrollingNode {
         let xCoord = menuItemOnFarLeft.position.x - itemsSpacing - newItem.size.width
         newItem.position = CGPoint(x: xCoord, y: screenSize.height / 2)
         newItem.name = "\(MenuScrollingNode.menuItemName)\(leftIndex)"
+        
+        let positionInSelf = convert(newItem.position, from: movableArea)
+        let scale = scaleFactorFor(x: positionInSelf.x)
+        applyScale(scale, for: newItem)
+        
         movableArea.addChild(newItem)
         
         guard let newItemPhysicsBody = newItem.physicsBody else { return }
@@ -297,15 +307,20 @@ extension MenuScrollingNode {
         for item in menuItems {
             let positionInSelf = convert(item.position, from: movableArea)
             let scale = scaleFactorFor(x: positionInSelf.x)
-            print("scale \(scale)")
-            item.xScale = scale //positionInSelf.x.truncatingRemainder(dividingBy: 50.0) / 50
-            item.yScale = scale //positionInSelf.x.truncatingRemainder(dividingBy: 50.0) / 50
+            applyScale(scale, for: item)
         }
+    }
+    
+    func applyScale(_ scale: CGFloat, for item: SKNode) {
+        item.xScale = scale
+        item.yScale = scale
     }
     
     func scaleFactorFor(x: CGFloat) -> CGFloat {
         
         guard let scene = self.scene else { return 1 }
+        return 1 / (1 / 200000 * abs(pow(x - scene.size.width / 2, 2.0)) + 1)
+        
         
         let x1 = CGFloat(0.0)
         let x2 = scene.size.width
