@@ -18,13 +18,8 @@ class MainMenuScene: SKScene {
         
         physicsWorld.contactDelegate = self
         
-        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 1.6, height: 600), items:
-            [MenuScrollItem(color: .brown),
-             MenuScrollItem(color: .green),
-             MenuScrollItem(color: .yellow),
-             MenuScrollItem(color: .blue),
-             MenuScrollItem(color: .red),
-             MenuScrollItem(color: .cyan),
+        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 1.2, height: 600), items:
+            [
              MenuScrollItem(color: .lightGray)])
         scrollMenu.name = "scroll"
         addChild(scrollMenu)
@@ -50,13 +45,13 @@ class MainMenuScene: SKScene {
 extension MainMenuScene: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
-        let menu = childNode(withName: "scroll") as? MenuScrollingNode
-        menu?.didBegin(contact)
+//        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+//        menu?.didBegin(contact)
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        let menu = childNode(withName: "scroll") as? MenuScrollingNode
-        menu?.didEnd(contact)
+//        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+//        menu?.didEnd(contact)
     }
 }
 
