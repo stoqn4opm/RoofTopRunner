@@ -49,7 +49,6 @@ class MenuScrollingNode: SKNode {
         self.size = size
         self.items = items
         super.init()
-//        setupPhysicsEdge()
         layoutItems()
     }
     
@@ -57,29 +56,6 @@ class MenuScrollingNode: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-////MARK: - Physics Edge
-//
-//extension MenuScrollingNode {
-//    
-//    func setupPhysicsEdge() {
-//
-//        let numberOfEdges = 10
-//        var edgeLoops: [SKPhysicsBody] = []
-//        
-//        for i in 0...numberOfEdges {
-//            
-//            let sizeForEdge = size.scaled(at: 1.0 + CGFloat(i) / CGFloat(numberOfEdges))
-//            let originForEdge = CGPoint(x: (screenSize.width - sizeForEdge.width) / 2, y: (screenSize.height - sizeForEdge.height) / 2)
-//            let edge = SKPhysicsBody.init(edgeLoopFrom: CGRect(origin: originForEdge, size: sizeForEdge))
-//            edgeLoops.append(edge)
-//        }
-//        
-//        physicsBody = SKPhysicsBody(bodies: edgeLoops)
-//        physicsBody?.contactTestBitMask = MenuScrollingNode.itemContactTestBitMask
-//        physicsBody?.affectedByGravity = false
-//    }
-//}
 
 //MARK: - Initial Items Layout
 
@@ -138,7 +114,7 @@ extension MenuScrollingNode {
         guard let rightIndex = self.rightIndex else { return }
         let newItem = sprite(forMenuItem: getItemAtIndex(rightIndex))
      
-        guard let menuItemOnFarRight = self.positionOfMenuItemOnFarRight else { return }
+        guard let menuItemOnFarRight = self.menuItemOnFarRight else { return }
         
         let xCoord = menuItemOnFarRight.position.x + itemsSpacing + newItem.size.width
         newItem.position = CGPoint(x: xCoord, y: screenSize.height / 2)
@@ -157,17 +133,6 @@ extension MenuScrollingNode {
                                           anchorA: newItem.position, anchorB: menuItemOnFarRight.position)
         scene?.physicsWorld.add(j)
     }
-    
-    var positionOfMenuItemOnFarRight: SKNode? {
-        guard let menuItems = self.menuItems else { return nil }
-        var biggestCoords = menuItems[0]
-        for item in menuItems {
-            if item.position.x > biggestCoords.position.x {
-                biggestCoords = item
-            }
-        }
-        return biggestCoords
-    }
 }
 
 //MARK: - Placing Items - Left
@@ -179,7 +144,7 @@ extension MenuScrollingNode {
         guard let leftIndex = self.leftIndex else { return }
         let newItem = sprite(forMenuItem: getItemAtIndex(leftIndex))
         
-        guard let menuItemOnFarLeft = self.positionOfMenuItemOnFarLeft else { return }
+        guard let menuItemOnFarLeft = self.menuItemOnFarLeft else { return }
         
         let xCoord = menuItemOnFarLeft.position.x - itemsSpacing - newItem.size.width
         newItem.position = CGPoint(x: xCoord, y: screenSize.height / 2)
@@ -197,17 +162,6 @@ extension MenuScrollingNode {
         let j = SKPhysicsJointLimit.joint(withBodyA: newItemPhysicsBody, bodyB: menuItemOnFarRightPhysicsBody,
                                           anchorA: newItem.position, anchorB: menuItemOnFarLeft.position)
         scene?.physicsWorld.add(j)
-    }
-    
-    var positionOfMenuItemOnFarLeft: SKNode? {
-        guard let menuItems = self.menuItems else { return nil }
-        var smallestCoords = menuItems[0]
-        for item in menuItems {
-            if item.position.x < smallestCoords.position.x {
-                smallestCoords = item
-            }
-        }
-        return smallestCoords
     }
 }
 
@@ -244,63 +198,25 @@ extension MenuScrollingNode {
     }
 }
 
-////MARK: - Spawning / Destroying
-//
-//extension MenuScrollingNode {
-//    
-//    func didBegin(_ contact: SKPhysicsContact) {
-//        guard let nameOfBodyA = contact.bodyA.node?.name else { return }
-//        guard let nameOfBodyB = contact.bodyB.node?.name else { return }
-//        
-//        guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
-//        
-//        guard let rightIndex = self.rightIndex else { return }
-//        guard let leftIndex = self.leftIndex else { return }
-//        
-//        if nameOfBodyA == "scroll" && nameOfBodyB.hasPrefix(MenuScrollingNode.menuItemName) {
-//            guard let bodyToBeRemoved = contact.bodyB.node else { return }
-//            
-//            if convert(bodyToBeRemoved.position, from: movableArea).x < screenSize.width / 2  {
-//                self.rightIndex = rightIndex + 1
-//                self.leftIndex = leftIndex + 1
-//                placeAtRight()
-//            } else {
-//                self.rightIndex = rightIndex - 1
-//                self.leftIndex = leftIndex - 1
-//                placeAtLeft()
-//            }
-//            contact.bodyB.node?.removeFromParent()
-//        }
-//        else if nameOfBodyB == "scroll" && nameOfBodyA.hasPrefix(MenuScrollingNode.menuItemName) {
-//            guard let bodyToBeRemoved = contact.bodyA.node else { return }
-//            
-//            if convert(bodyToBeRemoved.position, from: movableArea).x < screenSize.width / 2  {
-//                self.rightIndex = rightIndex + 1
-//                self.leftIndex = leftIndex + 1
-//                placeAtRight()
-//            } else {
-//                self.rightIndex = rightIndex - 1
-//                self.leftIndex = leftIndex - 1
-//                placeAtLeft()
-//            }
-//            
-//            contact.bodyA.node?.removeFromParent()
-//        }
-//    }
-//    
-//    func didEnd(_ contact: SKPhysicsContact) { }
-//}
-
 //MARK: - Update Loop
 
 extension MenuScrollingNode {
     func update(_ currentTime: TimeInterval) {
-        moveByInertiaAllMenuItems()
+        moveByInertiaAllMenuItemsIfNeeded()
         scaleInAccordanceToLocationAllMenuItems()
         spawnOrRemoveMenuItems()
     }
+}
+
+//MARK: - Spawning/Removing MenuItems
+
+extension MenuScrollingNode {
     
     func spawnOrRemoveMenuItems() {
+        
+        guard let rightIndex = self.rightIndex else { return }
+        guard let leftIndex = self.leftIndex else { return }
+        
         let leftMargin = (screenSize.width - size.width) / 2
         let rightMargin = (screenSize.width + size.width) / 2
         
@@ -310,14 +226,23 @@ extension MenuScrollingNode {
         for item in menuItems {
             let positionInSelf = convert(item.position, from: movableArea)
             if positionInSelf.x > rightMargin {
+                self.rightIndex = rightIndex - 1
+                self.leftIndex = leftIndex - 1
                 placeAtLeft()
                 item.removeFromParent()
             } else if positionInSelf.x < leftMargin {
+                self.rightIndex = rightIndex + 1
+                self.leftIndex = leftIndex + 1
                 placeAtRight()
                 item.removeFromParent()
             }
         }
     }
+}
+
+//MARK: - Scaling
+
+extension MenuScrollingNode {
     
     func scaleInAccordanceToLocationAllMenuItems() {
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
@@ -337,23 +262,16 @@ extension MenuScrollingNode {
     }
     
     func scaleFactorFor(x: CGFloat) -> CGFloat {
-        
         guard let scene = self.scene else { return 1 }
         return 1 / (1 / 200000 * abs(pow(x - scene.size.width / 2, 2.0)) + 1)
-        
-        
-        let x1 = CGFloat(0.0)
-        let x2 = scene.size.width
-        let x0 = scene.size.width / 2
-        
-        let coefA = 5.0 / ((x0 - x2) * (x0 + x1 + 2.0 * x2))
-        let coefB = -coefA * (x1 + x2)
-        let coefC = -coefA * x2 * x2 - coefB * x2
-        
-        return coefA * (x*x) + coefB * x + coefC
     }
+}
+
+//MARK: - Ineartia
+
+extension MenuScrollingNode {
     
-    func moveByInertiaAllMenuItems() {
+    func moveByInertiaAllMenuItemsIfNeeded() {
         guard let itemBody = menuItems?.first?.physicsBody else { return }
         
         if itemBody.isResting && !isMoving && thereWasInitialTouch {
@@ -386,6 +304,13 @@ extension MenuScrollingNode {
             movableArea.run(translationAction)
         }
     }
+    
+    func removeAllLeftOverInertia() {
+        guard let items = menuItems else { return }
+        for item in items {
+            item.physicsBody?.isResting = true
+        }
+    }
 }
 
 //MARK: - Helpers
@@ -394,13 +319,6 @@ extension MenuScrollingNode {
     
     fileprivate var screenSize : CGSize {
         return GameManager.shared.skView.frame.size.scaled()
-    }
-    
-    func removeAllLeftOverInertia() {
-        guard let items = menuItems else { return }
-        for item in items {
-            item.physicsBody?.isResting = true
-        }
     }
     
     func calculateSpeed() {
@@ -426,5 +344,21 @@ extension MenuScrollingNode {
         var index = Int(Double(index).truncatingRemainder(dividingBy: Double(items.count)))
         if index < 0 { index = items.count + index }
         return items[index]
+    }
+    
+    var menuItemOnFarLeft: SKNode? { return boundaryMenuItem(onLeft: true) }
+    var menuItemOnFarRight: SKNode? { return boundaryMenuItem(onLeft: false) }
+    
+    func boundaryMenuItem(onLeft: Bool) -> SKNode? {
+        guard let menuItems = self.menuItems else { return nil }
+        var resultItem = menuItems[0]
+        for item in menuItems {
+            if onLeft {
+                if item.position.x < resultItem.position.x { resultItem = item }
+            } else {
+                if item.position.x > resultItem.position.x { resultItem = item }
+            }
+        }
+        return resultItem
     }
 }

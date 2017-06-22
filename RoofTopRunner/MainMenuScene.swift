@@ -19,7 +19,12 @@ class MainMenuScene: SKScene {
         physicsWorld.contactDelegate = self
         
         let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 1.2, height: 600), items:
-            [
+            [MenuScrollItem(color: .brown),
+             MenuScrollItem(color: .green),
+             MenuScrollItem(color: .yellow),
+             MenuScrollItem(color: .blue),
+             MenuScrollItem(color: .red),
+             MenuScrollItem(color: .cyan),
              MenuScrollItem(color: .lightGray)])
         scrollMenu.name = "scroll"
         addChild(scrollMenu)
