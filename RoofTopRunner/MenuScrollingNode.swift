@@ -105,20 +105,20 @@ extension MenuScrollingNode {
     }
 }
 
-//MARK: - Placing Items - Right
+//MARK: - Spawning New Items
 
 extension MenuScrollingNode {
     
-    func placeAtRight() {
+    func placeItem(onLeft : Bool) {
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
-        guard let rightIndex = self.rightIndex else { return }
-        let newItem = sprite(forMenuItem: getItemAtIndex(rightIndex))
-     
-        guard let menuItemOnFarRight = self.menuItemOnFarRight else { return }
+        guard let index = onLeft ? leftIndex : rightIndex else { return }
+        let newItem = sprite(forMenuItem: getItemAtIndex(index))
+        guard let boundaryMenuItem = onLeft ? menuItemOnFarLeft : menuItemOnFarRight else { return }
         
-        let xCoord = menuItemOnFarRight.position.x + itemsSpacing + newItem.size.width
+        let offset = itemsSpacing + newItem.size.width
+        let xCoord = boundaryMenuItem.position.x + (onLeft ? -offset : offset)
         newItem.position = CGPoint(x: xCoord, y: screenSize.height / 2)
-        newItem.name = "\(MenuScrollingNode.menuItemName)\(rightIndex)"
+        newItem.name = "\(MenuScrollingNode.menuItemName)\(index)"
         
         let positionInSelf = convert(newItem.position, from: movableArea)
         let scale = scaleFactorFor(x: positionInSelf.x)
@@ -127,41 +127,11 @@ extension MenuScrollingNode {
         movableArea.addChild(newItem)
         
         guard let newItemPhysicsBody = newItem.physicsBody else { return }
-        guard let menuItemOnFarRightPhysicsBody = menuItemOnFarRight.physicsBody else { return }
+        guard let boundaryMenuItemPhysicsBody = boundaryMenuItem.physicsBody else { return }
         
-        let j = SKPhysicsJointLimit.joint(withBodyA: newItemPhysicsBody, bodyB: menuItemOnFarRightPhysicsBody,
-                                          anchorA: newItem.position, anchorB: menuItemOnFarRight.position)
-        scene?.physicsWorld.add(j)
-    }
-}
-
-//MARK: - Placing Items - Left
-
-extension MenuScrollingNode {
-    
-    func placeAtLeft() {
-        guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
-        guard let leftIndex = self.leftIndex else { return }
-        let newItem = sprite(forMenuItem: getItemAtIndex(leftIndex))
-        
-        guard let menuItemOnFarLeft = self.menuItemOnFarLeft else { return }
-        
-        let xCoord = menuItemOnFarLeft.position.x - itemsSpacing - newItem.size.width
-        newItem.position = CGPoint(x: xCoord, y: screenSize.height / 2)
-        newItem.name = "\(MenuScrollingNode.menuItemName)\(leftIndex)"
-        
-        let positionInSelf = convert(newItem.position, from: movableArea)
-        let scale = scaleFactorFor(x: positionInSelf.x)
-        applyScale(scale, for: newItem)
-        
-        movableArea.addChild(newItem)
-        
-        guard let newItemPhysicsBody = newItem.physicsBody else { return }
-        guard let menuItemOnFarRightPhysicsBody = menuItemOnFarLeft.physicsBody else { return }
-        
-        let j = SKPhysicsJointLimit.joint(withBodyA: newItemPhysicsBody, bodyB: menuItemOnFarRightPhysicsBody,
-                                          anchorA: newItem.position, anchorB: menuItemOnFarLeft.position)
-        scene?.physicsWorld.add(j)
+        let limitJoint = SKPhysicsJointLimit.joint(withBodyA: newItemPhysicsBody, bodyB: boundaryMenuItemPhysicsBody,
+                                                   anchorA: newItem.position, anchorB: boundaryMenuItem.position)
+        scene?.physicsWorld.add(limitJoint)
     }
 }
 
@@ -228,12 +198,12 @@ extension MenuScrollingNode {
             if positionInSelf.x > rightMargin {
                 self.rightIndex = rightIndex - 1
                 self.leftIndex = leftIndex - 1
-                placeAtLeft()
+                placeItem(onLeft: true)
                 item.removeFromParent()
             } else if positionInSelf.x < leftMargin {
                 self.rightIndex = rightIndex + 1
                 self.leftIndex = leftIndex + 1
-                placeAtRight()
+                placeItem(onLeft: false)
                 item.removeFromParent()
             }
         }
