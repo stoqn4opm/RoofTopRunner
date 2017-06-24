@@ -13,7 +13,7 @@ struct MenuScrollItem {
 }
 
 class MenuScrollingNode: SKNode {
-
+    
     //MARK: - Static Properties
     
     static let movableAreaName = "MovableAreaName"
@@ -39,9 +39,9 @@ class MenuScrollingNode: SKNode {
     //MARK: - Properties
     
     var items: [MenuScrollItem]
-    let itemsSpacing: CGFloat = -40
-    let itemSize = CGSize(width: 400, height: 320)
-    let size: CGSize
+    fileprivate let itemsSpacing: CGFloat = -40
+    fileprivate let itemSize = CGSize(width: 400, height: 320)
+    fileprivate let size: CGSize
     
     //MARK: - Initializers
     
@@ -61,8 +61,8 @@ class MenuScrollingNode: SKNode {
 
 extension MenuScrollingNode {
     
-    func layoutItems() {
-    
+    fileprivate func layoutItems() {
+
         let movableArea = SKNode()
         movableArea.name = MenuScrollingNode.movableAreaName
         addChild(movableArea)
@@ -87,10 +87,10 @@ extension MenuScrollingNode {
         }
     }
     
-    func sprite(forMenuItem menuItem: MenuScrollItem) -> SKSpriteNode {
+    fileprivate func sprite(forMenuItem menuItem: MenuScrollItem) -> SKSpriteNode {
         let item = SKSpriteNode(color: menuItem.color, size: itemSize)
         item.anchorPoint = .normalizedMiddle
-     
+        
         item.physicsBody = SKPhysicsBody(rectangleOf: itemSize, center: .zero)
         item.physicsBody?.affectedByGravity = false
         item.physicsBody?.mass = 0.0000001
@@ -109,11 +109,11 @@ extension MenuScrollingNode {
 
 extension MenuScrollingNode {
     
-    func placeItem(onLeft : Bool) {
+    fileprivate func placeItem(onLeft : Bool) {
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
         guard let index = onLeft ? leftIndex : rightIndex else { return }
         let newItem = sprite(forMenuItem: getItemAtIndex(index))
-        guard let boundaryMenuItem = onLeft ? menuItemOnFarLeft : menuItemOnFarRight else { return }
+        guard let boundaryMenuItem = boundaryMenuItem(onLeft: onLeft) else { return }
         
         let offset = itemsSpacing + newItem.size.width
         let xCoord = boundaryMenuItem.position.x + (onLeft ? -offset : offset)
@@ -182,7 +182,7 @@ extension MenuScrollingNode {
 
 extension MenuScrollingNode {
     
-    func spawnOrRemoveMenuItems() {
+    fileprivate func spawnOrRemoveMenuItems() {
         
         guard let rightIndex = self.rightIndex else { return }
         guard let leftIndex = self.leftIndex else { return }
@@ -214,7 +214,7 @@ extension MenuScrollingNode {
 
 extension MenuScrollingNode {
     
-    func scaleInAccordanceToLocationAllMenuItems() {
+    fileprivate func scaleInAccordanceToLocationAllMenuItems() {
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
         guard let menuItems = self.menuItems as? [SKSpriteNode] else { return }
         
@@ -226,12 +226,12 @@ extension MenuScrollingNode {
         }
     }
     
-    func applyScale(_ scale: CGFloat, for item: SKNode) {
+    fileprivate func applyScale(_ scale: CGFloat, for item: SKNode) {
         item.xScale = scale
         item.yScale = scale
     }
     
-    func scaleFactorFor(x: CGFloat) -> CGFloat {
+    fileprivate func scaleFactorFor(x: CGFloat) -> CGFloat {
         guard let scene = self.scene else { return 1 }
         return 1 / (1 / 200000 * abs(pow(x - scene.size.width / 2, 2.0)) + 1)
     }
@@ -241,7 +241,7 @@ extension MenuScrollingNode {
 
 extension MenuScrollingNode {
     
-    func moveByInertiaAllMenuItemsIfNeeded() {
+    fileprivate func moveByInertiaAllMenuItemsIfNeeded() {
         guard let itemBody = menuItems?.first?.physicsBody else { return }
         
         if itemBody.isResting && !isMoving && thereWasInitialTouch {
@@ -275,7 +275,7 @@ extension MenuScrollingNode {
         }
     }
     
-    func removeAllLeftOverInertia() {
+    fileprivate func removeAllLeftOverInertia() {
         guard let items = menuItems else { return }
         for item in items {
             item.physicsBody?.isResting = true
@@ -291,7 +291,7 @@ extension MenuScrollingNode {
         return GameManager.shared.skView.frame.size.scaled()
     }
     
-    func calculateSpeed() {
+    fileprivate func calculateSpeed() {
         let now = DispatchTime.now().rawValue
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
         speedOfMovement = (movableArea.position.x - oldPosition) / CGFloat(now - lastTimeOfStoringSpeed)
@@ -299,7 +299,7 @@ extension MenuScrollingNode {
         lastTimeOfStoringSpeed = now
     }
     
-    var menuItems: [SKNode]? {
+    fileprivate var menuItems: [SKNode]? {
         
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return nil }
         let items = movableArea.children.filter({ (child: SKNode) -> Bool in
@@ -310,16 +310,16 @@ extension MenuScrollingNode {
         return items
     }
     
-    func getItemAtIndex(_ index: Int) -> MenuScrollItem {
+    fileprivate func getItemAtIndex(_ index: Int) -> MenuScrollItem {
         var index = Int(Double(index).truncatingRemainder(dividingBy: Double(items.count)))
         if index < 0 { index = items.count + index }
         return items[index]
     }
     
-    var menuItemOnFarLeft: SKNode? { return boundaryMenuItem(onLeft: true) }
-    var menuItemOnFarRight: SKNode? { return boundaryMenuItem(onLeft: false) }
+    fileprivate var menuItemOnFarLeft: SKNode? { return boundaryMenuItem(onLeft: true) }
+    fileprivate var menuItemOnFarRight: SKNode? { return boundaryMenuItem(onLeft: false) }
     
-    func boundaryMenuItem(onLeft: Bool) -> SKNode? {
+    fileprivate func boundaryMenuItem(onLeft: Bool) -> SKNode? {
         guard let menuItems = self.menuItems else { return nil }
         var resultItem = menuItems[0]
         for item in menuItems {
