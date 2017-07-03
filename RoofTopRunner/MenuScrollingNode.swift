@@ -85,6 +85,8 @@ extension MenuScrollingNode {
                 rightIndex = itemIndex
             }
         }
+        
+        snapClosestMenuItemToCenterWithDuration(0)
     }
     
     fileprivate func sprite(forMenuItem menuItem: MenuScrollItem) -> SKSpriteNode {
@@ -172,7 +174,7 @@ extension MenuScrollingNode {
 
 extension MenuScrollingNode {
     func update(_ currentTime: TimeInterval) {
-        moveByInertiaAllMenuItemsIfNeeded()
+        alignMenuItemsIfNeeded()
         scaleInAccordanceToLocationAllMenuItems()
         spawnOrRemoveMenuItems()
     }
@@ -246,33 +248,35 @@ extension MenuScrollingNode {
         
         if itemBody.isResting && !isMoving && thereWasInitialTouch {
             thereWasInitialTouch = false
-            
-            guard let scene = self.scene else { return }
-            guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
-            guard let menuItems = self.menuItems as? [SKSpriteNode] else { return }
-            
-            var closestItem = CGFloat(1000000)
-            var wasOnLeft = false
-            
-            for item in menuItems {
-                
-                let positionInSelf = convert(item.position, from: movableArea)
-                
-                let distanceFromCenter = abs(positionInSelf.x - scene.size.width / 2)
-                if distanceFromCenter < closestItem {
-                    closestItem = distanceFromCenter
-                    wasOnLeft = positionInSelf.x - scene.size.width / 2 < 0 ? true : false
-                }
-            }
-            
-            let translationAmmount = wasOnLeft ? closestItem : -closestItem
-            let translationAction = SKAction.move(by: CGVector(dx: translationAmmount, dy: 0), duration: MenuScrollingNode.snapBackDuration)
-            translationAction.timingFunction = {
-                let time: Float = $0
-                return time<0.5 ? 2*time*time : -1+(4-2*time)*time
-            }
-            movableArea.run(translationAction)
+            snapClosestMenuItemToCenterWithDuration(MenuScrollingNode.snapBackDuration)
         }
+    }
+    
+    func snapClosestMenuItemToCenterWithDuration(_ duration: TimeInterval) {
+        guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
+        guard let menuItems = self.menuItems as? [SKSpriteNode] else { return }
+        
+        var closestItem = CGFloat(1000000)
+        var wasOnLeft = false
+        
+        for item in menuItems {
+            
+            let positionInSelf = convert(item.position, from: movableArea)
+            
+            let distanceFromCenter = abs(positionInSelf.x - self.screenSize.width / 2)
+            if distanceFromCenter < closestItem {
+                closestItem = distanceFromCenter
+                wasOnLeft = positionInSelf.x - self.screenSize.width / 2 < 0 ? true : false
+            }
+        }
+        
+        let translationAmmount = wasOnLeft ? closestItem : -closestItem
+        let translationAction = SKAction.move(by: CGVector(dx: translationAmmount, dy: 0), duration: duration)
+        translationAction.timingFunction = {
+            let time: Float = $0
+            return time<0.5 ? 2*time*time : -1+(4-2*time)*time
+        }
+        movableArea.run(translationAction)
     }
     
     fileprivate func removeAllLeftOverInertia() {
