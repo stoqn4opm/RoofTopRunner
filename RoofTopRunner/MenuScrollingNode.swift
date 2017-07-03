@@ -177,6 +177,7 @@ extension MenuScrollingNode {
         alignMenuItemsIfNeeded()
         scaleInAccordanceToLocationAllMenuItems()
         spawnOrRemoveMenuItems()
+        applyAlphaInAccordanceToLocationAllMenuItems()
     }
 }
 
@@ -239,11 +240,11 @@ extension MenuScrollingNode {
     }
 }
 
-//MARK: - Ineartia
+//MARK: - Inertia
 
 extension MenuScrollingNode {
     
-    fileprivate func moveByInertiaAllMenuItemsIfNeeded() {
+    fileprivate func alignMenuItemsIfNeeded() {
         guard let itemBody = menuItems?.first?.physicsBody else { return }
         
         if itemBody.isResting && !isMoving && thereWasInitialTouch {
@@ -252,7 +253,7 @@ extension MenuScrollingNode {
         }
     }
     
-    func snapClosestMenuItemToCenterWithDuration(_ duration: TimeInterval) {
+    fileprivate func snapClosestMenuItemToCenterWithDuration(_ duration: TimeInterval) {
         guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
         guard let menuItems = self.menuItems as? [SKSpriteNode] else { return }
         
@@ -284,6 +285,27 @@ extension MenuScrollingNode {
         for item in items {
             item.physicsBody?.isResting = true
         }
+    }
+}
+
+//MARK: - Fade Out
+
+extension MenuScrollingNode {
+    
+    fileprivate func applyAlphaInAccordanceToLocationAllMenuItems() {
+        guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
+        guard let menuItems = self.menuItems as? [SKSpriteNode] else { return }
+        
+        for item in menuItems {
+            let positionInSelf = convert(item.position, from: movableArea)
+            let alpha = alphaFor(x: positionInSelf.x)
+            item.alpha = alpha
+        }
+    }
+    
+    fileprivate func alphaFor(x: CGFloat) -> CGFloat {
+        guard let scene = self.scene else { return 1 }
+        return -1 / 300000  * pow(x - scene.size.width / 2, 2.0) + 1
     }
 }
 
