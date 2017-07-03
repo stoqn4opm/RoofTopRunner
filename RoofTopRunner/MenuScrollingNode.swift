@@ -9,7 +9,8 @@
 import SpriteKit
 
 struct MenuScrollItem {
-    let color: UIColor
+    let imageName: String
+    let action: (Void) -> Void
 }
 
 class MenuScrollingNode: SKNode {
@@ -30,6 +31,11 @@ class MenuScrollingNode: SKNode {
     
     fileprivate var isMoving: Bool = false
     fileprivate var thereWasInitialTouch: Bool = false
+    
+    //MARK: - Button Helpers
+    
+    fileprivate var positionOfMovableAreaOnTochesBegin: CGPoint?
+    fileprivate var positionOfMovableAreaOnTochesEnd: CGPoint?
     
     //MARK: - Infinite Scrolling Helpers
     
@@ -90,7 +96,7 @@ extension MenuScrollingNode {
     }
     
     fileprivate func sprite(forMenuItem menuItem: MenuScrollItem) -> SKSpriteNode {
-        let item = SKSpriteNode(color: menuItem.color, size: itemSize)
+        let item = SKButtonNode(withImageName: menuItem.imageName, size: itemSize, action: menuItem.action)
         item.anchorPoint = .normalizedMiddle
         
         item.physicsBody = SKPhysicsBody(rectangleOf: itemSize, center: .zero)
@@ -149,6 +155,7 @@ extension MenuScrollingNode {
         isMoving = true
         thereWasInitialTouch = true
         initialDistance = movableArea.position.x - position.x
+        positionOfMovableAreaOnTochesBegin = movableArea.position
         removeAllLeftOverInertia()
         calculateSpeed()
     }
@@ -165,8 +172,12 @@ extension MenuScrollingNode {
     func menuTouchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         isMoving = false
         
+        guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
+        positionOfMovableAreaOnTochesEnd = movableArea.position
+        
         guard let items = menuItems else { return }
         for item in items { item.physicsBody?.applyImpulse(CGVector(dx: speedOfMovement, dy: 0)) }
+        fireButtonActionIfNeeded(from: touches)
     }
 }
 
@@ -342,9 +353,6 @@ extension MenuScrollingNode {
         return items[index]
     }
     
-    fileprivate var menuItemOnFarLeft: SKNode? { return boundaryMenuItem(onLeft: true) }
-    fileprivate var menuItemOnFarRight: SKNode? { return boundaryMenuItem(onLeft: false) }
-    
     fileprivate func boundaryMenuItem(onLeft: Bool) -> SKNode? {
         guard let menuItems = self.menuItems else { return nil }
         var resultItem = menuItems[0]
@@ -356,5 +364,22 @@ extension MenuScrollingNode {
             }
         }
         return resultItem
+    }
+    
+    fileprivate func fireButtonActionIfNeeded(from touches: Set<UITouch>) {
+        
+        guard let positionOfMovableAreaOnTochesBegin = self.positionOfMovableAreaOnTochesBegin else { return }
+        guard let positionOfMovableAreaOnTochesEnd = self.positionOfMovableAreaOnTochesEnd else { return }
+        guard abs(positionOfMovableAreaOnTochesBegin.x - positionOfMovableAreaOnTochesEnd.x) < itemSize.width / 4 else { return }
+        
+        let touch = touches.first
+        guard let location = touch?.location(in: self) else { return }
+        guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return }
+        
+        guard let movableArea = childNode(withName: MenuScrollingNode.movableAreaName) else { return }
+        let positionInSelf = convert(touchedNode.position, from: movableArea)
+        let distanceFromCenter = abs(positionInSelf.x - screenSize.width / 2)
+        
+        if distanceFromCenter < itemSize.width / 2 { touchedNode.fireAction() }
     }
 }
