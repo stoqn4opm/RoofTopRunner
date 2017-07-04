@@ -10,10 +10,6 @@ import SpriteKit
 
 class MainMenuScene: SKScene {
     
-    var speedOfMovement: CGFloat = 0.0
-    var oldPosition: CGFloat = 0.0
-    var lastTimeOfMethodCall = DispatchTime.now().rawValue
-    
     override func didMove(to view: SKView) {
         
         physicsWorld.contactDelegate = self
@@ -25,23 +21,22 @@ class MainMenuScene: SKScene {
              MenuScrollItem(imageName: "", action: { (Void) in
                 print("asd")
              })])
-        scrollMenu.name = "scroll"
         addChild(scrollMenu)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        let menu = childNode(withName: MenuScrollingNode.menuScrollingNodeName) as? MenuScrollingNode
         menu?.menuTouchesBegan(touches, with: event)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        let menu = childNode(withName: MenuScrollingNode.menuScrollingNodeName) as? MenuScrollingNode
         menu?.menuTouchesMoved(touches, with: event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        let menu = childNode(withName: MenuScrollingNode.menuScrollingNodeName) as? MenuScrollingNode
         menu?.menuTouchesEnded(touches, with: event)
     }
 }
@@ -61,7 +56,7 @@ extension MainMenuScene: SKPhysicsContactDelegate {
 
 extension MainMenuScene {
     override func update(_ currentTime: TimeInterval) {
-        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        let menu = childNode(withName: MenuScrollingNode.menuScrollingNodeName) as? MenuScrollingNode
         menu?.update(currentTime)
     }
 }

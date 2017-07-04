@@ -16,7 +16,7 @@ struct MenuScrollItem {
 class MenuScrollingNode: SKNode {
     
     //MARK: - Static Properties
-    
+    static let menuScrollingNodeName = "MenuScrollingNodeName"
     static let movableAreaName = "MovableAreaName"
     static let menuItemName = "MenuItemName"
     static let itemContactTestBitMask: UInt32 = 0b000000000001
@@ -55,6 +55,7 @@ class MenuScrollingNode: SKNode {
         self.size = size
         self.items = items
         super.init()
+        name = MenuScrollingNode.menuScrollingNodeName
         layoutItems()
     }
     
@@ -72,11 +73,7 @@ extension MenuScrollingNode {
         let movableArea = SKNode()
         movableArea.name = MenuScrollingNode.movableAreaName
         addChild(movableArea)
-        
-        let marker = SKSpriteNode(color: .red, size: CGSize(width: 5, height: 200))
-        marker.position = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
-        addChild(marker)
-        
+
         let countOfIterations = Int((size.width - itemsSpacing) / (itemSize.width + itemsSpacing) - 0)
         for itemIndex in 0..<countOfIterations {
             
