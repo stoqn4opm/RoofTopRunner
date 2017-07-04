@@ -20,7 +20,7 @@ class GameManager {
         // various debug options
         skView.showsFPS = true
         skView.showsNodeCount = true
-//        skView.showsFields = true
+        skView.showsFields = true
         skView.showsPhysics = true
         
         let instance = GameManager(skView: skView)
@@ -39,7 +39,10 @@ class GameManager {
 //MARK: - Loading Scenes
 extension GameManager {
     
-    func loadMenuScene() { }
+    func loadMenuScene() {
+        let mainMenuScene = MainMenuScene(size: skView.frame.size.scaled())
+        loadScene(scene: mainMenuScene)
+    }
     
     func loadEndlessLevelScene() {
         let endlessScene = EndlessLevelScene(size: skView.frame.size.scaled())
