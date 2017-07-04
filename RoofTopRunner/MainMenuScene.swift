@@ -14,7 +14,7 @@ class MainMenuScene: SKScene {
         
         physicsWorld.contactDelegate = self
         
-        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 1.2, height: 600), items:
+        let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 1.2, height: size.height / 1.15), items:
             [MenuScrollItem(imageName: "", action: { (Void) in
                 print("hello")
             }),

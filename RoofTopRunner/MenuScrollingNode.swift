@@ -45,8 +45,8 @@ class MenuScrollingNode: SKNode {
     //MARK: - Properties
     
     var items: [MenuScrollItem]
-    fileprivate let itemsSpacing: CGFloat = -40
-    fileprivate let itemSize = CGSize(width: 400, height: 320)
+    fileprivate var itemsSpacing: CGFloat { return screenSize.width / -33.35 }
+    fileprivate var itemSize: CGSize { return CGSize(width: screenSize.width / 3.335, height: screenSize.height / 2.343) }
     fileprivate let size: CGSize
     
     //MARK: - Initializers
@@ -244,7 +244,7 @@ extension MenuScrollingNode {
     
     fileprivate func scaleFactorFor(x: CGFloat) -> CGFloat {
         guard let scene = self.scene else { return 1 }
-        return 1 / (1 / 200000 * abs(pow(x - scene.size.width / 2, 2.0)) + 1)
+        return 1 / (1 / (screenSize.width / 0.00667) * abs(pow(x - scene.size.width / 2, 2.0)) + 1)
     }
 }
 
@@ -313,7 +313,7 @@ extension MenuScrollingNode {
     
     fileprivate func alphaFor(x: CGFloat) -> CGFloat {
         guard let scene = self.scene else { return 1 }
-        return -1 / 300000  * pow(x - scene.size.width / 2, 2.0) + 1
+        return -1 / (screenSize.width / 0.004446666)  * pow(x - scene.size.width / 2, 2.0) + 1
     }
 }
 
