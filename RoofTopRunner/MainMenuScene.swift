@@ -16,7 +16,7 @@ class MainMenuScene: SKScene {
         
         let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 1.2, height: size.height / 1.15), items:
             [MenuScrollItem(imageName: "", action: { (Void) in
-                print("hello")
+                GameManager.shared.loadEndlessLevelScene()
             }),
              MenuScrollItem(imageName: "", action: { (Void) in
                 print("asd")

@@ -52,7 +52,7 @@ extension GameOverLayerNode {
 extension GameOverLayerNode {
     
     var mainMenuButton: (Void) -> Void  {
-        return { print("top button pressed") }
+        return { GameManager.shared.loadMenuScene() }
     }
 }
 
