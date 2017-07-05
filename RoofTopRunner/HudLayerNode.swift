@@ -119,7 +119,7 @@ extension HudLayerNode {
     }
 
     func preparePauseButton() {
-        let pauseButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) {
+        let pauseButton = SKButtonNode(withImageName: "playButton", size: SKButtonNode.hudButtonSize) {
             guard let scene = self.scene as? EndlessLevelScene else { return }
             scene.state = scene.state == .running ? .pause : .running
         }
