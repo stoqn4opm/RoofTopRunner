@@ -17,13 +17,18 @@ class SKButtonNode: SKSpriteNode {
     //MARK: - Properties
     
     var action: (Void) -> Void
+    let imageName: String
+    var isDisabledState = false
+    var isCurrentlyTouched = false
     
     //MARK: - Initializer
     
     init(withImageName imageName: String, size: CGSize, action: @escaping (Void) -> Void) {
         self.action = action
+        self.imageName = imageName
         super.init(texture: nil, color: .cyan, size: size)
         self.anchorPoint = .normalizedLowerLeft
+        enterNormalState()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,5 +42,54 @@ extension SKButtonNode {
     
     func fireAction() {
         action()
+    }
+}
+
+
+//MARK: - States
+
+extension SKButtonNode {
+    func enterNormalState() {
+        self.texture = SKTexture(imageNamed: "\(imageName).png")
+        isDisabledState = false
+    }
+    
+    func enterTransionToDisabledState() {
+        self.texture = SKTexture(imageNamed: "\(imageName)Pressed.png")
+    }
+    
+    func enterDisabledState() {
+        self.texture = SKTexture(imageNamed: "\(imageName)Disabled.png")
+        isDisabledState = true
+    }
+    
+    func enterTransitionToNormalState() {
+        self.texture = SKTexture(imageNamed: "\(imageName)DisabledPressed.png")
+    }
+}
+
+
+extension SKButtonNode {
+
+    func buttonTouched() {
+        isCurrentlyTouched = true
+        if !isDisabledState {
+            enterTransionToDisabledState()
+        } else {
+            enterTransitionToNormalState()
+        }
+    }
+
+    func buttonTouchedEnded() {
+        
+        if isCurrentlyTouched {
+            isCurrentlyTouched = false
+            if !isDisabledState {
+                enterDisabledState()
+            } else {
+                enterNormalState()
+            }
+            action()
+        }
     }
 }

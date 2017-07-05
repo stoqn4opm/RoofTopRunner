@@ -113,7 +113,7 @@ extension HudLayerNode {
     }
     
     func prepareMusicControlButton() {
-        let musicButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) { print("music button FTW!!!") }
+        let musicButton = SKButtonNode(withImageName: "musicButton", size: SKButtonNode.hudButtonSize) { print("music button FTW!!!") }
         addChild(musicButton)
         musicButton.position = CGPoint(x: screenSize.width  - SKButtonNode.hudButtonSize.width * 3.6, y: screenSize.height - SKButtonNode.hudButtonSize.width * 1.2)
     }
@@ -177,7 +177,19 @@ extension HudLayerNode {
         let touch = touches.first
         guard let location = touch?.location(in: self) else { return false }
         guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return false }
-        touchedNode.fireAction()
+        touchedNode.buttonTouched()
         return true
+    }
+    
+    func hudTouchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let touch = touches.first
+//        guard let location = touch?.location(in: self) else { return }
+//        guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return }
+//        touchedNode.buttonTouchedEnded()
+//        
+        for child in children {
+            let button = child as? SKButtonNode
+            button?.buttonTouchedEnded()
+        }
     }
 }

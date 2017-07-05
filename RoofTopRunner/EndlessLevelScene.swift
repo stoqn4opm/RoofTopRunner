@@ -139,6 +139,10 @@ extension EndlessLevelScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         MainCharacterNodeJumpBehaviour.makeEndEvent()
+        
+        if let hud = childNode(withName: HudLayerNode.hudName) as? HudLayerNode {
+            hud.hudTouchesEnded(touches, with: event)
+        }
     }
 }
 
