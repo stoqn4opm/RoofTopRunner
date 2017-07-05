@@ -51,7 +51,8 @@ class ProgressIndicatorNode: SKSpriteNode {
     }
     
     func setupIcon() {
-        let icon = SKSpriteNode(color: .red, size: CGSize(width: size.height, height: size.height).scaled(at: 1.3))
+        let texture = SKTexture(imageNamed: "energyIcon")
+        let icon = SKSpriteNode(texture: texture, color: .red, size: CGSize(width: size.height, height: size.height).scaled(at: 1.3))
         icon.position = CGPoint(x: -icon.size.width * 0.8 - size.width / 2, y: 0)
         addChild(icon)
     }
@@ -61,6 +62,7 @@ class ProgressIndicatorNode: SKSpriteNode {
         progressLabel.verticalAlignmentMode = .center
         progressLabel.horizontalAlignmentMode = .center
         progressLabel.name = progressLabelName
+        progressLabel.fontName = "PressStart2P"
         addChild(progressLabel)
     }
 }

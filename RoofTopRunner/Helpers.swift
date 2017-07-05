@@ -56,3 +56,14 @@ extension CGSize {
         return result
     }
 }
+
+extension UIFont {
+    static func printAllFontNames() {
+        for family: String in UIFont.familyNames {
+            print("family - \(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family) {
+                print("\t- \(names)")
+            }
+        }
+    }
+}
