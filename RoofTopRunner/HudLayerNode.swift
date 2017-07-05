@@ -128,7 +128,7 @@ extension HudLayerNode {
     }
     
     func prepareSFXControlButton() {
-        let sfxButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) { print("sfx button FTW!!!") }
+        let sfxButton = SKButtonNode(withImageName: "sfxButton", size: SKButtonNode.hudButtonSize) { print("sfx button FTW!!!") }
         addChild(sfxButton)
         sfxButton.position = CGPoint(x: screenSize.width - SKButtonNode.hudButtonSize.width * 1.2 , y: screenSize.height - SKButtonNode.hudButtonSize.height * 1.2)
     }
