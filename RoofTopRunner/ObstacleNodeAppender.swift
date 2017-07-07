@@ -25,7 +25,7 @@ class ObstacleNodeAppender {
     var next: ObstacleNode {
         
         var shouldAppend = true
-
+        
         repeat {
             
             let obstacle = self.randomObstacle
@@ -40,6 +40,7 @@ class ObstacleNodeAppender {
             
             if shouldAppend {
                 remember(obstacle)
+                applyTextures()
                 return obstacle
             }
             
@@ -78,4 +79,40 @@ extension ObstacleNodeAppender {
             obstaclesHistory.removeFirst()
         }
     }
+}
+
+//MARK: - Textures
+
+extension ObstacleNodeAppender {
+    
+    fileprivate func applyTextures() {
+        
+        guard let last = obstaclesHistory.last else { return }
+        last.applyTextures(texturesArrayForHeight(last.height))
+    }
+    
+    fileprivate func texturesArrayForHeight(_ height: ObstacleHeight) -> [String] {
+        
+        switch height {
+        case .noObstacle:
+            return []
+        case .one:
+            return [randTopBlockTextureName]
+        case .two:
+            return [randMidBlockTextureName, randTopBlockTextureName]
+        case .three:
+            return [randMidBlockTextureName, randMidBlockTextureName, randTopBlockTextureName]
+        }
+    }
+    
+    var randMidBlockTextureName: String {
+        let idx = arc4random_uniform(UInt32(4)) + 1
+        return "Basic\(idx).png"
+    }
+    
+    var randTopBlockTextureName: String {
+        let idx = arc4random_uniform(UInt32(10)) + 1
+        return "Top\(idx).png"
+    }
+    
 }
