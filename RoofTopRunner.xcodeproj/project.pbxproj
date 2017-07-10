@@ -24,6 +24,7 @@
 		328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747451EC9D49D004D54F6 /* LaunchScreen.storyboard */; };
 		32DBD1641EEA6FDA004CC9C2 /* SKIconLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */; };
 		32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */; };
+		32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */; };
 		32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */; };
 		32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */; };
 		32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 32DDD1551F0E0E1E002ED79E /* Platforms.atlas */; };
@@ -67,6 +68,7 @@
 		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RoofTopRunner/Info.plist; sourceTree = "<group>"; };
 		32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKIconLabelNode.swift; sourceTree = "<group>"; };
 		32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
+		32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenuNode.swift; sourceTree = "<group>"; };
 		32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDownwardJumpBehaviour.swift; sourceTree = "<group>"; };
 		32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDieBehaviour.swift; sourceTree = "<group>"; };
 		32DDD1551F0E0E1E002ED79E /* Platforms.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Platforms.atlas; sourceTree = "<group>"; };
@@ -192,6 +194,14 @@
 			path = RoofTopRunner;
 			sourceTree = "<group>";
 		};
+		32DC5BDF1F14038500D77DBA /* Pause Menu */ = {
+			isa = PBXGroup;
+			children = (
+				32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */,
+			);
+			name = "Pause Menu";
+			sourceTree = "<group>";
+		};
 		32E0D36D1EEFC55900D7E7F0 /* Parallax Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				32DC5BDF1F14038500D77DBA /* Pause Menu */,
 				32E0D36D1EEFC55900D7E7F0 /* Parallax Background */,
 				32E1C4AE1EED661D0075D0AD /* Game Over  */,
 				32E416531EE9203700083ACE /* Hud Layer */,
@@ -472,6 +483,7 @@
 				327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */,
 				32EA791D1EE67D2500B0F4D4 /* MainCharacterNodeNoRotationBehaviour.swift in Sources */,
 				327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */,
+				32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */,
 				32E3D63C1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift in Sources */,
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,
 				32E3D6401EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift in Sources */,

@@ -9,6 +9,10 @@
 import SpriteKit
 import SwiftyJSON
 
+protocol EndlessLevelSceneStateAwareChildNode {
+    func sceneStateDidUpdateTo(_ state: EndlessLevelScene.States)
+}
+
 class EndlessLevelScene: SKScene {
  
     //MARK: - Scores
@@ -37,11 +41,20 @@ class EndlessLevelScene: SKScene {
             switch _state {
             case .running:
                 _state = newValue
+                notifyStateAwareChildrenAboutStateChange()
             case .gameOver:
                 break
             case .pause:
                 _state = newValue == .running ? newValue : .pause
+                notifyStateAwareChildrenAboutStateChange()
             }
+        }
+    }
+    
+    func notifyStateAwareChildrenAboutStateChange() {
+        for child in children {
+            let stateAwareChild = child as? EndlessLevelSceneStateAwareChildNode
+            stateAwareChild?.sceneStateDidUpdateTo(state)
         }
     }
     
@@ -55,6 +68,7 @@ class EndlessLevelScene: SKScene {
         loadMainCharacter()
         loadHUD()
         loadBackgroundLayer()
+        loadPauseMenu()
     }
     
     override func didMove(to view: SKView) {
@@ -97,6 +111,16 @@ extension EndlessLevelScene {
     func loadBackgroundLayer() {
         let background = ParallaxBackgroundNode()
         addChild(background)
+    }
+}
+
+//MARK: - Pause Menu
+
+extension EndlessLevelScene {
+    func loadPauseMenu() {
+        let pauseMenu = PauseMenuNode()
+        pauseMenu.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        addChild(pauseMenu)
     }
 }
 
