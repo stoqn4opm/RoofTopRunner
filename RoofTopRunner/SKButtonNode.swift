@@ -90,6 +90,17 @@ extension SKButtonNode {
         }
     }
 
+    func buttonTouchesCanceled() {
+        if isCurrentlyTouched {
+            isCurrentlyTouched = false
+            if isDisabledState {
+                enterDisabledState()
+            } else {
+                enterNormalState()
+            }
+        }
+    }
+    
     func buttonTouchedEnded() {
         
         if isCurrentlyTouched {
