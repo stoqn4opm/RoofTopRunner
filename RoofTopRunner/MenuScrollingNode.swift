@@ -10,6 +10,7 @@ import SpriteKit
 
 struct MenuScrollItem {
     let imageName: String
+    let title: String
     let action: (Void) -> Void
 }
 
@@ -93,7 +94,7 @@ extension MenuScrollingNode {
     }
     
     fileprivate func sprite(forMenuItem menuItem: MenuScrollItem) -> SKSpriteNode {
-        let item = SKButtonNode(withImageName: menuItem.imageName, size: itemSize, action: menuItem.action)
+        let item = SKButtonNode(withTitle: menuItem.title, fontSize: 50, imageName: menuItem.imageName, size: itemSize, action: menuItem.action)
         item.anchorPoint = .normalizedMiddle
         
         item.physicsBody = SKPhysicsBody(rectangleOf: itemSize, center: .zero)

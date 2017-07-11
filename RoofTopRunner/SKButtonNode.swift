@@ -23,6 +23,16 @@ class SKButtonNode: SKSpriteNode {
     
     //MARK: - Initializer
     
+    convenience init(withTitle title: String, fontSize: CGFloat, imageName: String, size: CGSize, action: @escaping (Void) -> Void) {
+        self.init(withImageName: imageName, size: size, action: action)
+        let titleLabel = SKLabelNode(text: title)
+        titleLabel.fontName = "PressStart2P"
+        titleLabel.fontSize = fontSize
+        titleLabel.zPosition = 1
+        titleLabel.isUserInteractionEnabled = false
+        addChild(titleLabel)
+    }
+    
     init(withImageName imageName: String, size: CGSize, action: @escaping (Void) -> Void) {
         self.action = action
         self.imageName = imageName
