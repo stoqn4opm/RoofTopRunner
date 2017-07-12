@@ -20,14 +20,14 @@ class GameOverLayerNode: SKNode {
         super.init()
         name = GameOverLayerNode.gameOverLayerName
 
-        let gameOverNode = GameOverNode (
-            withTopButtonImageName: "", topButtonAction: mainMenuButton,
-            withBottomButtonImageName: "", bottomButtonAction: retryButtonAction,
-            withLeftTopButtonImageName: "", leftTopButtonAction: facebookButtonAction,
-            withLeftBottomButtonImageName: "", leftBottomButtonAction: twitterButtonAction,
-            withRightTopButtonImageName: "", rightTopButtonAction: googlePlusButtonAction,
-            withRightBottomButtonImageName: "", rightBottomButtonAction: moreButtonAction
-        )
+        let gameOverNode = GameOverNode(
+            withTopButtonImageName: "gameOverRectBlock", topButtonText: "MAIN MENU".localized, topButtonAction: mainMenuButton,
+            withBottomButtonImageName: "gameOverRectBlock", bottomButtonText: "RETRY".localized, bottomButtonAction: retryButtonAction,
+            withLeftTopButtonImageName: "gameOverSquareBlock", leftTopButtonText: "f", leftTopButtonAction: facebookButtonAction,
+            withLeftBottomButtonImageName: "gameOverSquareBlock", leftBottomButtonText: "t", leftBottomButtonAction: twitterButtonAction,
+            withRightTopButtonImageName: "gameOverSquareBlock", rightTopButtonText: "G+", rightTopButtonAction: googlePlusButtonAction,
+            withRightBottomButtonImageName: "gameOverSquareBlock", rightBottomButtonText: "+", rightBottomButtonAction: moreButtonAction)
+        
         addChild(gameOverNode)
         gameOverNode.zPosition = 1
     }

@@ -13,7 +13,7 @@ class SKButtonNode: SKSpriteNode {
     //MARK: - Static Properties
     
     static let hudButtonSize = CGSize(width: 100, height: 100)
-    
+    static let labelName = "ButtonLabel"
     //MARK: - Properties
     
     var action: (Void) -> Void
@@ -26,10 +26,13 @@ class SKButtonNode: SKSpriteNode {
     convenience init(withTitle title: String, fontSize: CGFloat, imageName: String, size: CGSize, action: @escaping (Void) -> Void) {
         self.init(withImageName: imageName, size: size, action: action)
         let titleLabel = SKLabelNode(text: title)
+        titleLabel.name = SKButtonNode.labelName
+        titleLabel.verticalAlignmentMode = .center
+        titleLabel.horizontalAlignmentMode = .center
         titleLabel.fontName = "PressStart2P"
         titleLabel.fontSize = fontSize
         titleLabel.zPosition = 1
-        titleLabel.isUserInteractionEnabled = false
+        titleLabel.position = labelPositionInRegardsToAnchorPoint
         addChild(titleLabel)
     }
     
@@ -43,6 +46,33 @@ class SKButtonNode: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    override var anchorPoint: CGPoint {
+        didSet {
+            let label = childNode(withName: SKButtonNode.labelName)
+            label?.position = labelPositionInRegardsToAnchorPoint
+        }
+    }
+}
+
+//MARK: - Helpers
+
+extension SKButtonNode {
+    
+    
+    var labelPositionInRegardsToAnchorPoint: CGPoint {
+        switch anchorPoint {
+        case CGPoint.normalizedUpperLeft:
+            return CGPoint(x: size.width / 2, y: -size.height / 2)
+        case CGPoint.normalizedLowerLeft:
+            return CGPoint(x: size.width / 2, y: size.height / 2)
+        case CGPoint.normalizedUpperRight:
+            return CGPoint(x: -size.width / 2, y: -size.height / 2)
+        case CGPoint.normalizedLowerRight:
+            return CGPoint(x: -size.width / 2, y: size.height / 2)
+        default:
+            return .zero
+        }
     }
 }
 
