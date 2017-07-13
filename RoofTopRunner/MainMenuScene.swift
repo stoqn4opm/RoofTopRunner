@@ -15,10 +15,19 @@ class MainMenuScene: SKScene {
         physicsWorld.contactDelegate = self
         
         let scrollMenu = MenuScrollingNode(withSize: CGSize(width: size.width * 1.2, height: size.height / 1.15), items:
-            [MenuScrollItem(imageName: "", action: { (Void) in
-                GameManager.shared.loadEndlessLevelScene()
+            [MenuScrollItem(imageName: "menuBlock", title: "STORE".localized, action: { (Void) in
+                print("asd")
             }),
-             MenuScrollItem(imageName: "", action: { (Void) in
+             MenuScrollItem(imageName: "menuBlock", title: "OTHER".localized, action: { (Void) in
+                print("asd")
+             }),
+             MenuScrollItem(imageName: "menuBlock", title: "PLAY!".localized, action: { (Void) in
+                GameManager.shared.loadEndlessLevelScene()
+             }),
+             MenuScrollItem(imageName: "menuBlock", title: "SPIN".localized, action: { (Void) in
+                print("asd")
+             }),
+             MenuScrollItem(imageName: "menuBlock", title: "SKRETCH".localized, action: { (Void) in
                 print("asd")
              })])
         addChild(scrollMenu)
@@ -44,13 +53,13 @@ class MainMenuScene: SKScene {
 extension MainMenuScene: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
-//        let menu = childNode(withName: "scroll") as? MenuScrollingNode
-//        menu?.didBegin(contact)
+        //        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        //        menu?.didBegin(contact)
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-//        let menu = childNode(withName: "scroll") as? MenuScrollingNode
-//        menu?.didEnd(contact)
+        //        let menu = childNode(withName: "scroll") as? MenuScrollingNode
+        //        menu?.didEnd(contact)
     }
 }
 

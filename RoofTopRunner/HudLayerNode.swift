@@ -68,9 +68,9 @@ class HudLayerNode: SKNode {
 extension HudLayerNode {
     
     fileprivate func prepareRunningDistanceLabel() {
-        let distanceLabel = SKLabelNode(text: "")
+        let distanceLabel = SKLabelNode(text: "0m")
         distanceLabel.name = HudLayerNode.runningDistanceLabelName
-        
+        distanceLabel.fontName = "PressStart2P"
         distanceLabel.position = CGPoint(x: screenSize.width / 2, y: screenSize.height * 0.89)
         distanceLabel.fontSize = 50
         addChild(distanceLabel)
@@ -81,6 +81,7 @@ extension HudLayerNode {
     
     fileprivate func prepareAchievementsMultiplierLabel() {
         let achievementsLabel = SKLabelNode(text: "57x")
+        achievementsLabel.fontName = "PressStart2P"
         achievementsLabel.name = HudLayerNode.achievementsLabelName
         
         achievementsLabel.position = CGPoint(x: screenSize.width / 2, y: screenSize.height * 0.8)
@@ -103,23 +104,23 @@ extension HudLayerNode {
     }
     
     func prepareCoinsLabel() {
-        let coinsLabel = SKLabelNode.iconLabelNode(withText: "00000000", iconNamed: "")
+        let coinsLabel = SKLabelNode.iconLabelNode(withText: "1234567890", iconNamed: "coinIcon")
         coinsLabel.name = HudLayerNode.coinsLabelName
-        coinsLabel.position = CGPoint(x: coinsLabel.frame.width / 2 + coinsLabel.frame.height * 2,
-                                      y: screenSize.height * 0.8)
+        coinsLabel.position = CGPoint(x: coinsLabel.frame.width / 2 + coinsLabel.frame.height * 2.8,
+                                      y: screenSize.height * 0.79)
         addChild(coinsLabel)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoinsLabel), name: HudLayerNode.coinsLabelUpdateNotification, object: nil)
     }
     
     func prepareMusicControlButton() {
-        let musicButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) { print("music button FTW!!!") }
+        let musicButton = SKButtonNode(withImageName: "musicButton", size: SKButtonNode.hudButtonSize) { print("music button FTW!!!") }
         addChild(musicButton)
         musicButton.position = CGPoint(x: screenSize.width  - SKButtonNode.hudButtonSize.width * 3.6, y: screenSize.height - SKButtonNode.hudButtonSize.width * 1.2)
     }
 
     func preparePauseButton() {
-        let pauseButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) {
+        let pauseButton = SKButtonNode(withImageName: "playButton", size: SKButtonNode.hudButtonSize) {
             guard let scene = self.scene as? EndlessLevelScene else { return }
             scene.state = scene.state == .running ? .pause : .running
         }
@@ -128,7 +129,7 @@ extension HudLayerNode {
     }
     
     func prepareSFXControlButton() {
-        let sfxButton = SKButtonNode(withImageName: "", size: SKButtonNode.hudButtonSize) { print("sfx button FTW!!!") }
+        let sfxButton = SKButtonNode(withImageName: "sfxButton", size: SKButtonNode.hudButtonSize) { print("sfx button FTW!!!") }
         addChild(sfxButton)
         sfxButton.position = CGPoint(x: screenSize.width - SKButtonNode.hudButtonSize.width * 1.2 , y: screenSize.height - SKButtonNode.hudButtonSize.height * 1.2)
     }
@@ -146,14 +147,14 @@ extension HudLayerNode {
         let label = childNode(withName: HudLayerNode.runningDistanceLabelName) as? SKLabelNode
         
         guard let endlessLevelScene = label?.scene as? EndlessLevelScene else { return }
-        label?.text = "\(endlessLevelScene.scores.runningDistance) m"
+        label?.text = "\(endlessLevelScene.scores.runningDistance)m"
     }
     
     func updateAchievementsLabel() {
         let label = childNode(withName: HudLayerNode.achievementsLabelName) as? SKLabelNode
         
         guard let endlessLevelScene = label?.scene as? EndlessLevelScene else { return }
-        label?.text = "\(endlessLevelScene.scores.achievementsCount) x"
+        label?.text = "\(endlessLevelScene.scores.achievementsCount)x"
     }
     
     func updateEnergyBar() {
@@ -177,7 +178,19 @@ extension HudLayerNode {
         let touch = touches.first
         guard let location = touch?.location(in: self) else { return false }
         guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return false }
-        touchedNode.fireAction()
+        touchedNode.buttonTouched()
         return true
+    }
+    
+    func hudTouchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let touch = touches.first
+//        guard let location = touch?.location(in: self) else { return }
+//        guard let touchedNode = self.nodes(at: location).first as? SKButtonNode else { return }
+//        touchedNode.buttonTouchedEnded()
+//        
+        for child in children {
+            let button = child as? SKButtonNode
+            button?.buttonTouchedEnded()
+        }
     }
 }

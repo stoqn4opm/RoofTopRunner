@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */; };
+		321E94861F0CBB8800D5DF60 /* HudTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 321E94851F0CBB8800D5DF60 /* HudTextures.atlas */; };
+		321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321F12141F0D827700B8E3B9 /* PressStart2P.ttf */; };
+		321FC99B1F149BD000733665 /* MenuTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 321FC99A1F149BD000733665 /* MenuTextures.atlas */; };
 		32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */; };
 		32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */; };
 		323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */; };
@@ -22,8 +25,10 @@
 		328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747451EC9D49D004D54F6 /* LaunchScreen.storyboard */; };
 		32DBD1641EEA6FDA004CC9C2 /* SKIconLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */; };
 		32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */; };
+		32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */; };
 		32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */; };
 		32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */; };
+		32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 32DDD1551F0E0E1E002ED79E /* Platforms.atlas */; };
 		32E0D36F1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0D36E1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift */; };
 		32E1C4B01EED66410075D0AD /* GameOverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4AF1EED66410075D0AD /* GameOverNode.swift */; };
 		32E1C4B21EED819F0075D0AD /* GameOverLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */; };
@@ -46,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObstaclesLayerNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		321E94851F0CBB8800D5DF60 /* HudTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HudTextures.atlas; sourceTree = "<group>"; };
+		321F12141F0D827700B8E3B9 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
+		321FC99A1F149BD000733665 /* MenuTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MenuTextures.atlas; sourceTree = "<group>"; };
 		32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppender.swift; sourceTree = "<group>"; };
 		32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppendRules.swift; sourceTree = "<group>"; };
 		323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
@@ -62,8 +70,10 @@
 		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RoofTopRunner/Info.plist; sourceTree = "<group>"; };
 		32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKIconLabelNode.swift; sourceTree = "<group>"; };
 		32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
+		32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenuNode.swift; sourceTree = "<group>"; };
 		32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDownwardJumpBehaviour.swift; sourceTree = "<group>"; };
 		32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDieBehaviour.swift; sourceTree = "<group>"; };
+		32DDD1551F0E0E1E002ED79E /* Platforms.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Platforms.atlas; sourceTree = "<group>"; };
 		32E0D36E1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxBackgroundNode.swift; sourceTree = "<group>"; };
 		32E1C4AF1EED66410075D0AD /* GameOverNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverNode.swift; sourceTree = "<group>"; };
 		32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLayerNode.swift; sourceTree = "<group>"; };
@@ -146,7 +156,11 @@
 		327458E91ECB208700CCA1D0 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				321F12141F0D827700B8E3B9 /* PressStart2P.ttf */,
 				328747431EC9D49D004D54F6 /* Assets.xcassets */,
+				321FC99A1F149BD000733665 /* MenuTextures.atlas */,
+				32DDD1551F0E0E1E002ED79E /* Platforms.atlas */,
+				321E94851F0CBB8800D5DF60 /* HudTextures.atlas */,
 				32E398811EF1185600D20BF7 /* Textures.atlas */,
 			);
 			name = Art;
@@ -181,6 +195,14 @@
 				327458E91ECB208700CCA1D0 /* Art */,
 			);
 			path = RoofTopRunner;
+			sourceTree = "<group>";
+		};
+		32DC5BDF1F14038500D77DBA /* Pause Menu */ = {
+			isa = PBXGroup;
+			children = (
+				32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */,
+			);
+			name = "Pause Menu";
 			sourceTree = "<group>";
 		};
 		32E0D36D1EEFC55900D7E7F0 /* Parallax Background */ = {
@@ -273,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				327458E11ECB17AE00CCA1D0 /* EndlessLevelScene.swift */,
+				32DC5BDF1F14038500D77DBA /* Pause Menu */,
 				32E0D36D1EEFC55900D7E7F0 /* Parallax Background */,
 				32E1C4AE1EED661D0075D0AD /* Game Over  */,
 				32E416531EE9203700083ACE /* Hud Layer */,
@@ -391,8 +414,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				328747421EC9D49D004D54F6 /* Main.storyboard in Resources */,
+				321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */,
+				32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */,
 				32E398821EF1185600D20BF7 /* Textures.atlas in Resources */,
+				321FC99B1F149BD000733665 /* MenuTextures.atlas in Resources */,
 				327458E01ECAFE3D00CCA1D0 /* page_model.json in Resources */,
+				321E94861F0CBB8800D5DF60 /* HudTextures.atlas in Resources */,
 				328747441EC9D49D004D54F6 /* Assets.xcassets in Resources */,
 				328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -460,6 +487,7 @@
 				327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */,
 				32EA791D1EE67D2500B0F4D4 /* MainCharacterNodeNoRotationBehaviour.swift in Sources */,
 				327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */,
+				32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */,
 				32E3D63C1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift in Sources */,
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,
 				32E3D6401EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift in Sources */,
@@ -607,11 +635,12 @@
 			baseConfigurationReference = 354206165E7FBB02C39D6183 /* Pods-RoofTopRunner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PPF77J63K7;
 				INFOPLIST_FILE = RoofTopRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunnere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -622,11 +651,12 @@
 			baseConfigurationReference = 7BCFBBF2540ACC3BD2630C6F /* Pods-RoofTopRunner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = PPF77J63K7;
 				INFOPLIST_FILE = RoofTopRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunnere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

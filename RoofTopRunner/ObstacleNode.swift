@@ -40,17 +40,19 @@ class ObstacleNode: SKNode {
     
     
     //MARK: - Properties
-    let textureName: String?
+    var textureName: [String]?
     let height: ObstacleHeight
     
     //MARK: - Initializers
     
-    init(withHeight obstacleHeight: ObstacleHeight, textureName: String?) {
+    init(withHeight obstacleHeight: ObstacleHeight, textureName: [String]?) {
         height = obstacleHeight
         self.textureName = textureName
         super.init()
         name = obstacleHeight == .noObstacle ? ObstacleNode.holeName : ObstacleNode.obstacleName
-        prepareUI(forHeight: obstacleHeight, texture: textureName)
+        if self.textureName != nil {
+            prepareUI(forHeight: obstacleHeight)
+        }
         preparePhysics(forHeight: obstacleHeight)
     }
     
@@ -63,16 +65,43 @@ class ObstacleNode: SKNode {
     }
 }
 
+//MARK: - Setting Textures 
+
+extension ObstacleNode {
+    func applyTextures(_ textureName: [String]?) {
+        self.textureName = textureName
+        prepareUI(forHeight: height)
+    }
+}
+
 //MARK: - Internal Preparation
 
 extension ObstacleNode {
     
-    fileprivate func prepareUI(forHeight obstacleHeight: ObstacleHeight, texture textureName: String?) {
+    fileprivate func textureForHeight(_ height: Int) -> SKTexture? {
+        guard let textureName = self.textureName else { return nil }
+        guard height < textureName.count else { return nil }
+        let texture = SKTexture(imageNamed: textureName[height])
+        texture.filteringMode = .nearest
+        return texture
+    }
+    
+    fileprivate func cleanUpSpritesIfNeeded() {
+        for child in children {
+            let obstacle = child as? ObstacleNode
+            obstacle?.removeFromParent()
+        }
+    }
+    
+    fileprivate func prepareUI(forHeight obstacleHeight: ObstacleHeight) {
+        
+        cleanUpSpritesIfNeeded()
+        
         for i in 0..<obstacleHeight.rawValue {
-            let spriteBlock = SKSpriteNode(imageNamed: textureName ?? "redbox")
+            let spriteBlock = SKSpriteNode(texture: textureForHeight(i))
             spriteBlock.size = CGSize(width: ObstacleNode.width, height: ObstacleNode.height)
-            self.addChild(spriteBlock)
-            spriteBlock.position = CGPoint(x: self.position.x, y: self.position.y + CGFloat(i) * ObstacleNode.height)
+            addChild(spriteBlock)
+            spriteBlock.position = CGPoint(x: position.x, y: position.y + CGFloat(i) * ObstacleNode.height)
             spriteBlock.anchorPoint = .normalizedLowerLeft
         }
     }
