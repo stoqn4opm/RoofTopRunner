@@ -128,10 +128,15 @@ extension EndlessLevelScene {
 
 extension EndlessLevelScene {
     func loadGameOverLayer() {
-        let gameOverLayer = GameOverLayerNode()
-        gameOverLayer.position = CGPoint(x: size.width / 2, y: size.height / 2)
-        gameOverLayer.zPosition = 1
-        addChild(gameOverLayer)
+//        let gameOverLayer = GameOverLayerNode()
+//        gameOverLayer.position = CGPoint(x: size.width / 2, y: size.height / 2)
+//        gameOverLayer.zPosition = 1
+//        addChild(gameOverLayer)
+        
+        guard let gameOverContainer = SKNode(fileNamed: "GameOverNodeContainer") else { return }
+        gameOverContainer.physicsBody = nil
+        gameOverContainer.position = CGPoint(x: size.width / 2.0, y: size.height / 2.0)
+        addChild(gameOverContainer)
     }
 }
 

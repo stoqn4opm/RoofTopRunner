@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 //MARK: CoreGraphics Helpers
 
@@ -77,3 +78,11 @@ extension String {
         return NSLocalizedString(self, comment: comment)
     }
 }
+
+extension SKNode {
+    var rootChildNode: SKNode? {
+        if let child = self.children.first?.children.first { return child }
+        else { return nil }
+    }
+}
+
