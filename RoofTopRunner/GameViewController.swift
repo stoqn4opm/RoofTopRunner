@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = GameManager.shared.skView
-        GameManager.shared.loadMenuScene()
+        GameManager.shared.loadIntroStoryScene()
     }
     
     override var prefersStatusBarHidden: Bool {
