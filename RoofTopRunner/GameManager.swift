@@ -18,11 +18,11 @@ class GameManager {
         skView.ignoresSiblingOrder = true
         
         // various debug options
-        skView.showsFPS = true
-        skView.showsNodeCount = true
-        skView.showsFields = true
-        skView.showsPhysics = true
-        
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
+//        skView.showsFields = true
+//        skView.showsPhysics = true
+//        
         let instance = GameManager(skView: skView)
         return instance
     }()

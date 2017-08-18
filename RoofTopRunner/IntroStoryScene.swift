@@ -128,11 +128,26 @@ extension IntroStoryScene {
 
 extension IntroStoryScene {
     func tapToContinueLabel() {
-        let tapLabel = childNode(withName: "tapLabel") as? SKLabelNode
+        guard let tapLabel = childNode(withName: "tapLabel") as? SKLabelNode else { return }
+        guard let backgroundNode = childNode(withName: "labelBackground") else { return }
+        backgroundNode.removeFromParent()
+        tapLabel.removeFromParent()
         
-        tapLabel?.fontName = "PressStart2P"
-        tapLabel?.fontSize = 30
-        tapLabel?.text = "TAP TO SKIP".localized
-        tapLabel?.alpha = 0
+        tapLabel.fontName = "PressStart2P"
+        tapLabel.fontSize = 30
+        tapLabel.text = "TAP TO SKIP".localized
+        
+        let cropContainer = SKNode()
+        let cropNode = SKCropNode()
+        cropNode.position = tapLabel.position
+        tapLabel.position = .zero
+        backgroundNode.position = .zero
+        cropNode.maskNode = tapLabel
+        cropNode.addChild(backgroundNode)
+        cropContainer.addChild(cropNode)
+        addChild(cropContainer)
+        cropContainer.zPosition = 1
+        cropContainer.alpha = 0
+        cropContainer.run(SKAction.sequence([SKAction.wait(forDuration: 15), SKAction.repeatForever(SKAction.sequence([SKAction.fadeIn(withDuration: 1.5), SKAction.fadeOut(withDuration: 1.5)]))]))
     }
 }
