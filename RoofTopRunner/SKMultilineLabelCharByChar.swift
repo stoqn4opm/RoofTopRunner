@@ -26,11 +26,12 @@ extension SKMultilineLabel {
             let action = SKAction.run { self.text = string }
             if string.characters.last == "\n" {
                 actions.append(action)
+                actions.append(SKAction.wait(forDuration: 2))
             } else {
                 let sound = SKAction.playSoundFileNamed("sfx_letterType", waitForCompletion: false)
                 actions.append(SKAction.group([action, sound]))
             }
-            actions.append(SKAction.wait(forDuration: 0.14))
+            actions.append(SKAction.wait(forDuration: 0.18))
         }
         run(SKAction.sequence(actions))
     }

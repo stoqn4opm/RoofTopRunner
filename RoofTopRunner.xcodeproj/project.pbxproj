@@ -18,6 +18,7 @@
 		3226E6FF1F473034006E0A3C /* SoundEffects in Resources */ = {isa = PBXBuildFile; fileRef = 3226E6FE1F473034006E0A3C /* SoundEffects */; };
 		3226E7011F473143006E0A3C /* sfx_letterType.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3226E7001F473143006E0A3C /* sfx_letterType.wav */; };
 		3226E7031F4735CF006E0A3C /* sfx_endOfIntroScene.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */; };
+		3226E7051F4769E9006E0A3C /* bgm_introStoryScene.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */; };
 		32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */; };
 		32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */; };
 		323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */; };
@@ -75,6 +76,7 @@
 		3226E6FE1F473034006E0A3C /* SoundEffects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SoundEffects; sourceTree = "<group>"; };
 		3226E7001F473143006E0A3C /* sfx_letterType.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_letterType.wav; path = SoundEffects/sfx_letterType.wav; sourceTree = "<group>"; };
 		3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_endOfIntroScene.wav; sourceTree = "<group>"; };
+		3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm_introStoryScene.wav; sourceTree = "<group>"; };
 		32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppender.swift; sourceTree = "<group>"; };
 		32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppendRules.swift; sourceTree = "<group>"; };
 		323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		327458E91ECB208700CCA1D0 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */,
 				3226E7001F473143006E0A3C /* sfx_letterType.wav */,
 				3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */,
 				321F12141F0D827700B8E3B9 /* PressStart2P.ttf */,
@@ -474,6 +477,7 @@
 				328747421EC9D49D004D54F6 /* Main.storyboard in Resources */,
 				3299C0B41F457D0C003385C9 /* TestTextures.atlas in Resources */,
 				3226E7011F473143006E0A3C /* sfx_letterType.wav in Resources */,
+				3226E7051F4769E9006E0A3C /* bgm_introStoryScene.wav in Resources */,
 				321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */,
 				32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */,
 				3223AF651F4578E200D122A9 /* IntroStoryScene.sks in Resources */,
