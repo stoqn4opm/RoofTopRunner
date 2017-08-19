@@ -121,15 +121,13 @@ extension IntroStoryScene {
         var sequence: [SKAction] = []
         
         if shouldFlash {
-            sequence.append(SKAction.group([
-                SKAction.playSoundFileNamed("sfx_endOfIntroScene", waitForCompletion: false),
-                SKAction.run({
-                    whiteFlash?.run(SKAction.sequence([fadeInAction, fadeOutAction]))
-                    tapLabel?.removeAllActions()
-                    tapLabel?.run(SKAction.fadeOut(withDuration: 0.2))
-                    label?.alpha = 0
-                })])
-            )
+            SoundManager.shared.playSoundEffectNamed("sfx_endOfIntroScene")
+            sequence.append(SKAction.run {
+                whiteFlash?.run(SKAction.sequence([fadeInAction, fadeOutAction]))
+                tapLabel?.removeAllActions()
+                tapLabel?.run(SKAction.fadeOut(withDuration: 0.2))
+                label?.alpha = 0
+            })
         }
         sequence.append(SKAction.fadeOut(withDuration: 1))
         sequence.append(SKAction.wait(forDuration: 0.4))

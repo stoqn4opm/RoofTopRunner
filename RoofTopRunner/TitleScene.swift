@@ -19,7 +19,8 @@ extension TitleScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         removeAllActions()
-        run(SKAction.sequence([SKAction.playSoundFileNamed("sfx_go_to_menu", waitForCompletion: true),
+        SoundManager.shared.playSoundEffectNamed("sfx_go_to_menu")
+        run(SKAction.sequence([SKAction.wait(forDuration: 1.8),
                                SKAction.fadeOut(withDuration: 1),
                                SKAction.run { GameManager.shared.loadMenuScene() }]))
         

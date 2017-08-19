@@ -28,7 +28,7 @@ extension SKMultilineLabel {
                 actions.append(action)
                 actions.append(SKAction.wait(forDuration: 2))
             } else {
-                let sound = SKAction.playSoundFileNamed("sfx_letterType", waitForCompletion: false)
+                let sound = SKAction.run { SoundManager.shared.playSoundEffectNamed("sfx_letterType") }
                 actions.append(SKAction.group([action, sound]))
             }
             actions.append(SKAction.wait(forDuration: 0.18))
