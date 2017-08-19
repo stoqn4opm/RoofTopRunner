@@ -77,6 +77,7 @@
 		3226E7001F473143006E0A3C /* sfx_letterType.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_letterType.wav; path = SoundEffects/sfx_letterType.wav; sourceTree = "<group>"; };
 		3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_endOfIntroScene.wav; sourceTree = "<group>"; };
 		3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm_introStoryScene.wav; sourceTree = "<group>"; };
+		3226E7061F4790DC006E0A3C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppender.swift; sourceTree = "<group>"; };
 		32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppendRules.swift; sourceTree = "<group>"; };
 		323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		1E0DC57D1535109F497889C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3226E7061F4790DC006E0A3C /* AVFoundation.framework */,
 				C954112B745794B726884FED /* Pods_RoofTopRunner.framework */,
 			);
 			name = Frameworks;

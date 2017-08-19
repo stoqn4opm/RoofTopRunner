@@ -7,15 +7,28 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class IntroStoryScene: SKScene {
+    
+    private var _bgmPlayer: AVAudioPlayer?
+    fileprivate var bgmPlayer: AVAudioPlayer? {
+        if _bgmPlayer != nil {
+            return _bgmPlayer
+        }
+        guard let bgmURL = Bundle.main.url(forResource: "bgm_introStoryScene", withExtension: "wav") else { return nil }
+        guard let bgmPlayer = try? AVAudioPlayer(contentsOf: bgmURL) else { return nil }
+
+        _ = bgmPlayer.prepareToPlay()
+        _bgmPlayer = bgmPlayer
+        return bgmPlayer
+    }
     
     override func didMove(to view: SKView) {
         multilineLabel()
         setupAnimations()
         tapToContinueLabel()
-        
-        run(SKAction.playSoundFileNamed("bgm_introStoryScene", waitForCompletion: false))
+        bgmPlayer?.play()
     }
 }
 
