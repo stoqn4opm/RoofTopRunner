@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32076A4A1F484F0C008B8A4C /* bgm_titleScreen.wav in Resources */ = {isa = PBXBuildFile; fileRef = 32076A491F484E95008B8A4C /* bgm_titleScreen.wav */; };
 		320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */; };
+		321C0ECD1F488293004EF2E1 /* sfx_go_to_menu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 321C0ECC1F488293004EF2E1 /* sfx_go_to_menu.wav */; };
 		321E94861F0CBB8800D5DF60 /* HudTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 321E94851F0CBB8800D5DF60 /* HudTextures.atlas */; };
 		321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321F12141F0D827700B8E3B9 /* PressStart2P.ttf */; };
 		321FC99B1F149BD000733665 /* MenuTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 321FC99A1F149BD000733665 /* MenuTextures.atlas */; };
@@ -35,6 +36,7 @@
 		328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747451EC9D49D004D54F6 /* LaunchScreen.storyboard */; };
 		3299C0B41F457D0C003385C9 /* TestTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3299C0B31F457D0C003385C9 /* TestTextures.atlas */; };
 		3299C0B61F457EBD003385C9 /* IntroStoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299C0B51F457EBD003385C9 /* IntroStoryScene.swift */; };
+		32A626ED1F48723E00C07F06 /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626EC1F48723E00C07F06 /* TitleScene.swift */; };
 		32DBD1641EEA6FDA004CC9C2 /* SKIconLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */; };
 		32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */; };
 		32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */; };
@@ -69,6 +71,7 @@
 /* Begin PBXFileReference section */
 		32076A491F484E95008B8A4C /* bgm_titleScreen.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm_titleScreen.wav; sourceTree = "<group>"; };
 		320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObstaclesLayerNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		321C0ECC1F488293004EF2E1 /* sfx_go_to_menu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_go_to_menu.wav; sourceTree = "<group>"; };
 		321E94851F0CBB8800D5DF60 /* HudTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HudTextures.atlas; sourceTree = "<group>"; };
 		321F12141F0D827700B8E3B9 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
 		321FC99A1F149BD000733665 /* MenuTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MenuTextures.atlas; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RoofTopRunner/Info.plist; sourceTree = "<group>"; };
 		3299C0B31F457D0C003385C9 /* TestTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = TestTextures.atlas; sourceTree = "<group>"; };
 		3299C0B51F457EBD003385C9 /* IntroStoryScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroStoryScene.swift; sourceTree = "<group>"; };
+		32A626EC1F48723E00C07F06 /* TitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKIconLabelNode.swift; sourceTree = "<group>"; };
 		32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
 		32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenuNode.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				322514661F4828B20098B796 /* TitleScene.sks */,
+				32A626EC1F48723E00C07F06 /* TitleScene.swift */,
 			);
 			name = "Title Screen";
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 		327458E91ECB208700CCA1D0 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				321C0ECC1F488293004EF2E1 /* sfx_go_to_menu.wav */,
 				32076A491F484E95008B8A4C /* bgm_titleScreen.wav */,
 				3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */,
 				3226E7001F473143006E0A3C /* sfx_letterType.wav */,
@@ -508,6 +514,7 @@
 				322316C21F44279A00BA6AF8 /* GameOverNodeContainer.sks in Resources */,
 				328747441EC9D49D004D54F6 /* Assets.xcassets in Resources */,
 				328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */,
+				321C0ECD1F488293004EF2E1 /* sfx_go_to_menu.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +581,7 @@
 				327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */,
 				32EA791D1EE67D2500B0F4D4 /* MainCharacterNodeNoRotationBehaviour.swift in Sources */,
 				32DE65B51F28782E009B8537 /* TWSwitch.swift in Sources */,
+				32A626ED1F48723E00C07F06 /* TitleScene.swift in Sources */,
 				3226E6FD1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift in Sources */,
 				327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */,
 				32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */,
