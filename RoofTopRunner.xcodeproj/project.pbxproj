@@ -14,6 +14,7 @@
 		322316C21F44279A00BA6AF8 /* GameOverNodeContainer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 322316C11F44279A00BA6AF8 /* GameOverNodeContainer.sks */; };
 		3223AF651F4578E200D122A9 /* IntroStoryScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3223AF641F4578E200D122A9 /* IntroStoryScene.sks */; };
 		3223AF671F457AE400D122A9 /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223AF661F457AE400D122A9 /* SKMultilineLabel.swift */; };
+		322514671F4828B20098B796 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 322514661F4828B20098B796 /* TitleScene.sks */; };
 		3226E6FD1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3226E6FC1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift */; };
 		3226E6FF1F473034006E0A3C /* SoundEffects in Resources */ = {isa = PBXBuildFile; fileRef = 3226E6FE1F473034006E0A3C /* SoundEffects */; };
 		3226E7011F473143006E0A3C /* sfx_letterType.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3226E7001F473143006E0A3C /* sfx_letterType.wav */; };
@@ -72,6 +73,7 @@
 		322316C11F44279A00BA6AF8 /* GameOverNodeContainer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverNodeContainer.sks; sourceTree = "<group>"; };
 		3223AF641F4578E200D122A9 /* IntroStoryScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IntroStoryScene.sks; sourceTree = "<group>"; };
 		3223AF661F457AE400D122A9 /* SKMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
+		322514661F4828B20098B796 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		3226E6FC1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabelCharByChar.swift; sourceTree = "<group>"; };
 		3226E6FE1F473034006E0A3C /* SoundEffects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SoundEffects; sourceTree = "<group>"; };
 		3226E7001F473143006E0A3C /* sfx_letterType.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_letterType.wav; path = SoundEffects/sfx_letterType.wav; sourceTree = "<group>"; };
@@ -157,6 +159,14 @@
 			name = "Intro Story Scene";
 			sourceTree = "<group>";
 		};
+		322514651F4828840098B796 /* Title Screen */ = {
+			isa = PBXGroup;
+			children = (
+				322514661F4828B20098B796 /* TitleScene.sks */,
+			);
+			name = "Title Screen";
+			sourceTree = "<group>";
+		};
 		327458E31ECB17DD00CCA1D0 /* ObstaclePage Patterns */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +188,7 @@
 		327458E51ECB186100CCA1D0 /* Game Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				322514651F4828840098B796 /* Title Screen */,
 				3223AF631F4578B100D122A9 /* Intro Story Scene */,
 				32E6C67C1EF643490095EDFE /* Main Menu Scene */,
 				32E7281B1ED3F4F0004DFDFB /* Endless Level Scene */,
@@ -477,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				328747421EC9D49D004D54F6 /* Main.storyboard in Resources */,
+				322514671F4828B20098B796 /* TitleScene.sks in Resources */,
 				3299C0B41F457D0C003385C9 /* TestTextures.atlas in Resources */,
 				3226E7011F473143006E0A3C /* sfx_letterType.wav in Resources */,
 				3226E7051F4769E9006E0A3C /* bgm_introStoryScene.wav in Resources */,
