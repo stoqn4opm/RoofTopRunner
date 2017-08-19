@@ -395,8 +395,8 @@
 			isa = PBXGroup;
 			children = (
 				327458E71ECB1A0300CCA1D0 /* GameManager.swift */,
-				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
 				321C0ECE1F48924F004EF2E1 /* SoundManager.swift */,
+				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
 			);
 			name = "Shared Functionality";
 			sourceTree = "<group>";

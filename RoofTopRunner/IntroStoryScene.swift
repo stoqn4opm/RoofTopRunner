@@ -10,25 +10,17 @@ import SpriteKit
 import AVFoundation
 
 class IntroStoryScene: SKScene {
-    
-    private var _bgmPlayer: AVAudioPlayer?
-    fileprivate var bgmPlayer: AVAudioPlayer? {
-        if _bgmPlayer != nil {
-            return _bgmPlayer
-        }
-        guard let bgmURL = Bundle.main.url(forResource: "bgm_introStoryScene", withExtension: "wav") else { return nil }
-        guard let bgmPlayer = try? AVAudioPlayer(contentsOf: bgmURL) else { return nil }
 
-        _ = bgmPlayer.prepareToPlay()
-        _bgmPlayer = bgmPlayer
-        return bgmPlayer
-    }
+    fileprivate var alreadyTapped: Bool = false
+    fileprivate var isAbleToTap: Bool = false
     
     override func didMove(to view: SKView) {
         multilineLabel()
         setupAnimations()
         tapToContinueLabel()
-        bgmPlayer?.play()
+
+        SoundManager.shared.playBackgroundMusicNamed("bgm_introStoryScene")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {  self.isAbleToTap = true }
     }
 }
 
@@ -104,7 +96,12 @@ extension IntroStoryScene {
 
 extension IntroStoryScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        run(finalAction(shouldFlash: true), withKey: "animation")
+        if isAbleToTap {
+            if !alreadyTapped {
+                run(finalAction(shouldFlash: true), withKey: "animation")
+                alreadyTapped = true
+            }
+        }
     }
     
     func finalAction(shouldFlash: Bool) -> SKAction {
@@ -115,10 +112,11 @@ extension IntroStoryScene {
         label?.removeAllActions()
         removeAllActions()
         
+        
         let fadeOutAction = SKAction.fadeOut(withDuration: 0.1)
         let fadeInAction = SKAction.fadeIn(withDuration: 0.1)
         
-        var sequence: [SKAction] = []
+        var sequence: [SKAction] = [SKAction.run { SoundManager.shared.stopBackgroundMusic() }]
         
         if shouldFlash {
             SoundManager.shared.playSoundEffectNamed("sfx_endOfIntroScene")

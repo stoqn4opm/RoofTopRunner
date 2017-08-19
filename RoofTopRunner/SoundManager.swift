@@ -24,7 +24,24 @@ class SoundManager {
 //MARK: BGM
 
 extension SoundManager {
+    public func playBackgroundMusicNamed(_ filename: String) {
+        guard let url = Bundle.main.url(forResource: filename, withExtension: "wav") else {
+            print("[SoundManager] Could not find file: \(filename)")
+            return
+        }
+        
+        bgmPlayer = try? AVAudioPlayer(contentsOf: url)
+        bgmPlayer?.numberOfLoops = -1 // loop endlessly
+        bgmPlayer?.prepareToPlay()
+        bgmPlayer?.play()
+        
+        if bgmPlayer == nil { print("[SoundManager] Could not create bgm audio player") }
+    }
     
+    func stopBackgroundMusic() {
+        bgmPlayer?.stop()
+        if bgmPlayer == nil { print("[SoundManager] Could not stop bgm audio player because its nil") }
+    }
 }
 
 
@@ -33,7 +50,7 @@ extension SoundManager {
 extension SoundManager {
     public func playSoundEffectNamed(_ filename: String) {
         guard let url = Bundle.main.url(forResource: filename, withExtension: "wav") else {
-            print("Could not find file: \(filename)")
+            print("[SoundManager] Could not find file: \(filename)")
             return
         }
         
@@ -42,6 +59,6 @@ extension SoundManager {
         sfxPlayer?.prepareToPlay()
         sfxPlayer?.play()
         
-        if sfxPlayer == nil { print("Could not create sfx audio player") }
+        if sfxPlayer == nil { print("[SoundManager] Could not create sfx audio player") }
     }
 }
