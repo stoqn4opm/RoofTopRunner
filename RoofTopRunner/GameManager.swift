@@ -44,6 +44,11 @@ extension GameManager {
         loadScene(scene: introStoryScene)
     }
     
+    func loadTitleScene() {
+        guard let titleScene = SKScene(fileNamed: "TitleScene") else { return }
+        loadScene(scene: titleScene)
+    }
+    
     func loadMenuScene() {
         let mainMenuScene = MainMenuScene(size: skView.frame.size.scaled())
         loadScene(scene: mainMenuScene)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32076A4A1F484F0C008B8A4C /* bgm_titleScreen.wav in Resources */ = {isa = PBXBuildFile; fileRef = 32076A491F484E95008B8A4C /* bgm_titleScreen.wav */; };
 		320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */; };
 		321E94861F0CBB8800D5DF60 /* HudTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 321E94851F0CBB8800D5DF60 /* HudTextures.atlas */; };
 		321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321F12141F0D827700B8E3B9 /* PressStart2P.ttf */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32076A491F484E95008B8A4C /* bgm_titleScreen.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm_titleScreen.wav; sourceTree = "<group>"; };
 		320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObstaclesLayerNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		321E94851F0CBB8800D5DF60 /* HudTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HudTextures.atlas; sourceTree = "<group>"; };
 		321F12141F0D827700B8E3B9 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		327458E91ECB208700CCA1D0 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				32076A491F484E95008B8A4C /* bgm_titleScreen.wav */,
 				3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */,
 				3226E7001F473143006E0A3C /* sfx_letterType.wav */,
 				3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */,
@@ -495,6 +498,7 @@
 				321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */,
 				32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */,
 				3223AF651F4578E200D122A9 /* IntroStoryScene.sks in Resources */,
+				32076A4A1F484F0C008B8A4C /* bgm_titleScreen.wav in Resources */,
 				3226E6FF1F473034006E0A3C /* SoundEffects in Resources */,
 				32E398821EF1185600D20BF7 /* Textures.atlas in Resources */,
 				3226E7031F4735CF006E0A3C /* sfx_endOfIntroScene.wav in Resources */,

@@ -133,7 +133,7 @@ extension IntroStoryScene {
         }
         sequence.append(SKAction.fadeOut(withDuration: 1))
         sequence.append(SKAction.wait(forDuration: 0.4))
-        sequence.append(SKAction.run { GameManager.shared.loadMenuScene() })
+        sequence.append(SKAction.run { GameManager.shared.loadTitleScene() })
         
         return SKAction.sequence(sequence)
     }
