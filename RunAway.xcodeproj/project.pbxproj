@@ -181,6 +181,9 @@
 		32E3D63E1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D63D1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift */; };
 		32E3D6401EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E3D63F1EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift */; };
 		32E416551EE9205900083ACE /* HudLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E416541EE9205900083ACE /* HudLayerNode.swift */; };
+		32E4B21B1F49BF2D0068BB84 /* StarsTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 32E4B21A1F49BEC70068BB84 /* StarsTextures.atlas */; };
+		32E4B21C1F49BF2D0068BB84 /* StarsTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 32E4B21A1F49BEC70068BB84 /* StarsTextures.atlas */; };
+		32E4B21D1F49BF2E0068BB84 /* StarsTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 32E4B21A1F49BEC70068BB84 /* StarsTextures.atlas */; };
 		32E6C67E1EF6436E0095EDFE /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6C67D1EF6436E0095EDFE /* MainMenuScene.swift */; };
 		32E7281E1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7281D1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift */; };
 		32EA791D1EE67D2500B0F4D4 /* MainCharacterNodeNoRotationBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EA791C1EE67D2500B0F4D4 /* MainCharacterNodeNoRotationBehaviour.swift */; };
@@ -250,6 +253,7 @@
 		32E3D63D1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeContinuousBehaviour.swift; sourceTree = "<group>"; };
 		32E3D63F1EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeBehaviourController.swift; sourceTree = "<group>"; };
 		32E416541EE9205900083ACE /* HudLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudLayerNode.swift; sourceTree = "<group>"; };
+		32E4B21A1F49BEC70068BB84 /* StarsTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = StarsTextures.atlas; sourceTree = "<group>"; };
 		32E6C67D1EF6436E0095EDFE /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
 		32E7281D1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppenderController.swift; sourceTree = "<group>"; };
 		32EA791C1EE67D2500B0F4D4 /* MainCharacterNodeNoRotationBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeNoRotationBehaviour.swift; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 				3226E7001F473143006E0A3C /* sfx_letterType.wav */,
 				3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */,
 				321F12141F0D827700B8E3B9 /* PressStart2P.ttf */,
+				32E4B21A1F49BEC70068BB84 /* StarsTextures.atlas */,
 				3226E6FE1F473034006E0A3C /* SoundEffects */,
 				3299C0B31F457D0C003385C9 /* TestTextures.atlas */,
 				328747431EC9D49D004D54F6 /* Assets.xcassets */,
@@ -387,16 +392,12 @@
 		328747351EC9D49D004D54F6 /* RoofTopRunner */ = {
 			isa = PBXGroup;
 			children = (
-				32A004541F49B46E0034E264 /* Info-PROD.plist */,
-				32A004551F49B4820034E264 /* Info-QA.plist */,
-				32A0049A1F49B5540034E264 /* Info-DEV.plist */,
-				328747361EC9D49D004D54F6 /* AppDelegate.swift */,
+				32E4B2171F49BDCB0068BB84 /* App Delegate & Info Plists */,
 				327458E61ECB188F00CCA1D0 /* View Controllers & StoryBoards */,
 				32E7281C1ED3F53A004DFDFB /* Shared Functionality */,
 				327458E51ECB186100CCA1D0 /* Game Scenes */,
 				32DE65AE1F28781C009B8537 /* TWControls */,
-				3223AF661F457AE400D122A9 /* SKMultilineLabel.swift */,
-				3226E6FC1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift */,
+				32E4B2181F49BDF70068BB84 /* SKMultilineLabel */,
 				327458E91ECB208700CCA1D0 /* Art */,
 			);
 			path = RoofTopRunner;
@@ -498,6 +499,26 @@
 				32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */,
 			);
 			name = "Hud Layer";
+			sourceTree = "<group>";
+		};
+		32E4B2171F49BDCB0068BB84 /* App Delegate & Info Plists */ = {
+			isa = PBXGroup;
+			children = (
+				328747361EC9D49D004D54F6 /* AppDelegate.swift */,
+				32A0049A1F49B5540034E264 /* Info-DEV.plist */,
+				32A004541F49B46E0034E264 /* Info-PROD.plist */,
+				32A004551F49B4820034E264 /* Info-QA.plist */,
+			);
+			name = "App Delegate & Info Plists";
+			sourceTree = "<group>";
+		};
+		32E4B2181F49BDF70068BB84 /* SKMultilineLabel */ = {
+			isa = PBXGroup;
+			children = (
+				3223AF661F457AE400D122A9 /* SKMultilineLabel.swift */,
+				3226E6FC1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift */,
+			);
+			name = SKMultilineLabel;
 			sourceTree = "<group>";
 		};
 		32E6C67C1EF643490095EDFE /* Main Menu Scene */ = {
@@ -669,6 +690,7 @@
 				3226E7051F4769E9006E0A3C /* bgm_introStoryScene.wav in Resources */,
 				321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */,
 				32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */,
+				32E4B21B1F49BF2D0068BB84 /* StarsTextures.atlas in Resources */,
 				3223AF651F4578E200D122A9 /* IntroStoryScene.sks in Resources */,
 				32076A4A1F484F0C008B8A4C /* bgm_titleScreen.wav in Resources */,
 				3226E6FF1F473034006E0A3C /* SoundEffects in Resources */,
@@ -695,6 +717,7 @@
 				32A004401F49B3130034E264 /* bgm_introStoryScene.wav in Resources */,
 				32A004411F49B3130034E264 /* PressStart2P.ttf in Resources */,
 				32A004421F49B3130034E264 /* Platforms.atlas in Resources */,
+				32E4B21C1F49BF2D0068BB84 /* StarsTextures.atlas in Resources */,
 				32A004431F49B3130034E264 /* IntroStoryScene.sks in Resources */,
 				32A004441F49B3130034E264 /* bgm_titleScreen.wav in Resources */,
 				32A004451F49B3130034E264 /* SoundEffects in Resources */,
@@ -721,6 +744,7 @@
 				32A004861F49B4F40034E264 /* bgm_introStoryScene.wav in Resources */,
 				32A004871F49B4F40034E264 /* PressStart2P.ttf in Resources */,
 				32A004881F49B4F40034E264 /* Platforms.atlas in Resources */,
+				32E4B21D1F49BF2E0068BB84 /* StarsTextures.atlas in Resources */,
 				32A004891F49B4F40034E264 /* IntroStoryScene.sks in Resources */,
 				32A0048A1F49B4F40034E264 /* bgm_titleScreen.wav in Resources */,
 				32A0048B1F49B4F40034E264 /* SoundEffects in Resources */,
