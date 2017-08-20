@@ -1038,6 +1038,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/RoofTopRunner/Info-QA.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DQA_BUILD";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stoyan.stoyanov.RoofTopRunner-qa";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -1054,6 +1055,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/RoofTopRunner/Info-QA.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DQA_BUILD";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stoyan.stoyanov.RoofTopRunner-qa";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -1070,6 +1072,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/RoofTopRunner/Info-DEV.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEV_BUILD";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stoyan.stoyanov.RoofTopRunner-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -1086,6 +1089,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/RoofTopRunner/Info-DEV.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEV_BUILD";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stoyan.stoyanov.RoofTopRunner-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
