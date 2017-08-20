@@ -42,6 +42,16 @@ extension SoundManager {
         bgmPlayer?.stop()
         if bgmPlayer == nil { print("[SoundManager] Could not stop bgm audio player because its nil") }
     }
+    
+    public func pauseBackgroundMusic() {
+        bgmPlayer?.pause()
+        if bgmPlayer == nil { print("[SoundManager] Could not pause bgm audio player because its nil") }
+    }
+    
+    public func resumeBackgroundMusic() {
+        bgmPlayer?.play()
+        if bgmPlayer == nil { print("[SoundManager] Could not resume bgm audio player because its nil") }
+    }
 }
 
 

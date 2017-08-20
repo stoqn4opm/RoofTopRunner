@@ -19,6 +19,9 @@ class TitleScene: SKScene {
             SoundManager.shared.playBackgroundMusicNamed("bgm_titleScreen")
             self.isAbleToTap = true
             }]))
+        
+        let bulidLabel = childNode(withName: "buildLabel") as? SKLabelNode
+        bulidLabel?.text = "BUILD: \(Bundle.main.appVersionString)"
     }
 }
 
