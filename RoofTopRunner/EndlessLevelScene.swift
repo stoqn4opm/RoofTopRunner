@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-import SwiftyJSON
 
 protocol EndlessLevelSceneStateAwareChildNode {
     func sceneStateDidUpdateTo(_ state: EndlessLevelScene.States)

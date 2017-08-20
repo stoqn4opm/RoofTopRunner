@@ -8,7 +8,6 @@
 
 import Foundation
 import SpriteKit
-import SwiftyJSON
 
 class GameManager {
     
