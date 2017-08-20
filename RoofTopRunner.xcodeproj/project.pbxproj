@@ -7,10 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32076A4A1F484F0C008B8A4C /* bgm_titleScreen.wav in Resources */ = {isa = PBXBuildFile; fileRef = 32076A491F484E95008B8A4C /* bgm_titleScreen.wav */; };
 		320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */; };
+		321C0ECD1F488293004EF2E1 /* sfx_go_to_menu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 321C0ECC1F488293004EF2E1 /* sfx_go_to_menu.wav */; };
+		321C0ECF1F48924F004EF2E1 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321C0ECE1F48924F004EF2E1 /* SoundManager.swift */; };
 		321E94861F0CBB8800D5DF60 /* HudTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 321E94851F0CBB8800D5DF60 /* HudTextures.atlas */; };
 		321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 321F12141F0D827700B8E3B9 /* PressStart2P.ttf */; };
 		321FC99B1F149BD000733665 /* MenuTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 321FC99A1F149BD000733665 /* MenuTextures.atlas */; };
+		322316C21F44279A00BA6AF8 /* GameOverNodeContainer.sks in Resources */ = {isa = PBXBuildFile; fileRef = 322316C11F44279A00BA6AF8 /* GameOverNodeContainer.sks */; };
+		3223AF651F4578E200D122A9 /* IntroStoryScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3223AF641F4578E200D122A9 /* IntroStoryScene.sks */; };
+		3223AF671F457AE400D122A9 /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3223AF661F457AE400D122A9 /* SKMultilineLabel.swift */; };
+		322514671F4828B20098B796 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 322514661F4828B20098B796 /* TitleScene.sks */; };
+		3226E6FD1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3226E6FC1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift */; };
+		3226E6FF1F473034006E0A3C /* SoundEffects in Resources */ = {isa = PBXBuildFile; fileRef = 3226E6FE1F473034006E0A3C /* SoundEffects */; };
+		3226E7011F473143006E0A3C /* sfx_letterType.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3226E7001F473143006E0A3C /* sfx_letterType.wav */; };
+		3226E7031F4735CF006E0A3C /* sfx_endOfIntroScene.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */; };
+		3226E7051F4769E9006E0A3C /* bgm_introStoryScene.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */; };
 		32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */; };
 		32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */; };
 		323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */; };
@@ -23,12 +35,20 @@
 		328747421EC9D49D004D54F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747401EC9D49D004D54F6 /* Main.storyboard */; };
 		328747441EC9D49D004D54F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 328747431EC9D49D004D54F6 /* Assets.xcassets */; };
 		328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328747451EC9D49D004D54F6 /* LaunchScreen.storyboard */; };
+		3299C0B41F457D0C003385C9 /* TestTextures.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3299C0B31F457D0C003385C9 /* TestTextures.atlas */; };
+		3299C0B61F457EBD003385C9 /* IntroStoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3299C0B51F457EBD003385C9 /* IntroStoryScene.swift */; };
+		32A626ED1F48723E00C07F06 /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A626EC1F48723E00C07F06 /* TitleScene.swift */; };
 		32DBD1641EEA6FDA004CC9C2 /* SKIconLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */; };
 		32DBD1661EEA7C80004CC9C2 /* SKButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */; };
 		32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */; };
 		32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */; };
 		32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */; };
 		32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 32DDD1551F0E0E1E002ED79E /* Platforms.atlas */; };
+		32DE65B41F28782E009B8537 /* TWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DE65AF1F28782E009B8537 /* TWButton.swift */; };
+		32DE65B51F28782E009B8537 /* TWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DE65B01F28782E009B8537 /* TWSwitch.swift */; };
+		32DE65B61F28782E009B8537 /* TWControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DE65B11F28782E009B8537 /* TWControl+Helpers.swift */; };
+		32DE65B71F28782E009B8537 /* TWControl+NestedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DE65B21F28782E009B8537 /* TWControl+NestedTypes.swift */; };
+		32DE65B81F28782E009B8537 /* TWControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DE65B31F28782E009B8537 /* TWControl.swift */; };
 		32E0D36F1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0D36E1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift */; };
 		32E1C4B01EED66410075D0AD /* GameOverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4AF1EED66410075D0AD /* GameOverNode.swift */; };
 		32E1C4B21EED819F0075D0AD /* GameOverLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */; };
@@ -50,10 +70,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32076A491F484E95008B8A4C /* bgm_titleScreen.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm_titleScreen.wav; sourceTree = "<group>"; };
 		320EB5721ECA46D7004DE20D /* ObstaclesLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObstaclesLayerNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		321C0ECC1F488293004EF2E1 /* sfx_go_to_menu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_go_to_menu.wav; sourceTree = "<group>"; };
+		321C0ECE1F48924F004EF2E1 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		321E94851F0CBB8800D5DF60 /* HudTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HudTextures.atlas; sourceTree = "<group>"; };
 		321F12141F0D827700B8E3B9 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
 		321FC99A1F149BD000733665 /* MenuTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MenuTextures.atlas; sourceTree = "<group>"; };
+		322316C11F44279A00BA6AF8 /* GameOverNodeContainer.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverNodeContainer.sks; sourceTree = "<group>"; };
+		3223AF641F4578E200D122A9 /* IntroStoryScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IntroStoryScene.sks; sourceTree = "<group>"; };
+		3223AF661F457AE400D122A9 /* SKMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
+		322514661F4828B20098B796 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
+		3226E6FC1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabelCharByChar.swift; sourceTree = "<group>"; };
+		3226E6FE1F473034006E0A3C /* SoundEffects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SoundEffects; sourceTree = "<group>"; };
+		3226E7001F473143006E0A3C /* sfx_letterType.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sfx_letterType.wav; path = SoundEffects/sfx_letterType.wav; sourceTree = "<group>"; };
+		3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sfx_endOfIntroScene.wav; sourceTree = "<group>"; };
+		3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm_introStoryScene.wav; sourceTree = "<group>"; };
+		3226E7061F4790DC006E0A3C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		32314FDF1ED018C30016C6FF /* ObstacleNodeAppender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppender.swift; sourceTree = "<group>"; };
 		32314FE31ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNodeAppendRules.swift; sourceTree = "<group>"; };
 		323C45E91ECA3BE2003E7E71 /* ObstacleNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
@@ -68,12 +101,20 @@
 		328747431EC9D49D004D54F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		328747461EC9D49D004D54F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		328747481EC9D49D004D54F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = RoofTopRunner/Info.plist; sourceTree = "<group>"; };
+		3299C0B31F457D0C003385C9 /* TestTextures.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = TestTextures.atlas; sourceTree = "<group>"; };
+		3299C0B51F457EBD003385C9 /* IntroStoryScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroStoryScene.swift; sourceTree = "<group>"; };
+		32A626EC1F48723E00C07F06 /* TitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		32DBD1631EEA6FDA004CC9C2 /* SKIconLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKIconLabelNode.swift; sourceTree = "<group>"; };
 		32DBD1651EEA7C80004CC9C2 /* SKButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonNode.swift; sourceTree = "<group>"; };
 		32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseMenuNode.swift; sourceTree = "<group>"; };
 		32DCA44C1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDownwardJumpBehaviour.swift; sourceTree = "<group>"; };
 		32DCA44E1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCharacterNodeDieBehaviour.swift; sourceTree = "<group>"; };
 		32DDD1551F0E0E1E002ED79E /* Platforms.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Platforms.atlas; sourceTree = "<group>"; };
+		32DE65AF1F28782E009B8537 /* TWButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWButton.swift; sourceTree = "<group>"; };
+		32DE65B01F28782E009B8537 /* TWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWSwitch.swift; sourceTree = "<group>"; };
+		32DE65B11F28782E009B8537 /* TWControl+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TWControl+Helpers.swift"; sourceTree = "<group>"; };
+		32DE65B21F28782E009B8537 /* TWControl+NestedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TWControl+NestedTypes.swift"; sourceTree = "<group>"; };
+		32DE65B31F28782E009B8537 /* TWControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWControl.swift; sourceTree = "<group>"; };
 		32E0D36E1EEFC59600D7E7F0 /* ParallaxBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxBackgroundNode.swift; sourceTree = "<group>"; };
 		32E1C4AF1EED66410075D0AD /* GameOverNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverNode.swift; sourceTree = "<group>"; };
 		32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLayerNode.swift; sourceTree = "<group>"; };
@@ -111,9 +152,28 @@
 		1E0DC57D1535109F497889C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3226E7061F4790DC006E0A3C /* AVFoundation.framework */,
 				C954112B745794B726884FED /* Pods_RoofTopRunner.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3223AF631F4578B100D122A9 /* Intro Story Scene */ = {
+			isa = PBXGroup;
+			children = (
+				3223AF641F4578E200D122A9 /* IntroStoryScene.sks */,
+				3299C0B51F457EBD003385C9 /* IntroStoryScene.swift */,
+			);
+			name = "Intro Story Scene";
+			sourceTree = "<group>";
+		};
+		322514651F4828840098B796 /* Title Screen */ = {
+			isa = PBXGroup;
+			children = (
+				322514661F4828B20098B796 /* TitleScene.sks */,
+				32A626EC1F48723E00C07F06 /* TitleScene.swift */,
+			);
+			name = "Title Screen";
 			sourceTree = "<group>";
 		};
 		327458E31ECB17DD00CCA1D0 /* ObstaclePage Patterns */ = {
@@ -137,6 +197,8 @@
 		327458E51ECB186100CCA1D0 /* Game Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				322514651F4828840098B796 /* Title Screen */,
+				3223AF631F4578B100D122A9 /* Intro Story Scene */,
 				32E6C67C1EF643490095EDFE /* Main Menu Scene */,
 				32E7281B1ED3F4F0004DFDFB /* Endless Level Scene */,
 			);
@@ -156,7 +218,14 @@
 		327458E91ECB208700CCA1D0 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				321C0ECC1F488293004EF2E1 /* sfx_go_to_menu.wav */,
+				32076A491F484E95008B8A4C /* bgm_titleScreen.wav */,
+				3226E7041F4769E9006E0A3C /* bgm_introStoryScene.wav */,
+				3226E7001F473143006E0A3C /* sfx_letterType.wav */,
+				3226E7021F4735CF006E0A3C /* sfx_endOfIntroScene.wav */,
 				321F12141F0D827700B8E3B9 /* PressStart2P.ttf */,
+				3226E6FE1F473034006E0A3C /* SoundEffects */,
+				3299C0B31F457D0C003385C9 /* TestTextures.atlas */,
 				328747431EC9D49D004D54F6 /* Assets.xcassets */,
 				321FC99A1F149BD000733665 /* MenuTextures.atlas */,
 				32DDD1551F0E0E1E002ED79E /* Platforms.atlas */,
@@ -192,6 +261,9 @@
 				327458E61ECB188F00CCA1D0 /* View Controllers & StoryBoards */,
 				32E7281C1ED3F53A004DFDFB /* Shared Functionality */,
 				327458E51ECB186100CCA1D0 /* Game Scenes */,
+				32DE65AE1F28781C009B8537 /* TWControls */,
+				3223AF661F457AE400D122A9 /* SKMultilineLabel.swift */,
+				3226E6FC1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift */,
 				327458E91ECB208700CCA1D0 /* Art */,
 			);
 			path = RoofTopRunner;
@@ -203,6 +275,18 @@
 				32DC5BE01F1403A500D77DBA /* PauseMenuNode.swift */,
 			);
 			name = "Pause Menu";
+			sourceTree = "<group>";
+		};
+		32DE65AE1F28781C009B8537 /* TWControls */ = {
+			isa = PBXGroup;
+			children = (
+				32DE65AF1F28782E009B8537 /* TWButton.swift */,
+				32DE65B01F28782E009B8537 /* TWSwitch.swift */,
+				32DE65B11F28782E009B8537 /* TWControl+Helpers.swift */,
+				32DE65B21F28782E009B8537 /* TWControl+NestedTypes.swift */,
+				32DE65B31F28782E009B8537 /* TWControl.swift */,
+			);
+			name = TWControls;
 			sourceTree = "<group>";
 		};
 		32E0D36D1EEFC55900D7E7F0 /* Parallax Background */ = {
@@ -219,6 +303,7 @@
 			children = (
 				32E1C4B11EED819F0075D0AD /* GameOverLayerNode.swift */,
 				32E1C4AF1EED66410075D0AD /* GameOverNode.swift */,
+				322316C11F44279A00BA6AF8 /* GameOverNodeContainer.sks */,
 			);
 			name = "Game Over ";
 			sourceTree = "<group>";
@@ -310,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				327458E71ECB1A0300CCA1D0 /* GameManager.swift */,
+				321C0ECE1F48924F004EF2E1 /* SoundManager.swift */,
 				323C45EB1ECA40FA003E7E71 /* Helpers.swift */,
 			);
 			name = "Shared Functionality";
@@ -414,14 +500,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				328747421EC9D49D004D54F6 /* Main.storyboard in Resources */,
+				322514671F4828B20098B796 /* TitleScene.sks in Resources */,
+				3299C0B41F457D0C003385C9 /* TestTextures.atlas in Resources */,
+				3226E7011F473143006E0A3C /* sfx_letterType.wav in Resources */,
+				3226E7051F4769E9006E0A3C /* bgm_introStoryScene.wav in Resources */,
 				321F12151F0D827700B8E3B9 /* PressStart2P.ttf in Resources */,
 				32DDD1561F0E0E1E002ED79E /* Platforms.atlas in Resources */,
+				3223AF651F4578E200D122A9 /* IntroStoryScene.sks in Resources */,
+				32076A4A1F484F0C008B8A4C /* bgm_titleScreen.wav in Resources */,
+				3226E6FF1F473034006E0A3C /* SoundEffects in Resources */,
 				32E398821EF1185600D20BF7 /* Textures.atlas in Resources */,
+				3226E7031F4735CF006E0A3C /* sfx_endOfIntroScene.wav in Resources */,
 				321FC99B1F149BD000733665 /* MenuTextures.atlas in Resources */,
 				327458E01ECAFE3D00CCA1D0 /* page_model.json in Resources */,
 				321E94861F0CBB8800D5DF60 /* HudTextures.atlas in Resources */,
+				322316C21F44279A00BA6AF8 /* GameOverNodeContainer.sks in Resources */,
 				328747441EC9D49D004D54F6 /* Assets.xcassets in Resources */,
 				328747471EC9D49D004D54F6 /* LaunchScreen.storyboard in Resources */,
+				321C0ECD1F488293004EF2E1 /* sfx_go_to_menu.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,20 +578,29 @@
 			files = (
 				32E3D6351EDFDB420006EFE8 /* MainCharacterNodeBehaviour.swift in Sources */,
 				32E416551EE9205900083ACE /* HudLayerNode.swift in Sources */,
+				3223AF671F457AE400D122A9 /* SKMultilineLabel.swift in Sources */,
 				323C45EA1ECA3BE2003E7E71 /* ObstacleNode.swift in Sources */,
 				32DBD1641EEA6FDA004CC9C2 /* SKIconLabelNode.swift in Sources */,
 				327458E81ECB1A0300CCA1D0 /* GameManager.swift in Sources */,
 				32EA791D1EE67D2500B0F4D4 /* MainCharacterNodeNoRotationBehaviour.swift in Sources */,
+				32DE65B51F28782E009B8537 /* TWSwitch.swift in Sources */,
+				32A626ED1F48723E00C07F06 /* TitleScene.swift in Sources */,
+				321C0ECF1F48924F004EF2E1 /* SoundManager.swift in Sources */,
+				3226E6FD1F472BC5006E0A3C /* SKMultilineLabelCharByChar.swift in Sources */,
 				327458E21ECB17AE00CCA1D0 /* EndlessLevelScene.swift in Sources */,
 				32DC5BE11F1403A500D77DBA /* PauseMenuNode.swift in Sources */,
 				32E3D63C1EDFE5F20006EFE8 /* MainCharacterNodeJumpBehaviour.swift in Sources */,
+				3299C0B61F457EBD003385C9 /* IntroStoryScene.swift in Sources */,
 				3287473F1EC9D49D004D54F6 /* GameViewController.swift in Sources */,
 				32E3D6401EDFEF690006EFE8 /* MainCharacterNodeBehaviourController.swift in Sources */,
 				323C45EC1ECA40FA003E7E71 /* Helpers.swift in Sources */,
 				32E1F59C1EF65DDB001141B2 /* MenuScrollingNode.swift in Sources */,
 				32DCA44F1EE7CD8000AC5C0B /* MainCharacterNodeDieBehaviour.swift in Sources */,
+				32DE65B71F28782E009B8537 /* TWControl+NestedTypes.swift in Sources */,
+				32DE65B61F28782E009B8537 /* TWControl+Helpers.swift in Sources */,
 				328747371EC9D49D004D54F6 /* AppDelegate.swift in Sources */,
 				320EB5731ECA46D7004DE20D /* ObstaclesLayerNode.swift in Sources */,
+				32DE65B81F28782E009B8537 /* TWControl.swift in Sources */,
 				32314FE41ED02B4F0016C6FF /* ObstacleNodeAppendRules.swift in Sources */,
 				32314FE01ED018C30016C6FF /* ObstacleNodeAppender.swift in Sources */,
 				32E7281E1ED3F5D4004DFDFB /* ObstacleNodeAppenderController.swift in Sources */,
@@ -510,6 +615,7 @@
 				32DCA44D1EE7C72000AC5C0B /* MainCharacterNodeDownwardJumpBehaviour.swift in Sources */,
 				32E6C67E1EF6436E0095EDFE /* MainMenuScene.swift in Sources */,
 				32E3D63E1EDFECB60006EFE8 /* MainCharacterNodeContinuousBehaviour.swift in Sources */,
+				32DE65B41F28782E009B8537 /* TWButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,9 +746,10 @@
 				INFOPLIST_FILE = RoofTopRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunnere;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -656,9 +763,10 @@
 				INFOPLIST_FILE = RoofTopRunner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunnere;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stoyan.stoyanov.RoofTopRunner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

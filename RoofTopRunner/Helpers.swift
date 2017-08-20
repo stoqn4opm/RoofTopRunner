@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 //MARK: CoreGraphics Helpers
 
@@ -44,6 +45,15 @@ extension CGPoint {
     }
 }
 
+extension Bundle {
+    var appVersionString: String {
+        let dictionary = infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "v\(version)(\(build))"
+    }
+}
+
 extension CGSize {
     
     func scaled(at scale: CGFloat = UIScreen.main.scale) -> CGSize {
@@ -77,3 +87,11 @@ extension String {
         return NSLocalizedString(self, comment: comment)
     }
 }
+
+extension SKNode {
+    var rootChildNode: SKNode? {
+        if let child = self.children.first?.children.first { return child }
+        else { return nil }
+    }
+}
+

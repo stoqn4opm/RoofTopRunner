@@ -22,7 +22,7 @@ class GameManager {
 //        skView.showsNodeCount = true
 //        skView.showsFields = true
 //        skView.showsPhysics = true
-        
+//        
         let instance = GameManager(skView: skView)
         return instance
     }()
@@ -39,6 +39,16 @@ class GameManager {
 //MARK: - Loading Scenes
 extension GameManager {
     
+    func loadIntroStoryScene() {
+        guard let introStoryScene = SKScene(fileNamed: "IntroStoryScene") else { return }
+        loadScene(scene: introStoryScene)
+    }
+    
+    func loadTitleScene() {
+        guard let titleScene = SKScene(fileNamed: "TitleScene") else { return }
+        loadScene(scene: titleScene)
+    }
+    
     func loadMenuScene() {
         let mainMenuScene = MainMenuScene(size: skView.frame.size.scaled())
         loadScene(scene: mainMenuScene)
@@ -50,7 +60,7 @@ extension GameManager {
     }
     
     private func loadScene(scene: SKScene) {
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .aspectFit
         skView.presentScene(scene)
     }
 }
