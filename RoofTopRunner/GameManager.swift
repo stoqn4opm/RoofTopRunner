@@ -9,6 +9,13 @@
 import Foundation
 import SpriteKit
 
+enum GameRunMode {
+    case prod
+    case dev
+    case qa
+}
+
+
 class GameManager {
     
     //MARK: Shared Instance
@@ -16,13 +23,17 @@ class GameManager {
         let skView = SKView(frame: UIScreen.main.bounds)
         skView.ignoresSiblingOrder = true
         
-        // various debug options
-//        skView.showsFPS = true
-//        skView.showsNodeCount = true
-//        skView.showsFields = true
-//        skView.showsPhysics = true
-//        
+        
         let instance = GameManager(skView: skView)
+        
+        if instance.runMode == .dev {
+            // various debug options
+            skView.showsFPS = true
+            skView.showsNodeCount = true
+            skView.showsFields = true
+            skView.showsPhysics = true
+        }
+        
         return instance
     }()
     
@@ -32,6 +43,20 @@ class GameManager {
     //MARK: Init
     init(skView : SKView) {
         self.skView = skView
+    }
+    
+    var runMode: GameRunMode {
+        var result = GameRunMode.prod
+        
+        #if QA_BUILD
+            result = GameRunMode.qa
+        #else
+            #if DEV_BUILD
+                result = GameRunMode.dev
+            #endif
+        #endif
+        
+        return result
     }
 }
 

@@ -20,8 +20,10 @@ class TitleScene: SKScene {
             self.isAbleToTap = true
             }]))
         
-        let bulidLabel = childNode(withName: "buildLabel") as? SKLabelNode
-        bulidLabel?.text = "BUILD: \(Bundle.main.appVersionString)"
+        if GameManager.shared.runMode != .prod {
+            let bulidLabel = childNode(withName: "buildLabel") as? SKLabelNode
+            bulidLabel?.text = "BUILD: \(Bundle.main.appVersionString)"
+        }
     }
 }
 
