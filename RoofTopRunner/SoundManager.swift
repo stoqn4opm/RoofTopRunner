@@ -77,3 +77,20 @@ extension SoundManager {
         if sfxPlayer == nil { print("[SoundManager] Could not stop sfx audio player because its nil") }
     }
 }
+
+
+//MARK: - App Minimized Handling
+
+extension SoundManager {
+    
+    func pause() {
+        sfxPlayer?.pause()
+        bgmPlayer?.pause()
+    }
+    
+    func resume() {
+        sfxPlayer?.play()
+        bgmPlayer?.play()
+    }
+}
+

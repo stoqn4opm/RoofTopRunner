@@ -31,7 +31,7 @@ class ScratchScene: SKScene {
             self.hideAndRemoveGameBoard {
                 self.prepareLayoutForCoinsCount() {
                     self.countDownCoins() {
-                            GameManager.shared.loadScratchScene()
+                        self.restartGame()
                     }
                 }
             }
@@ -316,3 +316,24 @@ extension ScratchScene {
     }
 }
 
+//MARK: - Dismiss/Restart
+
+extension ScratchScene {
+    
+    fileprivate func restartGame() {
+        let fadeOutGlobalAction = SKAction.run {
+            
+            for child in self.children {
+                guard let childName = child.name else { continue }
+                if childName.contains("detachedContainer_") || childName.hasPrefix("totalCoinsContainer") {
+                    child.run(SKAction.fadeOut(withDuration: 1))
+                }
+            }
+        }
+        
+        run(SKAction.sequence([SKAction.wait(forDuration: 3),
+                               fadeOutGlobalAction,
+                               SKAction.wait(forDuration: 3),
+                               SKAction.run { GameManager.shared.loadScratchScene() }]))
+    }
+}
