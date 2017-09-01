@@ -26,16 +26,26 @@ class ScratchScene: SKScene {
     override func didMove(to view: SKView) {
         populateGameBoard()
         let allConsecutive = searchForConsecutive()
-        animateConsecutives(allConsecutive) {
-            self.detachFromGameBoard(listOfLists: allConsecutive)
-            self.hideAndRemoveGameBoard {
-                self.prepareLayoutForCoinsCount() {
-                    self.countDownCoins() {
-                        self.restartGame()
+        
+        if allConsecutive.isEmpty {
+            hideAndRemoveGameBoard {
+                self.presentNoPriceEnding {
+                    self.restartGame()
+                }
+            }
+        } else {
+            animateConsecutives(allConsecutive) {
+                self.detachFromGameBoard(listOfLists: allConsecutive)
+                self.hideAndRemoveGameBoard {
+                    self.prepareLayoutForCoinsCount() {
+                        self.countDownCoins() {
+                            self.restartGame()
+                        }
                     }
                 }
             }
         }
+        
     }
 }
 
@@ -325,7 +335,7 @@ extension ScratchScene {
             
             for child in self.children {
                 guard let childName = child.name else { continue }
-                if childName.contains("detachedContainer_") || childName.hasPrefix("totalCoinsContainer") {
+                if childName.contains("detachedContainer_") || childName == "totalCoinsContainer" || childName == "badEndingLabel" {
                     child.run(SKAction.fadeOut(withDuration: 1))
                 }
             }
@@ -335,5 +345,23 @@ extension ScratchScene {
                                fadeOutGlobalAction,
                                SKAction.wait(forDuration: 3),
                                SKAction.run { GameManager.shared.loadScratchScene() }]))
+    }
+}
+
+//MARK: - No Price Ending
+
+extension ScratchScene {
+    fileprivate func presentNoPriceEnding(withCompletion completion: @escaping (Void) -> Void) {
+        
+        let badEndingLabel = childNode(withName: "badEndingLabel") as? SKLabelNode
+        badEndingLabel?.text = "NO PRICE".localized
+        badEndingLabel?.run(SKAction.sequence([SKAction.fadeIn(withDuration: 1),
+                                               SKAction.wait(forDuration: 11), // wait for sfx_no_price to finish
+                                               SKAction.run(completion)]))
+        
+        SoundManager.shared.playSoundEffectNamed("sfx_no_price")
+        if badEndingLabel == nil {
+            completion()
+        }
     }
 }
