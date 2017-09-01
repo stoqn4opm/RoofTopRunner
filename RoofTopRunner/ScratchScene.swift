@@ -24,7 +24,9 @@ class ScratchScene: SKScene {
     fileprivate let coinsForTextures : [Int] = [500, 1000, 1500, 2000, 2500]
     
     override func didMove(to view: SKView) {
-        populateGameBoard()
+        prepareGameBoard()
+        
+        return 
         let allConsecutive = searchForConsecutive()
         
         if allConsecutive.isEmpty {
@@ -46,6 +48,52 @@ class ScratchScene: SKScene {
             }
         }
         
+    }
+}
+
+//MARK: - Gameboard Preparation
+
+extension ScratchScene: ScrapableBoardDelegate {
+    
+    fileprivate func prepareGameBoard() {
+        populateGameBoard()
+        
+        guard let gameBoard = childNode(withName: "gameBoard") else { return }
+        gameBoard.removeFromParent()
+        
+        let cropContainer = ScrapableBoard()
+        cropContainer.delegate = self
+        cropContainer.position = gameBoard.position
+        gameBoard.position = convert(gameBoard.position, to: cropContainer)
+        cropContainer.name = "gameBoardCropContainer"
+        cropContainer.isUserInteractionEnabled = true
+        addChild(cropContainer)
+        
+        cropContainer.addChild(gameBoard)
+    }
+    
+    func didScrapeBoard(_ board: ScrapableBoard) {
+      
+        let allConsecutive = searchForConsecutive()
+        
+        if allConsecutive.isEmpty {
+            hideAndRemoveGameBoard {
+                self.presentNoPriceEnding {
+                    self.restartGame()
+                }
+            }
+        } else {
+            animateConsecutives(allConsecutive) {
+                self.detachFromGameBoard(listOfLists: allConsecutive)
+                self.hideAndRemoveGameBoard {
+                    self.prepareLayoutForCoinsCount() {
+                        self.countDownCoins() {
+                            self.restartGame()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -204,7 +252,7 @@ extension ScratchScene {
     }
     
     fileprivate func hideAndRemoveGameBoard(withCompletion completion: @escaping (Void) -> Void) {
-        guard let gameBoard = childNode(withName: "gameBoard") else {completion(); return }
+        guard let gameBoard = childNode(withName: "gameBoard*") else {completion(); return }
         
         gameBoard.run(SKAction.sequence([SKAction.wait(forDuration: 2),
                                          SKAction.fadeOut(withDuration: 0.5),
