@@ -21,13 +21,19 @@ class ScratchScene: SKScene {
                                                SKTexture(imageNamed: "tile3"), SKTexture(imageNamed: "tile4"),
                                                SKTexture(imageNamed: "tile5")]
     
+    fileprivate let coinsForTextures : [Int] = [500, 1000, 1500, 2000, 2500]
+    
     override func didMove(to view: SKView) {
         populateGameBoard()
         let allConsecutive = searchForConsecutive()
         animateConsecutives(allConsecutive) {
             self.detachFromGameBoard(listOfLists: allConsecutive)
             self.hideAndRemoveGameBoard {
-                self.prepareLayoutForCoinsCount()
+                self.prepareLayoutForCoinsCount() {
+                    self.countDownCoins() {
+                            GameManager.shared.loadScratchScene()
+                    }
+                }
             }
         }
     }
@@ -196,33 +202,117 @@ extension ScratchScene {
                                          SKAction.run { gameBoard.removeFromParent() }]))
     }
     
-    fileprivate func prepareLayoutForCoinsCount() {
+    fileprivate func prepareLayoutForCoinsCount(completion: @escaping (Void) -> Void) {
         
-        var allCointainers: [SKNode] = []
+        var allContainers: [SKNode] = []
         
         var i = 0
         while childNode(withName: "detachedContainer_\(i)") != nil {
             guard let container = childNode(withName: "detachedContainer_\(i)") else { break }
-            allCointainers.append(container)
+            allContainers.append(container)
             i += 1
         }
         
-        let destinationCoords: [CGPoint] = [CGPoint(x: -300, y: 200),
-                                            CGPoint(x: -300, y: 110),
-                                            CGPoint(x: -300, y: 20),
-                                            CGPoint(x: -300, y: -70),
-                                            CGPoint(x: -300, y: -160)]
+        moveConsecutiveItemsToCountingLocation(allContainers: allContainers) {
+            self.placeLabelsForCountingPointsNextTo(allContainers, completion: completion)
+        }
+        
+    }
+    
+    fileprivate func moveConsecutiveItemsToCountingLocation(allContainers: [SKNode], completion: @escaping (Void) -> Void) {
+        
+        let destinationCoords: [CGPoint] = [CGPoint(x: -300, y: 230),
+                                            CGPoint(x: -300, y: 140),
+                                            CGPoint(x: -300, y: 50),
+                                            CGPoint(x: -300, y: -40),
+                                            CGPoint(x: -300, y: -130)]
         var currentCoordHelper = 0
         
-        for container in allCointainers {
+        for container in allContainers {
             
             let currentCoord = destinationCoords[currentCoordHelper]
-            container.run(SKAction.group([SKAction.move(to: currentCoord, duration: 1),
-                                          SKAction.scale(to: 0.7, duration: 1),
-                                          SKAction.run {
+            var action = SKAction.group([SKAction.move(to: currentCoord, duration: 1),
+                                         SKAction.scale(to: 0.7, duration: 1),
+                                         SKAction.run {
                                             let action = SKAction.colorize(with: .clear, colorBlendFactor: 0, duration: 1)
-                                            for child in container.children { child.run(action)} }]))
+                                            for child in container.children { child.run(action)} }])
+            
+            if container == allContainers.first { action = SKAction.sequence([action, SKAction.run(completion)]) }
+            container.run(action)
             currentCoordHelper += 1
         }
     }
+    
+    fileprivate func placeLabelsForCountingPointsNextTo(_ containers: [SKNode], completion: @escaping (Void) -> Void) {
+        
+        guard let lastContainerPosition = containers.last else { return }
+        let positionForTotalLabel = CGPoint(x: -lastContainerPosition.position.x + 250, y: lastContainerPosition.position.y - 100)
+        var combinedAction: [SKAction] = [SKAction.run(SKAction.move(to: positionForTotalLabel, duration: 0.01), onChildWithName: "totalCoinsContainer"),
+                                          SKAction.run(SKAction.fadeIn(withDuration: 1), onChildWithName: "totalCoinsContainer"),
+                                          SKAction.wait(forDuration: 1.5)]
+        
+        for container in containers {
+            let labelPosition = CGPoint(x: -container.position.x + 200, y: container.position.y - 25)
+            let label = SKLabelNode(fontNamed: "PressStart2P")
+            label.position = labelPosition
+            label.horizontalAlignmentMode = .right
+            label.verticalAlignmentMode = .top
+            
+            label.fontSize = 40
+            label.name = "labelFor\(container.name ?? "")"
+            label.alpha = 0
+            addChild(label)
+            
+            let appearGroup = SKAction.run {
+                let action = SKAction.group([SKAction.moveTo(x: -container.position.x + 250, duration: 0.3), SKAction.fadeIn(withDuration: 0.3)])
+                label.run(action)
+            
+                let newlyAddedScores = self.scoresForContainer(container)
+                label.text = "\(newlyAddedScores)"
+                
+                let totalCount = self.childNode(withName: "//totalCoinsLabel") as? SKLabelNode
+                if let totalCountText = totalCount?.text {
+                    
+                    let scoresUntilNow = Int(totalCountText) ?? 0
+                    totalCount?.text = "\(scoresUntilNow + newlyAddedScores)"
+                    
+                    SoundManager.shared.playSoundEffectNamed("sfx_coin_obtained")
+                }
+            }
+            
+            combinedAction.append(appearGroup)
+            combinedAction.append(SKAction.wait(forDuration: 1.5))
+        }
+        combinedAction.append(SKAction.run(completion))
+        containers.first?.parent?.run(SKAction.sequence(combinedAction))
+    }
+    
+    fileprivate func scoresForContainer(_ container: SKNode) -> Int {
+        let textureSprite = container.childNode(withName: ".//i_*") as? SKSpriteNode
+        guard let texture = textureSprite?.texture else { return 0 }
+        guard let indexOfTexture = tileImages.index(of: texture) else { return 0 }
+        return coinsForTextures[indexOfTexture]
+    }
 }
+
+//MARK: - Coins Countdown
+
+extension ScratchScene {
+    
+    fileprivate func countDownCoins(completion: @escaping (Void) -> Void) {
+    
+        SoundManager.shared.playSoundEffectNamed("sfx_coin_countdown", loop: true)
+        
+        guard let totalCountLabel = childNode(withName: "//totalCoinsLabel") as? SKLabelNode else { return }
+        guard let totalCountText = totalCountLabel.text else { return }
+        guard var coins = Int(totalCountText) else { return }
+
+        totalCountLabel.run(SKAction.sequence([
+            SKAction.repeat(SKAction.sequence([SKAction.run { totalCountLabel.text = "\(coins)"; coins -= 1 },
+                                               SKAction.wait(forDuration: 0.001)]), count: coins + 1),
+            SKAction.run {
+                SoundManager.shared.stopSoundEffect()
+            }, SKAction.run(completion)]))
+    }
+}
+

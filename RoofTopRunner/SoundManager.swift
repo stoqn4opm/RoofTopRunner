@@ -43,12 +43,12 @@ extension SoundManager {
         if bgmPlayer == nil { print("[SoundManager] Could not stop bgm audio player because its nil") }
     }
     
-    public func pauseBackgroundMusic() {
+    func pauseBackgroundMusic() {
         bgmPlayer?.pause()
         if bgmPlayer == nil { print("[SoundManager] Could not pause bgm audio player because its nil") }
     }
     
-    public func resumeBackgroundMusic() {
+    func resumeBackgroundMusic() {
         bgmPlayer?.play()
         if bgmPlayer == nil { print("[SoundManager] Could not resume bgm audio player because its nil") }
     }
@@ -58,17 +58,22 @@ extension SoundManager {
 //MARK: - SFX
 
 extension SoundManager {
-    public func playSoundEffectNamed(_ filename: String) {
+    public func playSoundEffectNamed(_ filename: String, loop: Bool = false) {
         guard let url = Bundle.main.url(forResource: filename, withExtension: "wav") else {
             print("[SoundManager] Could not find file: \(filename)")
             return
         }
         
         sfxPlayer = try? AVAudioPlayer(contentsOf: url)
-        sfxPlayer?.numberOfLoops = 0
+        sfxPlayer?.numberOfLoops = loop ? -1 : 0
         sfxPlayer?.prepareToPlay()
         sfxPlayer?.play()
         
         if sfxPlayer == nil { print("[SoundManager] Could not create sfx audio player") }
+    }
+    
+    func stopSoundEffect() {
+        sfxPlayer?.stop()
+        if sfxPlayer == nil { print("[SoundManager] Could not stop sfx audio player because its nil") }
     }
 }
