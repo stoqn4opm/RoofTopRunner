@@ -29,6 +29,11 @@ class ScrapableBoard: SKCropNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+//MARK: - Scraping
+
+extension ScrapableBoard {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -58,10 +63,6 @@ class ScrapableBoard: SKCropNode {
             lastTouchCoord = positionInCropNode
         }
     }
-}
-
-
-extension ScrapableBoard {
     
     fileprivate func placeMaskFillerIfNeededAt(_ position: CGPoint) {
         
@@ -69,27 +70,55 @@ extension ScrapableBoard {
         
         guard mask.atPoint(position) == mask else { return }
         
-//        let testPoints = [position,
-//                          CGPoint(x: position.x - (3 / 4) * ScrapableBoard.brushSize.width, y: position.y + (3 / 4) * ScrapableBoard.brushSize.height),
-//                          CGPoint(x: position.x + (3 / 4) * ScrapableBoard.brushSize.width, y: position.y + (3 / 4) * ScrapableBoard.brushSize.height),
-//                          CGPoint(x: position.x + (3 / 4) * ScrapableBoard.brushSize.width, y: position.y - (3 / 4) * ScrapableBoard.brushSize.height),
-//                          CGPoint(x: position.x - (3 / 4) * ScrapableBoard.brushSize.width, y: position.y - (3 / 4) * ScrapableBoard.brushSize.height)]
-//        
-//        var isScrapedOnAllTestPoints = true
-//        for testPoint in testPoints {
-//            if mask.atPoint(testPoint) == mask && mask.contains(<#T##p: CGPoint##CGPoint#>) {
-//                isScrapedOnAllTestPoints = false
-//                break
-//            }
-//        }
-//        
-//        if !isScrapedOnAllTestPoints {
-//        
-            let maskFiller = SKSpriteNode(color: .white, size: ScrapableBoard.brushSize)
-            maskFiller.position = position
-            mask.addChild(maskFiller)
-            lastTouchCoord = position
-//        }
+        let maskFiller = SKSpriteNode(color: .white, size: ScrapableBoard.brushSize)
+        maskFiller.position = position
+        mask.addChild(maskFiller)
+        lastTouchCoord = position
+    }
+}
+
+//MARK: - Scraping Finished
+
+extension ScrapableBoard {
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isScraped { delegate?.didScrapeBoard(self) }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isScraped { delegate?.didScrapeBoard(self) }
+    }
+    
+    fileprivate var isScraped: Bool {
+        
+        guard let mask = maskNode else { return false }
+        guard let board = childNode(withName: "gameBoard") as? SKSpriteNode else { return false }
+        
+        let gridSize = ScrapableBoard.brushSize.scaled(at: 0.5)
+        
+        let horSteps = Int(board.size.width / gridSize.width)
+        let verSteps = Int(board.size.height / gridSize.height)
+        
+        let upperLeftCoord = CGPoint(x: -board.size.width / 2, y: board.size.height / 2)
+        
+        var unscrapedPlaces = 0.0
+        
+        for horStep in 0...horSteps {
+            for verStep in 0...verSteps {
+                let examinePoint = CGPoint(x: upperLeftCoord.x + (CGFloat(horStep) + 0.25) * gridSize.width,
+                                           y: upperLeftCoord.y - (CGFloat(verStep) + 0.25) * gridSize.height)
+                
+                if mask.atPoint(examinePoint) == mask {
+                    unscrapedPlaces += 1
+                }
+            }
+        }
+
+        if unscrapedPlaces < Double((horSteps + 1) * (verSteps + 1)) * 0.15 {
+            maskNode = nil
+            return true
+        } else {
+            return false
+        }
     }
 }
