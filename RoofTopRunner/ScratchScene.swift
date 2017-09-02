@@ -25,29 +25,6 @@ class ScratchScene: SKScene {
     
     override func didMove(to view: SKView) {
         prepareGameBoard()
-        
-        return 
-        let allConsecutive = searchForConsecutive()
-        
-        if allConsecutive.isEmpty {
-            hideAndRemoveGameBoard {
-                self.presentNoPriceEnding {
-                    self.restartGame()
-                }
-            }
-        } else {
-            animateConsecutives(allConsecutive) {
-                self.detachFromGameBoard(listOfLists: allConsecutive)
-                self.hideAndRemoveGameBoard {
-                    self.prepareLayoutForCoinsCount() {
-                        self.countDownCoins() {
-                            self.restartGame()
-                        }
-                    }
-                }
-            }
-        }
-        
     }
 }
 
@@ -74,25 +51,34 @@ extension ScratchScene: ScrapableBoardDelegate {
     
     func didScrapeBoard(_ board: ScrapableBoard) {
       
+        let scrapeSticker = childNode(withName: "scrapeSticker")
+        scrapeSticker?.removeFromParent()
+        
         let allConsecutive = searchForConsecutive()
         
         if allConsecutive.isEmpty {
-            hideAndRemoveGameBoard {
-                self.presentNoPriceEnding {
-                    self.restartGame()
-                }
-            }
+            hideAndRemoveGameBoard(withCompletion: {[weak self] (Void) in
+                guard let strongSelf = self else { return }
+                strongSelf.presentNoPriceEnding(withCompletion: {[weak self] (Void) in
+                    guard let strongSelf = self else { return }
+                    strongSelf.restartGame()
+                })
+            })
         } else {
-            animateConsecutives(allConsecutive) {
-                self.detachFromGameBoard(listOfLists: allConsecutive)
-                self.hideAndRemoveGameBoard {
-                    self.prepareLayoutForCoinsCount() {
-                        self.countDownCoins() {
-                            self.restartGame()
-                        }
-                    }
-                }
-            }
+            animateConsecutives(allConsecutive, completion: {[weak self] (Void) -> Void in
+                guard let strongSelf = self else { return }
+                strongSelf.detachFromGameBoard(listOfLists: allConsecutive)
+                strongSelf.hideAndRemoveGameBoard(withCompletion: {[weak self] (Void) in
+                    guard let strongSelf = self else { return }
+                    strongSelf.prepareLayoutForCoinsCount(completion: {[weak self] (Void) in
+                        guard let strongSelf = self else { return }
+                        strongSelf.countDownCoins(completion: {[weak self] (Void) in
+                            guard let strongSelf = self else { return }
+                            strongSelf.restartGame()
+                        })
+                    })
+                })
+            })
         }
     }
 }
@@ -100,6 +86,7 @@ extension ScratchScene: ScrapableBoardDelegate {
 //MARK: - GameBoard Population
 
 extension ScratchScene {
+    
     fileprivate func populateGameBoard() {
         for col in 0..<Int(boardSize.width) {
             for row in 0..<Int(boardSize.height) {
@@ -205,10 +192,12 @@ extension ScratchScene {
                 perListActions.append(scaleAction)
             }
             
-            combinedActions.append(SKAction.run {
-                self.sendSpritesToAlpha(1.0, list: [list])
-                self.sendSpritesToAlpha(0.0, list: listOfLists.filter({ $0 != list }))
-            })
+            combinedActions.append(SKAction.run({[weak self] (Void) -> Void in
+                guard let strongSelf = self else { return }
+                
+                strongSelf.sendSpritesToAlpha(1.0, list: [list])
+                strongSelf.sendSpritesToAlpha(0.0, list: listOfLists.filter({ $0 != list }))
+            }))
             combinedActions.append(SKAction.group(perListActions))
             combinedActions.append(SKAction.wait(forDuration: 0.6))
         }
@@ -321,14 +310,17 @@ extension ScratchScene {
             label.alpha = 0
             addChild(label)
             
-            let appearGroup = SKAction.run {
+            let appearGroup = SKAction.run({[weak self] (Void) -> Void in
+                
+                guard let strongSelf = self else { return }
+                
                 let action = SKAction.group([SKAction.moveTo(x: -container.position.x + 250, duration: 0.3), SKAction.fadeIn(withDuration: 0.3)])
                 label.run(action)
-            
-                let newlyAddedScores = self.scoresForContainer(container)
+                
+                let newlyAddedScores = strongSelf.scoresForContainer(container)
                 label.text = "\(newlyAddedScores)"
                 
-                let totalCount = self.childNode(withName: "//totalCoinsLabel") as? SKLabelNode
+                let totalCount = strongSelf.childNode(withName: "//totalCoinsLabel") as? SKLabelNode
                 if let totalCountText = totalCount?.text {
                     
                     let scoresUntilNow = Int(totalCountText) ?? 0
@@ -336,7 +328,7 @@ extension ScratchScene {
                     
                     SoundManager.shared.playSoundEffectNamed("sfx_coin_obtained")
                 }
-            }
+            })
             
             combinedAction.append(appearGroup)
             combinedAction.append(SKAction.wait(forDuration: 1.5))
@@ -379,15 +371,16 @@ extension ScratchScene {
 extension ScratchScene {
     
     fileprivate func restartGame() {
-        let fadeOutGlobalAction = SKAction.run {
+        let fadeOutGlobalAction = SKAction.run({[weak self] (Void) -> Void in
+            guard let strongSelf = self else { return }
             
-            for child in self.children {
+            for child in strongSelf.children {
                 guard let childName = child.name else { continue }
                 if childName.contains("detachedContainer_") || childName == "totalCoinsContainer" || childName == "badEndingLabel" {
                     child.run(SKAction.fadeOut(withDuration: 1))
                 }
             }
-        }
+        })
         
         run(SKAction.sequence([SKAction.wait(forDuration: 3),
                                fadeOutGlobalAction,

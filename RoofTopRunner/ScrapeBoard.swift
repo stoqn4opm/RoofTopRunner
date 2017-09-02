@@ -8,11 +8,15 @@
 
 import SpriteKit
 
+//MARK: - Delegate
+
 @objc protocol ScrapableBoardDelegate {
     func didScrapeBoard(_ board: ScrapableBoard)
 }
 
 class ScrapableBoard: SKCropNode {
+    
+    //MARK: - Properties
     
     static var brushSize = CGSize(width: 100, height: 100)
     
